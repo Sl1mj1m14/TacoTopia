@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private float xSpeed = 10;
     private float ySpeed = 4;
 
-    private float scaleMultiplier = 10;
+    private float scaleMultiplier = 1;
 
     private bool isGrounded;
 
