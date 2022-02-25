@@ -5,7 +5,10 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D body;
 
-    private int xSpeed = 10;
+    private float xSpeed = 10;
+    private float ySpeed = 4;
+
+    private float scaleMultiplier = 10;
 
     //This method is called once upon start
     private void Awake() {
@@ -18,8 +21,22 @@ public class PlayerMovement : MonoBehaviour
     //This method is called every frame
     private void Update() {
 
+        float direction = Input.GetAxis("Horizontal");
+        
         //Checking for left/right and a/d key input, and moving the respective direction
-        body.velocity = new Vector2(Input.GetAxis("Horizontal") * xSpeed,body.velocity.y);
+        body.velocity = new Vector2(direction * xSpeed, body.velocity.y);
+
+        //Jumping when space is pressed
+        if (Input.GetKey(KeyCode.Space)) 
+            body.velocity = new Vector2(body.velocity.x, ySpeed);
+        
+
+        //Flip directions based on input
+        if (direction > 0.01f) {
+            transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
+        } else if (direction < -0.01f) {
+            transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier, scaleMultiplier);
+        }
 
     }
 
