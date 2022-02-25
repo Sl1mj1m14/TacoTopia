@@ -4,17 +4,21 @@ public class PlayerMovement : MonoBehaviour
 {
 
     private Rigidbody2D body;
+    private Animator animate;
 
     private float xSpeed = 10;
     private float ySpeed = 4;
 
     private float scaleMultiplier = 10;
 
+    private bool isGrounded;
+
     //This method is called once upon start
     private void Awake() {
 
-        //Assigning the "body" of the player (basically just the physics)
+        //Assigning the physics and animation of the player
         body = GetComponent<Rigidbody2D>();
+        animate = GetComponent<Animator>();
 
     }
 
@@ -27,9 +31,7 @@ public class PlayerMovement : MonoBehaviour
         body.velocity = new Vector2(direction * xSpeed, body.velocity.y);
 
         //Jumping when space is pressed
-        if (Input.GetKey(KeyCode.Space)) 
-            body.velocity = new Vector2(body.velocity.x, ySpeed);
-        
+        if (Input.GetKey(KeyCode.Space) && isGrounded) Jump();     
 
         //Flip directions based on input
         if (direction > 0.01f) {
@@ -37,7 +39,18 @@ public class PlayerMovement : MonoBehaviour
         } else if (direction < -0.01f) {
             transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier, scaleMultiplier);
         }
+    }
+
+    //Changes Y values and specifies not on ground
+    private void Jump() {
+
+        body.velocity = new Vector2(body.velocity.x, ySpeed);
+        isGrounded = false;
 
     }
 
+    //When touching the ground, set isGrounded to true
+    private void OnCollisionEnter2D (Collision2D collision) {
+        if (collision.gameObject.tag == "Ground") isGrounded = true;
+    }
 }
