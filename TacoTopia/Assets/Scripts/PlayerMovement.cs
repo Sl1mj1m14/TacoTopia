@@ -4,20 +4,22 @@ public class PlayerMovement : MonoBehaviour
 {
 
     private Rigidbody2D body;
+    private BoxCollider2D collision;
     private Animator animate;
 
-    private float xSpeed = 10;
-    private float ySpeed = 4;
+    [SerializeField] private LayerMask ground;
 
-    private float scaleMultiplier = 1;
+    [SerializeField] private float xSpeed = 10;
+    [SerializeField] private float ySpeed = 10;
 
-    private bool isGrounded;
+    [SerializeField] private float scaleMultiplier = 1;
 
     //This method is called once upon start
     private void Awake() {
 
         //Assigning the physics and animation of the player
         body = GetComponent<Rigidbody2D>();
+        collision = GetComponent<BoxCollider2D>();
         animate = GetComponent<Animator>();
 
     }
@@ -31,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         body.velocity = new Vector2(direction * xSpeed, body.velocity.y);
 
         //Jumping when space is pressed
-        if (Input.GetKey(KeyCode.Space) && isGrounded) Jump();     
+        if (Input.GetButton("Jump") && IsGrounded()) Jump();     
 
         //Flip directions based on input
         if (direction > 0.01f) {
@@ -45,12 +47,11 @@ public class PlayerMovement : MonoBehaviour
     private void Jump() {
 
         body.velocity = new Vector2(body.velocity.x, ySpeed);
-        isGrounded = false;
 
     }
 
     //When touching the ground, set isGrounded to true
-    private void OnCollisionEnter2D (Collision2D collision) {
-        if (collision.gameObject.tag == "Ground") isGrounded = true;
+    private bool IsGrounded () {
+        return Physics2D.BoxCast(collision.bounds.center, collision.bounds.size, 0f, Vector2.down, .1f, ground);
     }
 }
