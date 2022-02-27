@@ -1,19 +1,34 @@
 fileFormatVersion: 2
-guid: 53a3f03b3bbc74948b0eec2f4c93098f
+guid: db29251016e279a449d548080beb13e4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4102851767660153476
-    second: shirts_0
+      213: -5045535011223827050
+    second: hairs_0
   - first:
-      213: -8839907739959531493
-    second: shirts_1
+      213: 9042079437479353776
+    second: hairs_1
   - first:
-      213: -5772454888048399463
-    second: shirts_2
+      213: -6914103119493876570
+    second: hairs_2
   - first:
-      213: -5007037107781140813
-    second: shirts_3
+      213: -115288615446566239
+    second: hairs_3
+  - first:
+      213: -6218579890368111124
+    second: hairs_4
+  - first:
+      213: -3465951917655514925
+    second: face_1
+  - first:
+      213: 7731911182894376818
+    second: face_2
+  - first:
+      213: 1147381239155910021
+    second: face_0
+  - first:
+      213: -6835207986360431776
+    second: face_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -115,13 +130,118 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: shirts_0
+      name: hairs_0
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 120
+        width: 120
+        height: 60
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69d0532c3a8aaf9b0800000000000000
+      internalID: -5045535011223827050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hairs_1
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 120
+        width: 120
+        height: 60
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bd12d5675beb7d70800000000000000
+      internalID: 9042079437479353776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hairs_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 119
+        width: 130
+        height: 61
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a4b52668db2c00a0800000000000000
+      internalID: -6914103119493876570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hairs_3
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 30
+        width: 140
+        height: 150
+      alignment: 9
+      pivot: {x: 0.071428575, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aa29a57d99666ef0800000000000000
+      internalID: -115288615446566239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hairs_4
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 60
+        width: 120
+        height: 120
+      alignment: 9
+      pivot: {x: 0.083333336, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ced9833898a23b9a0800000000000000
+      internalID: -6218579890368111124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: face_1
       rect:
         serializedVersion: 2
         x: 10
-        y: 500
-        width: 120
-        height: 110
+        y: 20
+        width: 80
+        height: 50
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -129,20 +249,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48a8771e1f140f830800000000000000
-      internalID: 4102851767660153476
+      spriteID: 3d02f83281776efc0800000000000000
+      internalID: -3465951917655514925
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shirts_1
+      name: face_2
       rect:
         serializedVersion: 2
-        x: 190
-        y: 500
-        width: 100
-        height: 110
+        x: 90
+        y: 20
+        width: 80
+        height: 50
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,41 +270,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b186c701fb6525580800000000000000
-      internalID: -8839907739959531493
+      spriteID: 2772a4361444d4b60800000000000000
+      internalID: 7731911182894376818
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shirts_2
+      name: face_0
       rect:
         serializedVersion: 2
-        x: 350
-        y: 490
-        width: 140
-        height: 130
-      alignment: 9
-      pivot: {x: 0.5, y: 0.58}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 99b68e3fcde14efa0800000000000000
-      internalID: -5772454888048399463
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: shirts_3
-      rect:
-        serializedVersion: 2
-        x: 540
-        y: 510
-        width: 60
-        height: 111
+        x: 160
+        y: 20
+        width: 80
+        height: 50
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,8 +291,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3be7185674e638ab0800000000000000
-      internalID: -5007037107781140813
+      spriteID: 585e5dd68215cef00800000000000000
+      internalID: 1147381239155910021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: face_3
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 20
+        width: 80
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06bc2170d867421a0800000000000000
+      internalID: -6835207986360431776
       vertices: []
       indices: 
       edges: []
