@@ -4,39 +4,33 @@ using UnityEngine;
 
 public class ItemCollector : MonoBehaviour
 {
-
-    private Collider2D collider;
-    
+  
     [SerializeField] private string[] itemTags;
+    TraversableQueue<Collider2D> colliders = new TraversableQueue<Collider2D>();
     private int index;
-
-    private bool isCollided;
 
     private void Update() {
 
-        if (isCollided && Input.GetKeyDown(KeyCode.E)) PickUp(index);
+        if (!colliders.IsEmpty() && Input.GetKeyDown(KeyCode.E)) PickUp(index);
     
     }
     private void OnTriggerEnter2D(Collider2D collision) {
 
-        if (collision.gameObject.CompareTag(itemTags[0])); {
-            index = 0;
-            isCollided = true;
-            collider = collision;
-        }
-
+        foreach (string tag in itemTags) 
+            if (collision.gameObject.CompareTag(tag)) colliders.Add(collision);   
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
 
-        if (collision.gameObject.CompareTag(itemTags[0])); {
-            index = -1;
-            isCollided = false;
+        for (int i=0; i < colliders.Size(); i++) {
+            if (colliders.Peek(i).gameObject ==  collision.gameObject) {
+                colliders.Remove(i);
+                return;
+            }
         }
-
     }
 
     private void PickUp(int index) {
-        Destroy(collider.gameObject);
+        Destroy(colliders.Peek().gameObject);
     }
 }
