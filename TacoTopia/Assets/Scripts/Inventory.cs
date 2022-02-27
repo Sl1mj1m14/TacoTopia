@@ -7,20 +7,33 @@ public class Inventory : MonoBehaviour
     
     private int INVENTORY_SIZE = 9;
 
-    private string[] items;
-    private int[] itemCounts;
+    private Item<string>[] slots;
+
     // Start is called before the first frame update
     void Start()
     {
-        for (int i=0; i<INVENTORY_SIZE; i++) {
-            items[i] = "Air";
-            itemCounts[i] = 0;
-        }
+        for (int i=0; i<INVENTORY_SIZE; i++) 
+            slots[i] = new Item<string>("Air");        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public bool AddItem(string item) {
+
+        for (int i=0; i<INVENTORY_SIZE; i++) {
+            if (slots[i].Equals("Air")) {
+                slots[i].Set(item);
+                return true;
+            } else if (slots[i].Equals(item)) {
+                slots[i].IncreaseAmount();
+                return true;
+            }
+        }
+
+        return false;
     }
 }
