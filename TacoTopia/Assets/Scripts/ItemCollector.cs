@@ -6,12 +6,16 @@ public class ItemCollector : MonoBehaviour
 {
   
     [SerializeField] private string[] itemTags;
-    TraversableQueue<Collider2D> colliders = new TraversableQueue<Collider2D>();
-    private int index;
+    private TraversableQueue<Collider2D> colliders = new TraversableQueue<Collider2D>();
+    private Inventory inventory;
+
+    private void Start() {
+        inventory = GetComponent<Inventory>();
+    }
 
     private void Update() {
 
-        if (!colliders.IsEmpty() && Input.GetKeyDown(KeyCode.E)) PickUp(index);
+        if (!colliders.IsEmpty() && Input.GetKeyDown(KeyCode.E)) PickUp();
     
     }
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -30,7 +34,8 @@ public class ItemCollector : MonoBehaviour
         }
     }
 
-    private void PickUp(int index) {
+    private void PickUp() {
+        inventory.AddItem(colliders.Peek().gameObject.tag.ToString());
         Destroy(colliders.Peek().gameObject);
     }
 }
