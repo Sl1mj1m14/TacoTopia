@@ -20,9 +20,13 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(slots[0]);
+        //Debug.Log(slots[0]);
     }
 
+    public string GetItem(int index) {
+        return slots[index].GetItem();
+    }
+    
     public bool AddItem(string item) {
 
         for (int i=0; i<INVENTORY_SIZE; i++) {
@@ -37,4 +41,31 @@ public class Inventory : MonoBehaviour
 
         return false;
     }
+
+    public bool SwitchItems(int num1, int num2) {
+
+        if (num1 < 0 || num1 > slots.Length || num2 < 0 || num2 > slots.Length) return false;
+
+        Item<string> temp = new Item<string>(slots[num1].GetItem(),slots[num1].GetAmount());
+
+        slots[num1] = new Item<string>(slots[num2].GetItem(),slots[num2].GetAmount());
+        slots[num2] = new Item<string>(temp.GetItem(),temp.GetAmount());
+
+        return true;
+
+
+    }
+
+    public int GetEmptySlots() {
+
+        int emptySlots = 0; 
+
+        for (int i=0; i<INVENTORY_SIZE; i++) {
+            if (slots[i].Equals("Air")) emptySlots++;
+        }
+
+        return emptySlots;
+
+    }
+
 }

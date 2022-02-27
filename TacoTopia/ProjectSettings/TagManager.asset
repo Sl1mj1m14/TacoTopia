@@ -5,7 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - Item
+  - Taco
   layers:
   - Default
   - TransparentFX

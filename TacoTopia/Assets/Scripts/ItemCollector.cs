@@ -35,7 +35,7 @@ public class ItemCollector : MonoBehaviour
     }
 
     private void PickUp() {
-        inventory.AddItem(colliders.Peek().gameObject.tag.ToString());
+        if (inventory.AddItem(colliders.Peek().gameObject.tag))
         Destroy(colliders.Peek().gameObject);
     }
 }
