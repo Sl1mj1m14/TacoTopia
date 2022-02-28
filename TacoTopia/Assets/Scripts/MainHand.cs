@@ -13,22 +13,26 @@ public class MainHand : MonoBehaviour
     private Inventory inventory;
     private SpriteRenderer spriteRenderer;
 
-    // Start is called before the first frame update
     void Start()
     {
+        //Assigning some stuff, yada yada
         inventory = GameObject.Find(PLAYER_REFERENCE).GetComponent<Inventory>();
         spriteRenderer = GetComponent<SpriteRenderer>();
             
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
+        //Setting the sprite to the item at inventory position 0
         spriteRenderer.sprite = ChangeSprite(inventory.GetItem(0));
         transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
-        Debug.Log(inventory.GetItem(0));
     }
 
+    /*
+    *   This method searches the sprites array for the corresponding 
+    *   sprite to the item name
+    */
     private Sprite ChangeSprite(string name) {
 
         foreach (Sprite sprite in itemSprites) {
