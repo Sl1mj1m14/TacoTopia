@@ -92,7 +92,8 @@ public class Inventory : MonoBehaviour
     */
     public bool SwitchItems(int num1, int num2) {
 
-        if (num1 < 0 || num1 >= slots.Length || num2 < 0 || num2 >= slots.Length) return false;
+        if (num1 < 0 || num1 >= slots.Length || num2 < 0 || num2 >= slots.Length || num1 == num2) 
+            return false;
 
         Item<string> temp = new Item<string>(slots[num1].GetItem(),slots[num1].GetAmount());
 
