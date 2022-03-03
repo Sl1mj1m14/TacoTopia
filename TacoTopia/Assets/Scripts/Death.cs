@@ -4,7 +4,7 @@ namespace Death{
         static void Main(string[] args){
             int health;
             if(health == 0){
-                Death;
+                Console.WriteLine("You have died!");
             }
         }
     }
