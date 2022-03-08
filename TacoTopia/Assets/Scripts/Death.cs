@@ -15,7 +15,7 @@ namespace Death{
         /*
          *  This Property allows for returning whether or not the PC is dead
          */
-        public bool IsDead
+        static bool IsDead
         {
             get{
                 return isDead;
