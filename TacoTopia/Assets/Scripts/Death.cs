@@ -9,20 +9,23 @@ namespace Death{
      *
      *  call "Death(<insert health variable here>);" whenever the pc takes damage 
      */
-    class Death{
+    public class Death{
         private bool isDead;
 
         /*
          *  This Property allows for returning whether or not the PC is dead
          */
-        static bool IsDead
+        public bool Get()
         {
-            get{
-                return isDead;
-            }
-            set{
-                isDead = value;
-            }
+            return isDead;
+        }
+
+        /*
+        *   This method sets the death value
+        */
+        public void Set(bool value)
+        {
+            isDead = value;
         }
 
         /*
@@ -32,11 +35,11 @@ namespace Death{
          *  
          *  Call "Death.get" as the condition of an if() statement containing code if said code depends on pc being alive or dead
          */
-        static Death(int health){
-            if(health = 0){
-                Death.set = true;
+        public Death(float health){
+            if(health <= 0f){
+                Set(true);
             }else{
-                Death.set = false;
+                Set(false);
             }
         }
         
@@ -45,8 +48,8 @@ namespace Death{
          *
          *  Call "Death.Revival" if you have a condition that causes the pc to revive
          */
-        static void Revival(){
-            Death.set = false;
+        public void Revival(){
+            Set(false);
         }
     }
 }
