@@ -9,6 +9,7 @@ namespace Death{
     /*
      *  This class allows for a pc (player character) to die
      *
+     *  
      *  call "Death(<insert health variable here>);" whenever the pc takes damage 
      */
     public class Death{
@@ -16,6 +17,8 @@ namespace Death{
 
         /*
          *  This Property allows for returning whether or not the PC is dead
+         *
+         *  Call "Death.get" as the condition of an if() statement containing code if said code depends on pc being alive or dead
          */
         public bool Get()
         {
@@ -34,8 +37,8 @@ namespace Death{
          *  This method is the constructor
          *
          *  If health is 0, sets IsDead property to "true"
-         *  
-         *  Call "Death.get" as the condition of an if() statement containing code if said code depends on pc being alive or dead
+         *
+         *  call "Death(<insert health variable here>);" whenever the pc takes damage 
          */
         public Death(float health){
             if(health <= 0f){
