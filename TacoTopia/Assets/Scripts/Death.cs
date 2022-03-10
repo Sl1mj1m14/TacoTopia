@@ -69,7 +69,7 @@ namespace Death{
             Debug.Log("You have revived");
             int rand_num = ran.Next(0,68);
             if(rand_num < 68){
-                Debug.Log("*Victory Trumpets*");
+                Debug.Log("*FF Victory Trumpets*");
             }
         }
     }
