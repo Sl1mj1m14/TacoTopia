@@ -121,4 +121,13 @@ public class Inventory : MonoBehaviour
 
     }
 
+    /*
+    *   i don't want to break anything here, so i'm placing this in a comment. It's just a basic if statement to use to lock the inventory on pc death
+            if(Death.get == false){
+                <inssert code here>
+            }else{
+                Console.WriteLine("Inventory is locked. Return to your body to regain access.);
+            }
+    */
+
 }
