@@ -128,6 +128,8 @@ public class Inventory : MonoBehaviour
             }else{
                 Console.WriteLine("Inventory is locked. Return to your body to regain access.);
             }
+    *
+    *   - Andrew Roby
     */
 
 }
