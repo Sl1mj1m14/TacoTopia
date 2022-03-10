@@ -1,3 +1,5 @@
+//Creator: Andrew Roby
+
 using UnityEngine;
 //im new to C#. please be gentle.
 /*
