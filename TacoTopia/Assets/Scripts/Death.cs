@@ -49,8 +49,12 @@ namespace Death{
                 Console.WriteLine("Your body falls to the ground as the world goes dark.");
                 Debug.Log("You died");
                 int rand_num = ran.Next(0,68);
-                if(rand_num < 68){
+                if(rand_num == 68){
                     Debug.Log("*sad violins playing*");
+                }
+                rand_num = ran.Next(0,68);
+                if(rand_num == 68){
+                    Debug.Log("That's gonna hurt tomorrow...");
                 }
             }else{
                 Set(false);
