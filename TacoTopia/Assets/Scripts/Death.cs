@@ -15,7 +15,7 @@ namespace Death{
     public class Death{
         private bool isDead;
 
-        private Random ran = new Random();
+        private System.Random ran = new System.Random();
         
         
         /*
@@ -46,7 +46,7 @@ namespace Death{
         public Death(float health){
             if(health <= 0f){
                 Set(true);
-                Console.WriteLine("Your body falls to the ground as the world goes dark.");
+                System.Console.WriteLine("Your body falls to the ground as the world goes dark.");
                 Debug.Log("You died");
                 int rand_num = ran.Next(0,68);
                 if(rand_num == 68){
@@ -68,8 +68,8 @@ namespace Death{
          */
         public void Revival(){
             Set(false);
-            Console.WriteLine("You reclaim your body, feeling reinvigorated for the journey ahead.");
-            Console.WriteLine("Inventory restored!");
+            System.Console.WriteLine("You reclaim your body, feeling reinvigorated for the journey ahead.");
+            System.Console.WriteLine("Inventory restored!");
             Debug.Log("You have revived");
             int rand_num = ran.Next(0,68);
             if(rand_num < 68){

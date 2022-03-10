@@ -1,5 +1,5 @@
 //Created by Keiler on 3/8/22
-//Last Edited by Keiler on 3/8/22
+//Last Edited by Keiler on 3/9/22
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,12 +8,14 @@ public class Pathfinding : MonoBehaviour
 {
     
     private Rigidbody2D body;
-    private BoxCollider2D collision;
+    private BoxCollider2D physicsCollision;
+    private CircleCollider2D viewDistance;
 
     [SerializeField] private LayerMask ground;
 
     [SerializeField] private float xSpeed = 3;
     [SerializeField] private float ySpeed = 3;
+    [SerializeField] private float viewRadius = 5;
     private float collisionChecker = .5f;
 
     private float posX,negX,posY,negY;
@@ -31,12 +33,14 @@ public class Pathfinding : MonoBehaviour
         posY = GameObject.Find("Top Constraint").transform.position.y;
         negY = GameObject.Find("Bottom Constraint").transform.position.y;
         body = GetComponent<Rigidbody2D>();
-        collision = GetComponent<BoxCollider2D>();
+        physicsCollision = GetComponent<BoxCollider2D>();
+        //viewDistance = GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (atTarget) 
             GetRandTarget();
          else 
@@ -67,13 +71,17 @@ public class Pathfinding : MonoBehaviour
 
     public bool IsObstacle(int dir)
     {
-        if (dir > 0)
-            return Physics2D.BoxCast(collision.bounds.center, collision.bounds.size, 0f, Vector2.right, collisionChecker, ground);
-            else
-            return Physics2D.BoxCast(collision.bounds.center, collision.bounds.size, 0f, Vector2.left, collisionChecker, ground);
+        if (dir > 0) {
+            return Physics2D.BoxCast(physicsCollision.bounds.center, physicsCollision.bounds.size, 
+            0f, Vector2.right, collisionChecker, ground);
+        } else {
+            return Physics2D.BoxCast(physicsCollision.bounds.center, physicsCollision.bounds.size, 
+            0f, Vector2.left, collisionChecker, ground);
+        }
+       
     }
 
     private bool IsGrounded() {
-        return Physics2D.BoxCast(collision.bounds.center, collision.bounds.size, 0f, Vector2.down, .1f, ground);
+        return Physics2D.BoxCast(physicsCollision.bounds.center, physicsCollision.bounds.size, 0f, Vector2.down, .1f, ground);
     }
 }
