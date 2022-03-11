@@ -6,12 +6,14 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     
-    private static readonly int INVENTORY_SIZE = 9;
+    [SerializeField] private int INVENTORY_SIZE = 9;
 
-    private Item<string>[] slots = new Item<string>[INVENTORY_SIZE];
+    private Item<string>[] slots;
 
     void Start()
     {
+        slots = new Item<string>[INVENTORY_SIZE];
+        
         //Initializing the inventory to be full of "air"
         for (int i=0; i<INVENTORY_SIZE; i++) 
             slots[i] = new Item<string>("Air"); 
