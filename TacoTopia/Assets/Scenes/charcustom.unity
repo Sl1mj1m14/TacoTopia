@@ -217,6 +217,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1127430468}
+        m_TargetAssemblyTypeName: SaveChar, Assembly-CSharp
+        m_MethodName: save_char
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &35683691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -890,6 +902,7 @@ MonoBehaviour:
   options:
   - {fileID: 111648954039052082, guid: 1ef1c6db22b7bca40bb1f7ed4393e461, type: 3}
   - {fileID: -5213736225766107966, guid: 1ef1c6db22b7bca40bb1f7ed4393e461, type: 3}
+  currentOption: 0
 --- !u!1 &269339136
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,6 +1144,7 @@ MonoBehaviour:
   - {fileID: -5772454888048399463, guid: 53a3f03b3bbc74948b0eec2f4c93098f, type: 3}
   - {fileID: -8839907739959531493, guid: 53a3f03b3bbc74948b0eec2f4c93098f, type: 3}
   - {fileID: -5007037107781140813, guid: 53a3f03b3bbc74948b0eec2f4c93098f, type: 3}
+  currentOption: 0
 --- !u!1 &333088953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1277,6 +1291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e98e02378722754c9a3f16d565f5350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  INVENTORY_SIZE: 9
 --- !u!1 &463038378
 GameObject:
   m_ObjectHideFlags: 0
@@ -2410,6 +2425,7 @@ MonoBehaviour:
   - {fileID: -3465951917655514925, guid: db29251016e279a449d548080beb13e4, type: 3}
   - {fileID: 7731911182894376818, guid: db29251016e279a449d548080beb13e4, type: 3}
   - {fileID: -6835207986360431776, guid: db29251016e279a449d548080beb13e4, type: 3}
+  currentOption: 0
 --- !u!1 &842603087
 GameObject:
   m_ObjectHideFlags: 0
@@ -3907,6 +3923,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1127430467}
   - component: {fileID: 1127430466}
+  - component: {fileID: 1127430468}
   m_Layer: 0
   m_Name: SceneChanger
   m_TagString: Untagged
@@ -3941,6 +3958,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1127430468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127430465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bfd8f4032733f14fa4dbd647ff41e10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1144631894
 GameObject:
   m_ObjectHideFlags: 0
@@ -7832,6 +7861,7 @@ MonoBehaviour:
   - {fileID: -6218579890368111124, guid: db29251016e279a449d548080beb13e4, type: 3}
   - {fileID: -6914103119493876570, guid: db29251016e279a449d548080beb13e4, type: 3}
   - {fileID: 0}
+  currentOption: 0
 --- !u!1 &1967218242
 GameObject:
   m_ObjectHideFlags: 0

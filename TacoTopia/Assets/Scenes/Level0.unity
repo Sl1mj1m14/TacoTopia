@@ -1133,6 +1133,95 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   INVENTORY_SIZE: 1
+--- !u!1 &1477777056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1477777058}
+  - component: {fileID: 1477777057}
+  m_Layer: 0
+  m_Name: LoadChar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1477777057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477777056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30313dd199a99654d9f4f10dcd262c87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eyeSprites:
+  - {fileID: 1147381239155910021, guid: db29251016e279a449d548080beb13e4, type: 3}
+  - {fileID: -3465951917655514925, guid: db29251016e279a449d548080beb13e4, type: 3}
+  - {fileID: 7731911182894376818, guid: db29251016e279a449d548080beb13e4, type: 3}
+  - {fileID: -6835207986360431776, guid: db29251016e279a449d548080beb13e4, type: 3}
+  hairSprites:
+  - {fileID: -5045535011223827050, guid: db29251016e279a449d548080beb13e4, type: 3}
+  - {fileID: 174899437966103339, guid: a86de3c535b9ccc4d95e4f4b64b30b1e, type: 3}
+  - {fileID: 9042079437479353776, guid: db29251016e279a449d548080beb13e4, type: 3}
+  - {fileID: -115288615446566239, guid: db29251016e279a449d548080beb13e4, type: 3}
+  - {fileID: -6218579890368111124, guid: db29251016e279a449d548080beb13e4, type: 3}
+  - {fileID: -6914103119493876570, guid: db29251016e279a449d548080beb13e4, type: 3}
+  shirtSprites:
+  - {fileID: 4102851767660153476, guid: 53a3f03b3bbc74948b0eec2f4c93098f, type: 3}
+  - {fileID: -5772454888048399463, guid: 53a3f03b3bbc74948b0eec2f4c93098f, type: 3}
+  - {fileID: -8839907739959531493, guid: 53a3f03b3bbc74948b0eec2f4c93098f, type: 3}
+  - {fileID: -5007037107781140813, guid: 53a3f03b3bbc74948b0eec2f4c93098f, type: 3}
+  legSprites:
+  - {fileID: 111648954039052082, guid: 1ef1c6db22b7bca40bb1f7ed4393e461, type: 3}
+  - {fileID: -5213736225766107966, guid: 1ef1c6db22b7bca40bb1f7ed4393e461, type: 3}
+  bodyColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.90588236, g: 0.7529412, b: 0.6509804, a: 1}
+  - {r: 0.58431375, g: 0.42745098, b: 0.32156864, a: 1}
+  - {r: 0.34901962, g: 0.25882354, b: 0.19607843, a: 1}
+  hairColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.9843137, g: 1, b: 0.54901963, a: 1}
+  - {r: 0.69803923, g: 0.54901963, b: 0.33333334, a: 1}
+  - {r: 1, g: 0.6901961, b: 0.29803923, a: 1}
+  - {r: 0.36862746, g: 0.36862746, b: 0.36862746, a: 1}
+  - {r: 1, g: 0.49411765, b: 0.98039216, a: 1}
+  shirtColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.78431374, g: 0.33333334, b: 0.32156864, a: 1}
+  - {r: 0.3372549, g: 0.32156864, b: 0.58431375, a: 1}
+  - {r: 0.3137255, g: 0.50980395, b: 0.3372549, a: 1}
+  - {r: 0.36862746, g: 0.36862746, b: 0.36862746, a: 1}
+  - {r: 1, g: 0.49411765, b: 0.98039216, a: 1}
+  legColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.78431374, g: 0.33333334, b: 0.32156864, a: 1}
+  - {r: 0.3372549, g: 0.32156864, b: 0.58431375, a: 1}
+  - {r: 0.3137255, g: 0.50980395, b: 0.3372549, a: 1}
+  - {r: 0.36862746, g: 0.36862746, b: 0.36862746, a: 1}
+  - {r: 1, g: 0.49411765, b: 0.98039216, a: 1}
+--- !u!4 &1477777058
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477777056}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -37.498905, y: 11.610502, z: -817.1607}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1496792468
 GameObject:
   m_ObjectHideFlags: 0
