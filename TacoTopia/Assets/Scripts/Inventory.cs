@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
 {
     
     [SerializeField] private int INVENTORY_SIZE = 9;
+    [SerializeField] private int STACK_SIZE = 64;
 
     private Item<string>[] slots;
 
@@ -37,7 +38,7 @@ public class Inventory : MonoBehaviour
             if (slots[i].Equals("Air")) {
                 slots[i].Set(item, 1);
                 return true;
-            } else if (slots[i].Equals(item)) {
+            } else if (slots[i].Equals(item) && slots[i].GetAmount() < STACK_SIZE) {
                 slots[i].IncreaseAmount();
                 return true;
             }

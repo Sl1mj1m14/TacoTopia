@@ -1,5 +1,5 @@
 //Created by Keiler on 3/8/22
-//Last Edited by Keiler on 3/9/22
+//Last Edited by Keiler on 3/14/22
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,20 +7,21 @@ using UnityEngine;
 public class Pathfinding : MonoBehaviour
 {
     
+    private static readonly string PLAYER_REFERENCE = "Player";
     private Rigidbody2D body;
     private BoxCollider2D physicsCollision;
-    private CircleCollider2D viewDistance;
 
     [SerializeField] private LayerMask ground;
 
     [SerializeField] private float xSpeed = 3;
     [SerializeField] private float ySpeed = 3;
-    [SerializeField] private float viewRadius = 5;
+
     private float collisionChecker = .5f;
 
     private float posX,negX,posY,negY;
     private int target,dir;
     private bool atTarget = true;
+    private bool isTargetPlayer = false;
 
     private System.Random rand = new System.Random();
 
@@ -34,13 +35,18 @@ public class Pathfinding : MonoBehaviour
         negY = GameObject.Find("Bottom Constraint").transform.position.y;
         body = GetComponent<Rigidbody2D>();
         physicsCollision = GetComponent<BoxCollider2D>();
-        //viewDistance = GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
+        Debug.Log(target);
+
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(),GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<Collider2D>());
+        
+        if (isTargetPlayer) TrackPlayer();
+        
         if (atTarget) 
             GetRandTarget();
          else 
@@ -48,27 +54,43 @@ public class Pathfinding : MonoBehaviour
         
     }
 
+    /*
+    * This method determines a random pathfinding target
+    */
     public void GetRandTarget()
     {
         target = rand.Next((int)negX,(int)posX);
-        Debug.Log(target);
+        //Debug.Log(target);
         atTarget = false;
         if (transform.position.x < target) 
             dir = 1;
-            else
+        else
             dir = -1;
     }
     
+    /*
+    * This method allows the enemy to move towards the target
+    */
     public bool Move(int dir)
     {
         if (IsObstacle(dir) && IsGrounded()) body.velocity = new Vector2(body.velocity.x, ySpeed);
         body.velocity = new Vector2(dir * xSpeed, body.velocity.y);
-        if ((dir > 0 && transform.position.x > target) || (dir < 0 && transform.position.x < target))
+
+        if ((dir > 0 && transform.position.x > target) || (dir < 0 && transform.position.x < target)) {
+            if (isTargetPlayer) {
+                //Damage()
+                //Idle()
+                return false;
+            }
             return true;
-            else
+        } else {
             return false;
+        }
     }
 
+    /*
+    * This method checks if there is an object in front of the enemy, so it knows when to jump
+    */
     public bool IsObstacle(int dir)
     {
         if (dir > 0) {
@@ -81,7 +103,36 @@ public class Pathfinding : MonoBehaviour
        
     }
 
+    /*
+    * This method checks if the enemy is on the ground
+    */
     private bool IsGrounded() {
         return Physics2D.BoxCast(physicsCollision.bounds.center, physicsCollision.bounds.size, 0f, Vector2.down, .1f, ground);
+    }
+
+    public void SetTarget(float pos)
+    {
+        target = (int)pos;
+        atTarget = false;
+    }
+
+    public void TargetPlayer()
+    {
+        if (isTargetPlayer) return;
+        TrackPlayer();
+        atTarget = false;
+        isTargetPlayer = true;
+    }
+
+    private void TrackPlayer()
+    {
+        target = (int)GameObject.Find(PLAYER_REFERENCE).transform.position.x;
+        if (transform.position.x < target) {
+                dir = 1;
+                target += 3;
+        } else {
+                dir = -1;
+                target -= 3;
+        }
     }
 }
