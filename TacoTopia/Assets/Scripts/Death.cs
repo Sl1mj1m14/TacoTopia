@@ -72,7 +72,7 @@ namespace Death{
             System.Console.WriteLine("Inventory restored!");
             Debug.Log("You have revived");
             int rand_num = ran.Next(0,68);
-            if(rand_num < 68){
+            if(rand_num == 68){
                 Debug.Log("*FF Victory Trumpets*");
             }
         }
