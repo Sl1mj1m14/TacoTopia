@@ -1,4 +1,5 @@
 //Created by Keiler
+//Last Edited by Keiler on 3/14/2022
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,9 @@ public class ItemCollector : MonoBehaviour
 {
   
     [SerializeField] private string[] itemTags;
-    private TraversableQueue<Collider2D> colliders = new TraversableQueue<Collider2D>();
+    [SerializeField] private string[] enemyTags;
+    private TraversableQueue<Collider2D> itemColliders = new TraversableQueue<Collider2D>();
+    private TraversableQueue<Collider2D> enemyColliders = new TraversableQueue<Collider2D>();
     private Inventory inventory;
 
     private void Start() {
@@ -16,27 +19,46 @@ public class ItemCollector : MonoBehaviour
 
     private void Update() {
 
-        if (!colliders.IsEmpty() && Input.GetKeyDown(KeyCode.E)) PickUp();
+        if (!itemColliders.IsEmpty() && Input.GetKeyDown(KeyCode.E)) PickUp();
+        if (Input.GetKeyDown(KeyCode.Q)) Give();
     
     }
     private void OnTriggerEnter2D(Collider2D collision) {
 
         foreach (string tag in itemTags) 
-            if (collision.gameObject.CompareTag(tag)) colliders.Add(collision);   
+            if (collision.gameObject.CompareTag(tag)) itemColliders.Add(collision);
+        foreach (string tag in enemyTags)
+            if (collision.gameObject.CompareTag(tag)) enemyColliders.Add(collision);
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
 
-        for (int i=0; i < colliders.Size(); i++) {
-            if (colliders.Peek(i).gameObject ==  collision.gameObject) {
-                colliders.Remove(i);
+        for (int i=0; i < itemColliders.Size(); i++) {
+            if (itemColliders.Peek(i).gameObject ==  collision.gameObject) {
+                itemColliders.Remove(i);
+                return;
+            }
+        }
+        for (int i=0; i < enemyColliders.Size(); i++) {
+            if (enemyColliders.Peek(i).gameObject ==  collision.gameObject) {
+                enemyColliders.Remove(i);
                 return;
             }
         }
     }
 
     private void PickUp() {
-        if (inventory.AddItem(colliders.Peek().gameObject.tag))
-        Destroy(colliders.Peek().gameObject);
+        if (inventory.AddItem(itemColliders.Peek().gameObject.tag))
+        Destroy(itemColliders.Peek().gameObject);
+    }
+
+    private void Give()
+    {
+        for (int i = 0; i < enemyColliders.Size(); i++) {
+            if (enemyColliders.Peek(i).GetComponent<Inventory>().AddItem(inventory.GetItem(0))) {
+                inventory.RemoveItem(0);
+                return;
+            }
+        }
     }
 }

@@ -1162,7 +1162,7 @@ GameObject:
   - component: {fileID: 333088958}
   m_Layer: 0
   m_Name: char
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3943,7 +3943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d951100013b9e4e88fe0fb554e0d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangeTo: Level0
+  ChangeTo: resturant
 --- !u!4 &1127430467
 Transform:
   m_ObjectHideFlags: 0
@@ -6401,9 +6401,21 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 148
     m_Data: {fileID: 11400000, guid: 5e9dd82e698051e4e8529ed78357e75e, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 148
     m_Data: {fileID: 21300000, guid: dc00a262a0433c3429d795d51aac9fac, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 148
     m_Data:
@@ -6429,8 +6441,8 @@ Tilemap:
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: -55, y: 0, z: 0}
-  m_Size: {x: 55, y: 21, z: 1}
+  m_Origin: {x: -58, y: 0, z: 0}
+  m_Size: {x: 58, y: 21, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:

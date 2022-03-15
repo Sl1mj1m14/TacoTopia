@@ -832,11 +832,11 @@ GameObject:
   - component: {fileID: 1176316132}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &1176316127
 Rigidbody2D:
   serializedVersion: 4
@@ -981,6 +981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemTags:
   - Item
+  enemyTags: []
 --- !u!1 &1222822764
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,9 +994,10 @@ GameObject:
   - component: {fileID: 1222822767}
   - component: {fileID: 1222822766}
   - component: {fileID: 1222822765}
-  - component: {fileID: 1222822769}
   - component: {fileID: 1222822770}
   - component: {fileID: 1222822771}
+  - component: {fileID: 1222822769}
+  - component: {fileID: 1222822772}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1133,7 +1135,6 @@ MonoBehaviour:
     m_Bits: 64
   xSpeed: 10
   ySpeed: 5
-  viewRadius: 5
 --- !u!58 &1222822770
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1163,6 +1164,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   INVENTORY_SIZE: 1
+  STACK_SIZE: 1
+--- !u!114 &1222822772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222822764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea809589bf4ad54294cdab863583329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 5
 --- !u!1 &1477777056
 GameObject:
   m_ObjectHideFlags: 0
