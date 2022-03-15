@@ -1,5 +1,5 @@
 //Created by Keiler on 3/8/22
-//Last Edited by Keiler on 3/14/22
+//Last Edited by Andrew R on 3/15/22
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -121,6 +121,7 @@ public class Pathfinding : MonoBehaviour
         if (isTargetPlayer) return;
         TrackPlayer();
         atTarget = false;
+        if(!Death.get);     //if pc is dead, targeting doesn't work
         isTargetPlayer = true;
     }
 
