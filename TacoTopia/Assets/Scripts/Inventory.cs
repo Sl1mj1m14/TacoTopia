@@ -1,5 +1,5 @@
 //Created by Keiler
-//Last Edited by Keiler on 3/14/2022
+//Last Edited by Andrew R on 3/17/2022
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,7 +26,12 @@ public class Inventory : MonoBehaviour
     *   This method returns the item name at the specified index
     */
     public string GetItem(int index) {
-        return slots[index].GetItem();
+        if(Death.get == false){
+            return slots[index].GetItem();
+        }else{
+            Console.WriteLine("Inventory is nothing but ectoplasm. You are a ghost.");
+            return "Ectoplasm";
+        }
     }
     
     /*
@@ -34,17 +39,20 @@ public class Inventory : MonoBehaviour
     *   increases the count of an already existing item
     */
     public bool AddItem(string item) {
-
-        for (int i=0; i<slots.Length; i++) {
-            if (slots[i].Equals("Air")) {
-                slots[i].Set(item, 1);
-                return true;
-            } else if (slots[i].Equals(item) && slots[i].GetAmount() < STACK_SIZE) {
-                slots[i].IncreaseAmount();
-                return true;
+ 
+        if(Death.get == false){
+            for (int i=0; i<slots.Length; i++) {
+                if (slots[i].Equals("Air")) {
+                    slots[i].Set(item, 1);
+                    return true;
+                } else if (slots[i].Equals(item) && slots[i].GetAmount() < STACK_SIZE) {
+                    slots[i].IncreaseAmount();
+                    return true;
+                }
             }
-        }
-
+        }else{
+            Console.WriteLine("Inventory is locked. Return to your body to regain access.");
+        }   
         return false;
     }
 
@@ -55,13 +63,17 @@ public class Inventory : MonoBehaviour
     */
     public bool RemoveItems(int position, int amount) {
         
-        if (position < 0 || position >= slots.Length) return false;
+        if(Death.get == false){
+            if (position < 0 || position >= slots.Length) return false;
 
-        slots[position].DecreaseAmount(amount);
+            slots[position].DecreaseAmount(amount);
 
-        if (slots[position].GetAmount() <= 0) slots[position].Set("Air", 0);
+            if (slots[position].GetAmount() <= 0) slots[position].Set("Air", 0);
 
-        return true;
+            return true;
+        }else{
+            Console.WriteLine("Inventory is locked. Return to your body to regain access.");
+        }
     }
 
     /*
@@ -69,11 +81,14 @@ public class Inventory : MonoBehaviour
     *   changing the spot to air if more items are removed than exist
     */
     public bool RemoveItems(string name, int amount) {
-
-        for (int i=0; i<slots.Length; i++) {
-            if (slots[i].Equals(name)) return RemoveItems(i, amount);
+    
+        if(Death.get == false){
+            for (int i=0; i<slots.Length; i++) {
+                if (slots[i].Equals(name)) return RemoveItems(i, amount);
+            }
+        }else{
+            Console.WriteLine("Inventory is locked. Return to your body to regain access.");
         }
-
         return false;
     }
 
@@ -82,14 +97,24 @@ public class Inventory : MonoBehaviour
     *   specified position
     */
     public bool RemoveItem(int position) {
-        return RemoveItems(position, 1);
+    
+        if(Death.get == false){
+            return RemoveItems(position, 1);
+        }else{
+            Console.WriteLine("Inventory is locked. Return to your body to regain access.");
+        }
     }
 
     /*
     *   This method removes one of the specified item
     */
     public bool RemoveItem(string name) {
-        return RemoveItems(name, 1);
+        
+        if(Death.get == false){
+            return RemoveItems(name, 1);
+        }else{
+            Console.WriteLine("Inventory is locked. Return to your body to regain access.");
+        }
     }
 
     /*
@@ -97,16 +122,20 @@ public class Inventory : MonoBehaviour
     */
     public bool SwitchItems(int num1, int num2) {
 
-        if (num1 < 0 || num1 >= slots.Length || num2 < 0 || num2 >= slots.Length || num1 == num2) 
+        if(Death.get == false){
+            if (num1 < 0 || num1 >= slots.Length || num2 < 0 || num2 >= slots.Length || num1 == num2) 
+                return false;
+
+            Item<string> temp = new Item<string>(slots[num1].GetItem(),slots[num1].GetAmount());
+
+            slots[num1] = new Item<string>(slots[num2].GetItem(),slots[num2].GetAmount());
+            slots[num2] = new Item<string>(temp.GetItem(),temp.GetAmount());
+
+            return true;
+        }else{
+            Console.WriteLine("Inventory is locked. Return to your body to regain access.");
             return false;
-
-        Item<string> temp = new Item<string>(slots[num1].GetItem(),slots[num1].GetAmount());
-
-        slots[num1] = new Item<string>(slots[num2].GetItem(),slots[num2].GetAmount());
-        slots[num2] = new Item<string>(temp.GetItem(),temp.GetAmount());
-
-        return true;
-
+        }
 
     }
 
@@ -117,23 +146,14 @@ public class Inventory : MonoBehaviour
 
         int emptySlots = 0; 
 
-        for (int i=0; i<INVENTORY_SIZE; i++) {
-            if (slots[i].Equals("Air")) emptySlots++;
+        if(Death.get == false){
+            for (int i=0; i<INVENTORY_SIZE; i++) {
+                if (slots[i].Equals("Air")) emptySlots++;
+            }
         }
 
         return emptySlots;
 
     }
-
-    /*
-    *   i don't want to break anything here, so i'm placing this in a comment. It's just a basic if statement to use to lock the inventory on pc death
-            if(Death.get == false){
-                <inssert code here>
-            }else{
-                Console.WriteLine("Inventory is locked. Return to your body to regain access.);
-            }
-    *
-    *   - Andrew Roby
-    */
 
 }
