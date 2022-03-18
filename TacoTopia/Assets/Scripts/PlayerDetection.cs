@@ -26,7 +26,7 @@ public class PlayerDetection : MonoBehaviour
         foreach (Collider2D playerCheck in objectCollisions) {
             if (playerCheck.tag == PLAYER_REFERENCE) {
                 pathfinding.TargetPlayer();
-                Debug.Log(playerCheck.transform.position.x);
+                //Debug.Log(playerCheck.transform.position.x);
                 return;
             }
         }

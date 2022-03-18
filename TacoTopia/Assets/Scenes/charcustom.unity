@@ -1160,6 +1160,9 @@ GameObject:
   - component: {fileID: 333088959}
   - component: {fileID: 333088960}
   - component: {fileID: 333088958}
+  - component: {fileID: 333088962}
+  - component: {fileID: 333088961}
+  - component: {fileID: 333088963}
   m_Layer: 0
   m_Name: char
   m_TagString: Player
@@ -1279,6 +1282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemTags:
   - Taco
+  enemyTags: []
 --- !u!114 &333088960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1292,6 +1296,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   INVENTORY_SIZE: 9
+  STACK_SIZE: 64
+--- !u!114 &333088961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333088953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c387fd018b3a5074c965d3df03ad5e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  curHealth: 100
+  healthBarLength: 0
+--- !u!114 &333088962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333088953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa9117ea6cf6ed34693b455c43330a06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &333088963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333088953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dea7979730a2114a84cf5e8a35cc7f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarImage: {fileID: 1699785991}
 --- !u!1 &463038378
 GameObject:
   m_ObjectHideFlags: 0
