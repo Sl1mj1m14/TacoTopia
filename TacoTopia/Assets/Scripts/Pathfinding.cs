@@ -41,7 +41,7 @@ public class Pathfinding : MonoBehaviour
     void Update()
     {
 
-        Debug.Log(target);
+        //Debug.Log(target);
 
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(),GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<Collider2D>());
         
@@ -121,7 +121,7 @@ public class Pathfinding : MonoBehaviour
         if (isTargetPlayer) return;
         TrackPlayer();
         atTarget = false;
-        if(!Death.get);     //if pc is dead, targeting doesn't work
+        //if(!Death.get);     //if pc is dead, targeting doesn't work
         isTargetPlayer = true;
     }
 

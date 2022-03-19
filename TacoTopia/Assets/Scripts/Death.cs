@@ -1,18 +1,18 @@
-//Creator: Andrew Roby
-
+//Created on:       3/8/22 by Andrew Roby
+//Last Edited:      3/18/22 by Keiler MacNeal
 using UnityEngine;
 //im new to C#. please be gentle.
 /*
  * yeah...that was genuinely cringe...why cant i think of a better way to word that...
  */
-namespace Death{
+//namespace Death{
     /*
      *  This class allows for a pc (player character) to die
      *
      *  
      *  call "Death(<insert health variable here>);" whenever the pc takes damage 
      */
-    public class Death{
+    public class Death : MonoBehaviour{
         private bool isDead;
 
         private System.Random ran = new System.Random();
@@ -77,4 +77,4 @@ namespace Death{
             }
         }
     }
-}
+//}
