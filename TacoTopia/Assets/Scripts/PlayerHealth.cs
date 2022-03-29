@@ -1,3 +1,5 @@
+
+//  last edited on 3/29/22 by Andrew Roby
 using UnityEngine;
 using System.Collections;
 
@@ -31,8 +33,11 @@ public class PlayerHealth : MonoBehaviour {
 
          curHealth += adj;
 
-        if( curHealth < 0 )
+        if( curHealth < 0 ){
             curHealth = 0;
+            Death(curHealth);
+        }
+        
 
         if( curHealth > maxHealth )
             curHealth = maxHealth;
