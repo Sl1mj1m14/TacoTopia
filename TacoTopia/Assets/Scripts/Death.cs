@@ -15,9 +15,6 @@ using UnityEngine;
     public class Death : MonoBehaviour{
         private bool isDead;
 
-        private System.Random ran = new System.Random();
-        
-        
         /*
          *  This Property allows for returning whether or not the PC is dead
          *
@@ -48,14 +45,7 @@ using UnityEngine;
                 Set(true);
                 System.Console.WriteLine("Your body falls to the ground as the world goes dark.");
                 Debug.Log("You died");
-                int rand_num = ran.Next(0,68);
-                if(rand_num == 68){
-                    Debug.Log("*sad violins playing*");
-                }
-                rand_num = ran.Next(0,68);
-                if(rand_num == 68){
-                    Debug.Log("That's gonna hurt tomorrow...");
-                }
+                EasterEgg.DeathEgg();
             }else{
                 Set(false);
             }
@@ -71,10 +61,7 @@ using UnityEngine;
             System.Console.WriteLine("You reclaim your body, feeling reinvigorated for the journey ahead.");
             System.Console.WriteLine("Inventory restored!");
             Debug.Log("You have revived");
-            int rand_num = ran.Next(0,68);
-            if(rand_num == 68){
-                Debug.Log("*FF Victory Trumpets*");
-            }
+            EasterEgg.RevivalEgg();
         }
     }
 //}
