@@ -45,7 +45,6 @@ using UnityEngine;
             if(health <= 0f){
                 Set(true);
                 System.Console.WriteLine("Your body falls to the ground as the world goes dark.");
-                Debug.Log("You died");
                 EasterEgg.DeathEgg();
             }else{
                 Set(false);
@@ -70,6 +69,17 @@ using UnityEngine;
                 EnemyDeadSet(false);
             }
         }
+
+        public OutofBounds(){
+            /* read entity that triggered collision */
+            //if(/* entity is player */){
+            //    Set(true);
+            //    System.Console.WriteLine("You are arrested for abandoning your assignment");
+            //}
+            //if/* entity is enemy */{
+            //    EnemyDeadSet(true);
+            //}
+        }
         
         /*
          *  This method enables revival
@@ -80,7 +90,6 @@ using UnityEngine;
             Set(false);
             System.Console.WriteLine("You reclaim your body, feeling reinvigorated for the journey ahead.");
             System.Console.WriteLine("Inventory restored!");
-            Debug.Log("You have revived");
             EasterEgg.RevivalEgg();
         }
     }

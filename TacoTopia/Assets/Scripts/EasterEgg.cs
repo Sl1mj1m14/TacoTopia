@@ -27,6 +27,8 @@ using unityEngine;
 
                     if(randNum3 == 68){
                         Debug.Log("Git Gud Scrub");
+                    }else{
+                        Debug.Log("You died");
                     }
                 }
             }
@@ -38,6 +40,8 @@ using unityEngine;
             int randNum = ran.Next(0,68);
             if(randNum == 68){
                 Debug.Log("*Halo shield regen noises*");
+            }else{
+                Debug.Log("You have revived");
             }
         }
 
@@ -56,5 +60,15 @@ using unityEngine;
                 Debug.Log("Bonfire Lit");
             else
                 Debug.Log("File Saved");
+        }
+
+
+        public void OoBEgg(){
+            int randNum = ran.Next(0,120);
+            if(randNum == 120){
+                Debug.Log("You noclip out of your reality and into The Backrooms");
+            }else{
+                Debug.Log("Out of Bounds Death");
+            }
         }
     }
