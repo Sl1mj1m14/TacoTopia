@@ -14,6 +14,7 @@ using UnityEngine;
      */
     public class Death : MonoBehaviour{
         private bool isDead;
+        private bool enemyDead;
 
         /*
          *  This Property allows for returning whether or not the PC is dead
@@ -48,6 +49,25 @@ using UnityEngine;
                 EasterEgg.DeathEgg();
             }else{
                 Set(false);
+            }
+        }
+
+
+        public bool EnemyDeadGet(){
+            return enemyDead;
+        }
+
+
+        public EnemyDeadSet(bool value){
+            enemyDead = value;
+        }
+
+
+        public EnemyDead(float enemyHealth){
+            if(enemyHealth <= 0f){
+                EnemyDeadSet(true);
+            }else{
+                EnemyDeadSet(false);
             }
         }
         
