@@ -32,8 +32,12 @@ public class EnemyHealth : MonoBehaviour {
 
         curHealth += adj;
 
-        if( curHealth < 0 )
+        if( curHealth < 0 ){
             curHealth = 0;
+            EasterEgg.EnemyDefeatEgg();
+            Death.EnemyDead(curHealth);
+        }
+            
 
         if( curHealth > maxHealth )
             curHealth = maxHealth;

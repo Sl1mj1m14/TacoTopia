@@ -1,5 +1,5 @@
 //created by Devin
-//last updated on 3/15/2022 by Devin
+//last updated on 3/29/2022 by Andrew Roby
 
 using System.Collections;
 using System.Collections.Generic;
@@ -18,9 +18,6 @@ public class Save : MonoBehaviour
 
         string saveLevel = JsonUtility.ToJson(currentLevel);
         File.WriteAllText(@"\temp\level.json", saveLevel);
-        if (Random.value > 0.8)
-            Debug.Log("Bonfire Lit");
-        else
-            Debug.Log("File Saved");
+        EasterEgg.SaveEgg();
     }
 }
