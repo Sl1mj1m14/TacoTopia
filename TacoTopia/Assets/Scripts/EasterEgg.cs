@@ -10,19 +10,21 @@ using unityEngine;
     public class EasterEgg : MonoBehavior{
         private System.Random ran = new System.Random();
 
-        /*
-        *   This method's Easter Eggs relate to player death
-        */
+        
+        //   This method's Easter Eggs relate to player death
         public void DeathEgg(){
             int randNum1 = ran.Next(0,68);
+            int randNum2 = ran.Next(0,68);
+            int randNum3 = ran.Next(0,68);
+
             if(randNum1 == 68){
                 Debug.Log("*sad violins playing*");
             }else{
-                randNum2 = ran.Next(0,68);
+
                 if(randNum2 == 68){
                     Debug.Log("That's gonna hurt tomorrow...");
                 }else{
-                    randNum3 = ran.Next(0,68);
+
                     if(randNum3 == 68){
                         Debug.Log("Git Gud Scrub");
                     }
@@ -30,23 +32,29 @@ using unityEngine;
             }
         }
 
-        /*
-        *   This method's Easter Eggs relate to player revival
-        */
+        
+        //   This method's Easter Eggs relate to player revival
         public void RevivalEgg(){
-            int rand_num = ran.Next(0,68);
-            if(rand_num == 68){
+            int randNum = ran.Next(0,68);
+            if(randNum == 68){
                 Debug.Log("*Halo shield regen noises*");
             }
         }
 
         //  This method's Easter Eggs relate to enemy defeat
         public void EnemyDefeatEgg(){
-            int rand_num = ran.Next(0,420);
-            if(rand_num == 1){
+            int randNum = ran.Next(0,420);
+            if(randNum == 1){
                 Debug.Log("*FF Victory Trumpets*");
             }
         }
 
-
+        //  This method's Easter Eggs relate to saving
+        public void SaveEgg(){
+            int randNum = ran.Next(0,1);
+            if (randNum > 0.8)
+                Debug.Log("Bonfire Lit");
+            else
+                Debug.Log("File Saved");
+        }
     }
