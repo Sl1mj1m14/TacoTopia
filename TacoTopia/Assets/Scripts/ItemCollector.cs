@@ -48,17 +48,25 @@ public class ItemCollector : MonoBehaviour
     }
 
     private void PickUp() {
-        if (inventory.AddItem(itemColliders.Peek().gameObject.tag))
-        Destroy(itemColliders.Peek().gameObject);
+        if(Death.Get() == false){
+            if (inventory.AddItem(itemColliders.Peek().gameObject.tag))
+            Destroy(itemColliders.Peek().gameObject);
+        }else{
+            Debug.Log("Your hands pass through the object. Having an intangible form is limiting...");
+        }
     }
 
     private void Give()
     {
-        for (int i = 0; i < enemyColliders.Size(); i++) {
-            if (enemyColliders.Peek(i).GetComponent<Inventory>().AddItem(inventory.GetItem(0))) {
-                inventory.RemoveItem(0);
-                return;
+        if(Death.Get() == false){
+            for (int i = 0; i < enemyColliders.Size(); i++) {
+                if (enemyColliders.Peek(i).GetComponent<Inventory>().AddItem(inventory.GetItem(0))) {
+                    inventory.RemoveItem(0);
+                    return;
+                }
             }
+        }else{
+            Debug.Log("You cannot give Ectoplasm");
         }
     }
 }
