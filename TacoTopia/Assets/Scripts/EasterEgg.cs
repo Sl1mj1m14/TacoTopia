@@ -1,5 +1,5 @@
 //  created by Andrew Roby on 3/29/22
-//  last edited by Andrew Roby on 3/29/22
+//  Last edited on 3/31/22 by Andrew Roby
 using unityEngine;
 
     /*
@@ -70,7 +70,7 @@ using unityEngine;
             if(randNum == 120){
                 Debug.Log("You noclip into The Backrooms");
             }else{
-                Debug.Log("Out of Bounds Death");
+                Debug.Log("You are fired for bad work ethic");
             }
         }
     }

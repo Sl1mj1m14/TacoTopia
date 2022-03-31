@@ -1,3 +1,5 @@
+
+//  Last edited on 3/31/22 by Andrew Roby
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +22,7 @@ public class DeathBlock : MonoBehaviour
     {
         Debug.Log(collider.gameObject.tag);
         Destroy( collider.gameObject );
+        Death.OutofBounds();
     }
 
 }

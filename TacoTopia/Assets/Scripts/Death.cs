@@ -1,5 +1,5 @@
 //Created on:       3/8/22 by Andrew Roby
-//Last Edited:      3/18/22 by Keiler MacNeal
+//Last Edited:      3/31/22 by Andrew Roby
 using UnityEngine;
 //im new to C#. please be gentle.
 /*
@@ -43,14 +43,17 @@ using UnityEngine;
          */
         public Death(float health){
             if(health <= 0f){
-                Set(true);
+                Death.Set(true);
                 System.Console.WriteLine("Your body falls to the ground as the world goes dark.");
                 EasterEgg.DeathEgg();
             }else{
-                Set(false);
+                Death.Set(false);
             }
         }
 
+        /*
+        *   These methods are related to enemy deaths
+        */
 
         public bool EnemyDeadGet(){
             return enemyDead;
@@ -64,21 +67,19 @@ using UnityEngine;
 
         public EnemyDead(float enemyHealth){
             if(enemyHealth <= 0f){
-                EnemyDeadSet(true);
+                Death.EnemyDeadSet(true);
             }else{
-                EnemyDeadSet(false);
+                Death.EnemyDeadSet(false);
             }
         }
+        /*
+        *   End enemy death segment
+        */
 
+        //  This method is called when the player character collides with a "DeathBlock" element
         public OutofBounds(){
-            /* read entity that triggered collision */
-            //if(/* entity is player */){
-            //    Set(true);
-            //    System.Console.WriteLine("You are arrested for abandoning your assignment");
-            //}
-            //if/* entity is enemy */{
-            //    EnemyDeadSet(true);
-            //}
+            Death.Set(true);
+            EasterEgg.OoBEgg();
         }
         
         /*
@@ -87,7 +88,7 @@ using UnityEngine;
          *  Call "Death.Revival" if you have a condition that causes the pc to revive
          */
         public void Revival(){
-            Set(false);
+            Death.Set(false);
             System.Console.WriteLine("You reclaim your body, feeling reinvigorated for the journey ahead.");
             System.Console.WriteLine("Inventory restored!");
             EasterEgg.RevivalEgg();
