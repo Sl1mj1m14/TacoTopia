@@ -1,5 +1,5 @@
 //created by Devin
-//last updated 3/10/2022 by Devin
+//last updated 3/15/2022 by Devin
 
 using System.Collections;
 using System.Collections.Generic;
@@ -56,7 +56,7 @@ public class SaveChar : MonoBehaviour
     {
         string text = JsonUtility.ToJson(export);
         File.WriteAllText(@"\temp\char.json", text);
-        Debug.Log("File Saved");
+        Debug.Log("Character Saved");
     }
 
 

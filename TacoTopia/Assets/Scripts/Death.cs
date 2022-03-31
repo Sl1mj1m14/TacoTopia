@@ -1,23 +1,21 @@
-//Creator: Andrew Roby
-
+//Created on:       3/8/22 by Andrew Roby
+//Last Edited:      3/18/22 by Keiler MacNeal
 using UnityEngine;
 //im new to C#. please be gentle.
 /*
  * yeah...that was genuinely cringe...why cant i think of a better way to word that...
  */
-namespace Death{
+//namespace Death{
     /*
      *  This class allows for a pc (player character) to die
      *
      *  
      *  call "Death(<insert health variable here>);" whenever the pc takes damage 
      */
-    public class Death{
+    public class Death : MonoBehaviour{
         private bool isDead;
+        private bool enemyDead;
 
-        private System.Random ran = new System.Random();
-        
-        
         /*
          *  This Property allows for returning whether or not the PC is dead
          *
@@ -47,18 +45,40 @@ namespace Death{
             if(health <= 0f){
                 Set(true);
                 System.Console.WriteLine("Your body falls to the ground as the world goes dark.");
-                Debug.Log("You died");
-                int rand_num = ran.Next(0,68);
-                if(rand_num == 68){
-                    Debug.Log("*sad violins playing*");
-                }
-                rand_num = ran.Next(0,68);
-                if(rand_num == 68){
-                    Debug.Log("That's gonna hurt tomorrow...");
-                }
+                EasterEgg.DeathEgg();
             }else{
                 Set(false);
             }
+        }
+
+
+        public bool EnemyDeadGet(){
+            return enemyDead;
+        }
+
+
+        public EnemyDeadSet(bool value){
+            enemyDead = value;
+        }
+
+
+        public EnemyDead(float enemyHealth){
+            if(enemyHealth <= 0f){
+                EnemyDeadSet(true);
+            }else{
+                EnemyDeadSet(false);
+            }
+        }
+
+        public OutofBounds(){
+            /* read entity that triggered collision */
+            //if(/* entity is player */){
+            //    Set(true);
+            //    System.Console.WriteLine("You are arrested for abandoning your assignment");
+            //}
+            //if/* entity is enemy */{
+            //    EnemyDeadSet(true);
+            //}
         }
         
         /*
@@ -70,11 +90,7 @@ namespace Death{
             Set(false);
             System.Console.WriteLine("You reclaim your body, feeling reinvigorated for the journey ahead.");
             System.Console.WriteLine("Inventory restored!");
-            Debug.Log("You have revived");
-            int rand_num = ran.Next(0,68);
-            if(rand_num < 68){
-                Debug.Log("*FF Victory Trumpets*");
-            }
+            EasterEgg.RevivalEgg();
         }
     }
-}
+//}
