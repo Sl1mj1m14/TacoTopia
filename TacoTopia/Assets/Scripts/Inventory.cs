@@ -44,7 +44,7 @@ public class Inventory : MonoBehaviour
     */
     public bool AddItem(string item) {
  
-        if(death.Get() == false) {
+        if(death.Get() == true) {
             Debug.Log("Inventory is locked. Return to your body to regain access.");
             return false;
         }
@@ -69,7 +69,7 @@ public class Inventory : MonoBehaviour
     */
     public bool RemoveItems(int position, int amount) {
         
-        if(death.Get() == false) {
+        if(death.Get() == true) {
             Debug.Log("Inventory is locked. Return to your body to regain access.");
             return false;
         }
@@ -94,7 +94,7 @@ public class Inventory : MonoBehaviour
             if (slots[i].Equals(name)) return RemoveItems(i, amount);
         }
 
-        if (death.Get() == false) 
+        if (death.Get() == true) 
             Debug.Log("Inventory is locked. Return to your body to regain access.");
 
         return false;
@@ -122,7 +122,7 @@ public class Inventory : MonoBehaviour
     */
     public bool SwitchItems(int num1, int num2) {
 
-        if(death.Get() == false) {
+        if(death.Get() == true) {
             Debug.Log("Inventory is locked. Return to your body to regain access.");
             return false;
         }
@@ -146,7 +146,7 @@ public class Inventory : MonoBehaviour
 
         int emptySlots = 0; 
 
-        if(death.Get() == false) return 0;
+        if(Death.Get() == true) return 0;
 
         for (int i=0; i<INVENTORY_SIZE; i++) {
             if (slots[i].Equals("Air")) emptySlots++;
