@@ -50,6 +50,8 @@ using unityEngine;
             int randNum = ran.Next(0,420);
             if(randNum == 1){
                 Debug.Log("*FF Victory Trumpets*");
+            }else{
+                Debug.Log("Enemy slain");
             }
         }
 
@@ -66,7 +68,7 @@ using unityEngine;
         public void OoBEgg(){
             int randNum = ran.Next(0,120);
             if(randNum == 120){
-                Debug.Log("You noclip out of your reality and into The Backrooms");
+                Debug.Log("You noclip into The Backrooms");
             }else{
                 Debug.Log("Out of Bounds Death");
             }
