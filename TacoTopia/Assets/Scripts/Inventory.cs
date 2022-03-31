@@ -146,7 +146,7 @@ public class Inventory : MonoBehaviour
 
         int emptySlots = 0; 
 
-        if(Death.Get() == true) return 0;
+        if(death.Get() == true) return 0;
 
         for (int i=0; i<INVENTORY_SIZE; i++) {
             if (slots[i].Equals("Air")) emptySlots++;
