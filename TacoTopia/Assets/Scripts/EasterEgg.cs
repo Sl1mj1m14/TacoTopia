@@ -7,12 +7,18 @@ using UnityEngine;
     *
     *   all Easter Eggs are determined via the random number object titled "ran"
     */
-    public class EasterEgg : MonoBehaviour{
-        private System.Random ran = new System.Random();
+    public static class EasterEgg {
+        
+        static System.Random ran;
+        static EasterEgg()
+        {
+            ran = new System.Random();
+        }
+        
 
         
         //   This method's Easter Eggs relate to player death
-        public void DeathEgg(){
+        public static void DeathEgg(){
             int randNum1 = ran.Next(0,68);
             int randNum2 = ran.Next(0,68);
             int randNum3 = ran.Next(0,68);
@@ -36,7 +42,7 @@ using UnityEngine;
 
         
         //   This method's Easter Eggs relate to player revival
-        public void RevivalEgg(){
+        public static void RevivalEgg(){
             int randNum = ran.Next(0,68);
             if(randNum == 68){
                 Debug.Log("*Halo shield regen noises*");
@@ -46,7 +52,7 @@ using UnityEngine;
         }
 
         //  This method's Easter Eggs relate to enemy defeat
-        public void EnemyDefeatEgg(){
+        public static void EnemyDefeatEgg(){
             int randNum = ran.Next(0,420);
             if(randNum == 1){
                 Debug.Log("*FF Victory Trumpets*");
@@ -56,7 +62,7 @@ using UnityEngine;
         }
 
         //  This method's Easter Eggs relate to saving
-        public void SaveEgg(){
+        public static void SaveEgg(){
             int randNum = ran.Next(0,1);
             if (randNum > 0.8)
                 Debug.Log("Bonfire Lit");
@@ -65,7 +71,7 @@ using UnityEngine;
         }
 
 
-        public void OoBEgg(){
+        public static void OoBEgg(){
             int randNum = ran.Next(0,120);
             if(randNum == 120){
                 Debug.Log("You noclip into The Backrooms");
