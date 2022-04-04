@@ -43,11 +43,11 @@ using UnityEngine;
          */
         public Death(float health){
             if(health <= 0f){
-                Death.Set(true);
+                Set(true);
                 System.Console.WriteLine("Your body falls to the ground as the world goes dark.");
                 EasterEgg.DeathEgg();
             }else{
-                Death.Set(false);
+                Set(false);
             }
         }
 
@@ -60,16 +60,16 @@ using UnityEngine;
         }
 
 
-        public EnemyDeadSet(bool value){
+        public void EnemyDeadSet(bool value){
             enemyDead = value;
         }
 
 
-        public EnemyDead(float enemyHealth){
+        public void EnemyDead(float enemyHealth){
             if(enemyHealth <= 0f){
-                Death.EnemyDeadSet(true);
+                EnemyDeadSet(true);
             }else{
-                Death.EnemyDeadSet(false);
+                EnemyDeadSet(false);
             }
         }
         /*
@@ -77,8 +77,8 @@ using UnityEngine;
         */
 
         //  This method is called when the player character collides with a "DeathBlock" element
-        public OutofBounds(){
-            Death.Set(true);
+        public void OutofBounds(){
+            Set(true);
             EasterEgg.OoBEgg();
         }
         
@@ -88,7 +88,7 @@ using UnityEngine;
          *  Call "Death.Revival" if you have a condition that causes the pc to revive
          */
         public void Revival(){
-            Death.Set(false);
+            Set(false);
             System.Console.WriteLine("You reclaim your body, feeling reinvigorated for the journey ahead.");
             System.Console.WriteLine("Inventory restored!");
             EasterEgg.RevivalEgg();

@@ -1,13 +1,13 @@
 //  created by Andrew Roby on 3/29/22
 //  Last edited on 3/31/22 by Andrew Roby
-using unityEngine;
+using UnityEngine;
 
     /*
     *   This script contains methods that invoke Easter Eggs
     *
     *   all Easter Eggs are determined via the random number object titled "ran"
     */
-    public class EasterEgg : MonoBehavior{
+    public class EasterEgg : MonoBehaviour{
         private System.Random ran = new System.Random();
 
         
