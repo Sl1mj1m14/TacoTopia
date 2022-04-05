@@ -1,5 +1,5 @@
 //Created on:       3/8/22 by Andrew Roby
-//Last Edited:      3/31/22 by Andrew Roby
+//Last Edited:      4/5/22 by Andrew Roby
 using UnityEngine;
 //im new to C#. please be gentle.
 /*
@@ -21,7 +21,7 @@ using UnityEngine;
          *
          *  Call "Death.get" as the condition of an if() statement containing code if said code depends on pc being alive or dead
          */
-        public bool Get()
+        public bool IsDead()
         {
             return isDead;
         }
@@ -29,7 +29,7 @@ using UnityEngine;
         /*
         *   This method sets the death value
         */
-        public void Set(bool value)
+        public void DeadSet(bool value)
         {
             isDead = value;
         }
@@ -43,28 +43,35 @@ using UnityEngine;
          */
         public Death(float health){
             if(health <= 0f){
-                Set(true);
+                DeadSet(true);
                 System.Console.WriteLine("Your body falls to the ground as the world goes dark.");
                 EasterEgg.DeathEgg();
             }else{
-                Set(false);
+                DeadSet(false);
             }
+        }
+
+        //  This method is called when the player character collides with a "DeathBlock" element
+        public void OutofBounds(){
+            Set(true);
+            EasterEgg.OoBEgg();
         }
 
         /*
         *   These methods are related to enemy deaths
         */
 
+        //  Method for testing an enemy's death status
         public bool EnemyDeadGet(){
             return enemyDead;
         }
 
-
+        //  Method for setting an enemy's status as dead
         public void EnemyDeadSet(bool value){
             enemyDead = value;
         }
 
-
+        //  Method for automated application of "dead" status on an enemy
         public void EnemyDead(float enemyHealth){
             if(enemyHealth <= 0f){
                 EnemyDeadSet(true);
@@ -76,11 +83,6 @@ using UnityEngine;
         *   End enemy death segment
         */
 
-        //  This method is called when the player character collides with a "DeathBlock" element
-        public void OutofBounds(){
-            Set(true);
-            EasterEgg.OoBEgg();
-        }
         
         /*
          *  This method enables revival
@@ -88,7 +90,7 @@ using UnityEngine;
          *  Call "Death.Revival" if you have a condition that causes the pc to revive
          */
         public void Revival(){
-            Set(false);
+            Death(100);
             System.Console.WriteLine("You reclaim your body, feeling reinvigorated for the journey ahead.");
             System.Console.WriteLine("Inventory restored!");
             EasterEgg.RevivalEgg();

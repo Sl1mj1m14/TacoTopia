@@ -1,5 +1,5 @@
 //  created by Andrew Roby on 3/29/22
-//  Last edited on 3/31/22 by Andrew Roby
+//  Last edited on 4/5/22 by Andrew Roby
 using UnityEngine;
 
     /*
@@ -70,7 +70,7 @@ using UnityEngine;
                 Debug.Log("File Saved");
         }
 
-
+        //  This method's Easter Eggs relate to deaths triggered by going Out-of-Bounds 
         public static void OoBEgg(){
             int randNum = ran.Next(0,120);
             if(randNum == 120){
