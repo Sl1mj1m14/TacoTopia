@@ -1,5 +1,5 @@
 
-//  last edited on 3/29/22 by Andrew Roby
+//  last edited on 4/5/22 by Andrew Roby
 using UnityEngine;
 using System.Collections;
 
@@ -39,7 +39,7 @@ public class PlayerHealth : MonoBehaviour {
 
         if( curHealth < 0 ){
             curHealth = 0;
-            //death.Death(curHealth);
+            death.Death(curHealth);
         }
         
 
