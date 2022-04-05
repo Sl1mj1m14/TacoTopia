@@ -53,7 +53,7 @@ using UnityEngine;
 
         //  This method is called when the player character collides with a "DeathBlock" element
         public void OutofBounds(){
-            Set(true);
+            DeadSet(true);
             EasterEgg.OoBEgg();
         }
 
@@ -90,7 +90,7 @@ using UnityEngine;
          *  Call "Death.Revival" if you have a condition that causes the pc to revive
          */
         public void Revival(){
-            Death(100);
+            //Death(100);
             System.Console.WriteLine("You reclaim your body, feeling reinvigorated for the journey ahead.");
             System.Console.WriteLine("Inventory restored!");
             EasterEgg.RevivalEgg();
