@@ -1,5 +1,6 @@
 //Created by Keiler
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     private BoxCollider2D collision;
     private Animator animate;
+
+    private int sceneNumber;
 
     [SerializeField] private LayerMask ground;
 
@@ -18,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     //This method is called once upon start
     private void Awake() {
 
+        DontDestroyOnLoad(gameObject);
+        
         //Assigning the physics and animation of the player
         body = GetComponent<Rigidbody2D>();
         collision = GetComponent<BoxCollider2D>();
@@ -25,22 +30,29 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void Start() {
+        sceneNumber = SceneManager.GetActiveScene().buildIndex;
+    }
+
     //This method is called every frame
     private void Update() {
 
         float direction = Input.GetAxis("Horizontal");
         
-        //Checking for left/right and a/d key input, and moving the respective direction
-        body.velocity = new Vector2(direction * xSpeed, body.velocity.y);
+        if(sceneNumber >= 2) {
+        
+            //Checking for left/right and a/d key input, and moving the respective direction
+            body.velocity = new Vector2(direction * xSpeed, body.velocity.y);
 
-        //Jumping when space is pressed
-        if (Input.GetButton("Jump") && IsGrounded()) Jump();     
+            //Jumping when space is pressed
+            if (Input.GetButton("Jump") && IsGrounded()) Jump();     
 
-        //Flip directions based on input
-        if (direction > 0.01f) {
-            transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
-        } else if (direction < -0.01f) {
-            transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier, scaleMultiplier);
+            //Flip directions based on input
+            if (direction > 0.01f) {
+                transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
+            } else if (direction < -0.01f) {
+                transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier, scaleMultiplier);
+            }
         }
     }
 

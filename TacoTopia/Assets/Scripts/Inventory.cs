@@ -1,5 +1,5 @@
 //Created by Keiler
-//Last edited on 3/31/22 by Andrew Roby
+//Last edited on 4/5/22 by Andrew Roby
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,11 +30,11 @@ public class Inventory : MonoBehaviour
     *   This method returns the item name at the specified index
     */
     public string GetItem(int index) {
-        if(death.Get() == false){
-            return slots[index].GetItem();
-        }else{
+        if(death.IsDead()){
             Debug.Log("Inventory is nothing but ectoplasm. You are a ghost.");
             return "Air";
+        }else{
+            return slots[index].GetItem();
         }
     }
     
@@ -44,7 +44,7 @@ public class Inventory : MonoBehaviour
     */
     public bool AddItem(string item) {
  
-        if(death.Get() == true) {
+        if(death.IsDead()) {
             Debug.Log("Inventory is locked. Return to your body to regain access.");
             return false;
         }
@@ -69,7 +69,7 @@ public class Inventory : MonoBehaviour
     */
     public bool RemoveItems(int position, int amount) {
         
-        if(death.Get() == true) {
+        if(death.IsDead()) {
             Debug.Log("Inventory is locked. Return to your body to regain access.");
             return false;
         }
@@ -90,12 +90,14 @@ public class Inventory : MonoBehaviour
     */
     public bool RemoveItems(string name, int amount) {
 
+        if (death.IsDead()) {
+            Debug.Log("Inventory is locked. Return to your body to regain access.");
+            return false;
+        }
+
         for (int i=0; i<slots.Length; i++) {
             if (slots[i].Equals(name)) return RemoveItems(i, amount);
         }
-
-        if (death.Get() == true) 
-            Debug.Log("Inventory is locked. Return to your body to regain access.");
 
         return false;
     }
@@ -122,7 +124,7 @@ public class Inventory : MonoBehaviour
     */
     public bool SwitchItems(int num1, int num2) {
 
-        if(death.Get() == true) {
+        if(death.IsDead()) {
             Debug.Log("Inventory is locked. Return to your body to regain access.");
             return false;
         }
@@ -146,7 +148,7 @@ public class Inventory : MonoBehaviour
 
         int emptySlots = 0; 
 
-        if(death.Get() == true) return 0;
+        if(death.IsDead()) return 0;
 
         for (int i=0; i<INVENTORY_SIZE; i++) {
             if (slots[i].Equals("Air")) emptySlots++;
