@@ -17,5 +17,9 @@ public class SceneChanger : MonoBehaviour
 	public void CharacterCreator(){
 		SceneManager.LoadScene(1);
 	}
+
+	public void StartGame(){
+		SceneManager.LoadScene(2);
+	}
 	
 }
