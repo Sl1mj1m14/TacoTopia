@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D collision;
     private Animator animate;
 
+    private Death death;
+
     private int sceneNumber;
 
     [SerializeField] private LayerMask ground;
@@ -31,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Start() {
+        death = GetComponent<Death>();
         sceneNumber = SceneManager.GetActiveScene().buildIndex;
     }
 
@@ -49,9 +52,11 @@ public class PlayerMovement : MonoBehaviour
 
             //Flip directions based on input
             if (direction > 0.01f) {
-                transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
+                if(!WallCollideAction(direction))
+                    transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
             } else if (direction < -0.01f) {
-                transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier, scaleMultiplier);
+                if(!WallCollideAction(direction))
+                    transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier, scaleMultiplier);
             }
         }
     }
@@ -66,5 +71,18 @@ public class PlayerMovement : MonoBehaviour
     //When touching the ground, set isGrounded to true
     private bool IsGrounded() {
         return Physics2D.BoxCast(collision.bounds.center, collision.bounds.size, 0f, Vector2.down, .1f, ground);
+    }
+
+    //  Method for handling collisions with wall entities
+    private bool WallCollideAction(int direct){
+        if(death.IsDead()){
+            return false;
+        }else if(direct > 0.01f){
+            return Physics2D.BoxCast(collision.bounds.center, collision.bounds.size, 0f, Vector3.right, .0f, wall);
+        }else if(direct < -0.01f){
+            return Physics2D.BoxCast(collision.bounds.center, collision.bounds.size, 0f, Vector3.left, .0f, wall);
+        }else{
+            return false;
+        }
     }
 }
