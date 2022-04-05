@@ -9,9 +9,13 @@ public class EnemyHealth : MonoBehaviour {
 
     public int curHealth = 125;
 
+    private Death death;
+
     public float healthBarLength;
 
     void Start ( ) {
+
+        death = GetComponent<Death>();
 
         healthBarLength = Screen.width / 2;
 
@@ -35,7 +39,7 @@ public class EnemyHealth : MonoBehaviour {
         if( curHealth < 0 ){
             curHealth = 0;
             EasterEgg.EnemyDefeatEgg();
-            Death.EnemyDead(curHealth);
+            death.EnemyDead(curHealth);
         }
             
 

@@ -12,9 +12,11 @@ public class ItemCollector : MonoBehaviour
     private TraversableQueue<Collider2D> itemColliders = new TraversableQueue<Collider2D>();
     private TraversableQueue<Collider2D> enemyColliders = new TraversableQueue<Collider2D>();
     private Inventory inventory;
+    private Death death;
 
     private void Start() {
         inventory = GetComponent<Inventory>();
+        death = GetComponent<Death>();
     }
 
     private void Update() {
@@ -48,7 +50,7 @@ public class ItemCollector : MonoBehaviour
     }
 
     private void PickUp() {
-        if(Death.Get() == false){
+        if(death.Get() == false){
             if (inventory.AddItem(itemColliders.Peek().gameObject.tag))
             Destroy(itemColliders.Peek().gameObject);
         }else{
@@ -58,7 +60,7 @@ public class ItemCollector : MonoBehaviour
 
     private void Give()
     {
-        if(Death.Get() == false){
+        if(death.Get() == false){
             for (int i = 0; i < enemyColliders.Size(); i++) {
                 if (enemyColliders.Peek(i).GetComponent<Inventory>().AddItem(inventory.GetItem(0))) {
                     inventory.RemoveItem(0);

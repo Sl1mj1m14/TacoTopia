@@ -13,7 +13,11 @@ public class PlayerHealth : MonoBehaviour {
 
     public float healthBarLength;
 
+    private Death death;
+
     void Start ( ) {
+
+        death = GetComponent<Death>();
 
         healthBarLength = Screen.width / 2;
     }
@@ -35,7 +39,7 @@ public class PlayerHealth : MonoBehaviour {
 
         if( curHealth < 0 ){
             curHealth = 0;
-            Death(curHealth);
+            //death.Death(curHealth);
         }
         
 

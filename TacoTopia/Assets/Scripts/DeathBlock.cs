@@ -22,7 +22,8 @@ public class DeathBlock : MonoBehaviour
     {
         Debug.Log(collider.gameObject.tag);
         Destroy( collider.gameObject );
-        Death.OutofBounds();
+        /*Death death = new Death();
+        death.OutofBounds();*/
     }
 
 }
