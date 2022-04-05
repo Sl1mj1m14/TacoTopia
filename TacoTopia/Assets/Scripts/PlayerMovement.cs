@@ -52,9 +52,11 @@ public class PlayerMovement : MonoBehaviour
 
             //Flip directions based on input
             if (direction > 0.01f) {
-                transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
+                if(!WallCollideAction())
+                    transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
             } else if (direction < -0.01f) {
-                transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier, scaleMultiplier);
+                if(!WallCollideAction())
+                    transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier, scaleMultiplier);
             }
         }
     }
