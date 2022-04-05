@@ -8,9 +8,16 @@ public class OutfitChanger : MonoBehaviour
 	[Header("Sprite To Change")]
 	public SpriteRenderer bodyPart;
 	public Image icon;
+
+	public int childID;
 	
 	[Header("Sprites To Cycle Through")]
 	public List<Sprite> options = new List<Sprite>();
+
+	void Start()
+	{
+		bodyPart = GameObject.FindWithTag("Player").transform.GetChild(childID).GetComponent<SpriteRenderer>();
+	}
 	
 	void Update(){
 		icon.sprite = bodyPart.sprite;

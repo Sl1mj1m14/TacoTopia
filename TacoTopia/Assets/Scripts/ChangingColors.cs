@@ -9,9 +9,16 @@ public class ChangingColors : MonoBehaviour
 	
 	public SpriteRenderer body;
 	public Image squareHeadDisplay;
+
+	public int childID;
 	
 	public Color[] colors;
 	public int whatColor = 1;
+
+	void Start()
+	{
+		body = GameObject.FindWithTag("Player").transform.GetChild(childID).GetComponent<SpriteRenderer>();
+	}
 	
 	void Update(){
 		squareHeadDisplay.color = body.color;
