@@ -827,7 +827,7 @@ MonoBehaviour:
   panel: {fileID: 1090692949}
   body: {fileID: 0}
   squareHeadDisplay: {fileID: 1721773753}
-  childID: 0
+  childID: 4
   colors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0.7830189, g: 0.3341635, b: 0.32059452, a: 1}
@@ -6279,7 +6279,7 @@ MonoBehaviour:
   panel: {fileID: 1090692949}
   body: {fileID: 0}
   squareHeadDisplay: {fileID: 1699785991}
-  childID: 0
+  childID: 1
   colors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0.9056604, g: 0.75391954, b: 0.652759, a: 1}
