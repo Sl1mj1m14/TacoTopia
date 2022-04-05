@@ -52,9 +52,11 @@ public class PlayerMovement : MonoBehaviour
 
             //Flip directions based on input
             if (direction > 0.01f) {
-                transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
+                if(!WallCollideAction(direction))
+                    transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
             } else if (direction < -0.01f) {
-                transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier, scaleMultiplier);
+                if(!WallCollideAction(direction))
+                    transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier, scaleMultiplier);
             }
         }
     }
@@ -72,12 +74,12 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //  Method for handling collisions with wall entities
-    private bool WallCollideAction(){
+    private bool WallCollideAction(int direct){
         if(death.IsDead()){
             return false;
-        }else if(direction > 0.01f){
+        }else if(direct > 0.01f){
             return Physics2D.BoxCast(collision.bounds.center, collision.bounds.size, 0f, Vector3.right, .0f, wall);
-        }else if(direction < -0.01f){
+        }else if(direct < -0.01f){
             return Physics2D.BoxCast(collision.bounds.center, collision.bounds.size, 0f, Vector3.left, .0f, wall);
         }else{
             return false;
