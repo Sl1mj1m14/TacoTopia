@@ -285,9 +285,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1604871448}
-        m_TargetAssemblyTypeName: GameControl, Assembly-CSharp
-        m_MethodName: LoadCharBuilder
+      - m_Target: {fileID: 1394424415}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: CharacterCreator
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -567,9 +567,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1604871448}
-        m_TargetAssemblyTypeName: GameControl, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 1394424415}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -718,6 +718,50 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1394424414
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1394424416}
+  - component: {fileID: 1394424415}
+  m_Layer: 0
+  m_Name: SceneChanger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1394424415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394424414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6d951100013b9e4e88fe0fb554e0d28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChangeTo: 0
+--- !u!4 &1394424416
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394424414}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -40.280293, y: 14.916371, z: -2.009546}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1587326376
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,17 +902,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93d8f6a240c257446b7e44879b2ad553, type: 3}
---- !u!114 &1604871448 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6581296790513190795, guid: 82d0c79f40be57d439f4c8a2dd28142a, type: 3}
-  m_PrefabInstance: {fileID: 6581296789446288019}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65212952991f61548b8b32df1a7e8e16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6581296789446288019
 PrefabInstance:
   m_ObjectHideFlags: 0

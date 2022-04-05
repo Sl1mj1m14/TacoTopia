@@ -84,6 +84,21 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log(mode);
 
         if (scene.buildIndex == 0) gameObject.SetActive(false);
+
+        switch (scene.buildIndex)
+        {
+            case 1:
+                gameObject.transform.position = new Vector3(-47.43f,9.49f,-5.07f);
+                break;
+            
+            case 2:
+                gameObject.transform.position = new Vector3(-83,23,0);
+                break;
+
+            default:
+                gameObject.transform.position = new Vector3(0,0,0);
+                break;
+        }
     }
 
     //  Method for handling collisions with wall entities
