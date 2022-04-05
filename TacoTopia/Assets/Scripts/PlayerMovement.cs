@@ -23,12 +23,17 @@ public class PlayerMovement : MonoBehaviour
     //This method is called once upon start
     private void Awake() {
 
-        DontDestroyOnLoad(gameObject);
+        if (GameObject.FindObjectsOfType<PlayerMovement>().Length == 1)
+            DontDestroyOnLoad(gameObject);
+        else 
+            Destroy(this.gameObject);
         
         //Assigning the physics and animation of the player
         body = GetComponent<Rigidbody2D>();
         collision = GetComponent<BoxCollider2D>();
         animate = GetComponent<Animator>();
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
     }
 
@@ -71,6 +76,14 @@ public class PlayerMovement : MonoBehaviour
     //When touching the ground, set isGrounded to true
     private bool IsGrounded() {
         return Physics2D.BoxCast(collision.bounds.center, collision.bounds.size, 0f, Vector2.down, .1f, ground);
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+        Debug.Log(mode);
+
+        if (scene.buildIndex == 0) gameObject.SetActive(false);
     }
 
     //  Method for handling collisions with wall entities

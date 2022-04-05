@@ -14,7 +14,7 @@ public class Save : MonoBehaviour
     private void save()
     {
         SC = GameObject.Find("SceneChanger").GetComponent<SceneChanger>();
-        currentLevel = SC.ChangeTo;
+        currentLevel = SC.ChangeTo.ToString();
 
         string saveLevel = JsonUtility.ToJson(currentLevel);
         File.WriteAllText(@"\temp\level.json", saveLevel);
