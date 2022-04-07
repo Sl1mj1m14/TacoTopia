@@ -55,7 +55,7 @@ public class SaveChar : MonoBehaviour
     public void save_char()
     {
         string text = JsonUtility.ToJson(export);
-        File.WriteAllText(@"\temp\char.json", text);
+        File.WriteAllText(@"..\TempStorage\char.json", text);
         Debug.Log("Character Saved");
     }
 

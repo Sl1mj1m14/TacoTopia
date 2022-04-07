@@ -6,38 +6,26 @@ using UnityEngine.SceneManagement;
 public class GameControl : MonoBehaviour
 {
     public GameObject player;
+    public string PLAYER_TAG = "Player";
     
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-
-        Instantiate(player, new Vector3(0,0,0), Quaternion.identity);
-
-        DontDestroyOnLoad(player);
-    }
-    
-    void Start()
-    {
-        int sceneNumber = SceneManager.GetActiveScene().buildIndex;
-
-        Debug.Log(sceneNumber);
-
-        if (sceneNumber == 0) player.SetActive(false);
-        else player.SetActive(true);
-
-        /*if (sceneNumber < 2) player.GetComponent<PlayerMovement>().enabled == false;
-        else player.GetComponent<PlayerMovement>().enabled == true;*/
+        player = GameObject.FindWithTag(PLAYER_TAG);
         
+        if (GameObject.FindObjectsOfType<GameControl>().Length == 1)
+            DontDestroyOnLoad(gameObject);
+        else 
+            Destroy(this.gameObject);
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        
+        Debug.Log("OnSceneLoaded: " + scene.name);
+        Debug.Log(mode);
+
+        if (scene.buildIndex != 0) player.SetActive(true);
     }
 
-    public void LoadCharBuilder()
-    {
-        SceneManager.LoadScene(1);
-    }
 }

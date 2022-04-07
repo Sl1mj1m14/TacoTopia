@@ -553,9 +553,9 @@ GameObject:
   - component: {fileID: 1474950529}
   - component: {fileID: 1474950528}
   - component: {fileID: 1474950527}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Level1Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3967,9 +3967,9 @@ GameObject:
   - component: {fileID: 1807953609}
   - component: {fileID: 1807953611}
   - component: {fileID: 1807953610}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Level1Platforms
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

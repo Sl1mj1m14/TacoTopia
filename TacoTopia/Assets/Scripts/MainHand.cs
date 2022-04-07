@@ -6,7 +6,7 @@ using UnityEngine;
 public class MainHand : MonoBehaviour
 {
     
-    private static readonly string PLAYER_REFERENCE = "char";
+    //public string ENTITY_REFERENCE = "Player";
 
     [SerializeField] private Sprite[] itemSprites;
     [SerializeField] private float scaleMultiplier;
@@ -17,7 +17,7 @@ public class MainHand : MonoBehaviour
     void Start()
     {
         //Assigning some stuff, yada yada
-        inventory = GameObject.Find(PLAYER_REFERENCE).GetComponent<Inventory>();
+        inventory = gameObject.transform.parent.gameObject.GetComponent<Inventory>();
         spriteRenderer = GetComponent<SpriteRenderer>();
             
     }

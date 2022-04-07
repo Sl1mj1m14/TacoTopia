@@ -827,6 +827,7 @@ MonoBehaviour:
   panel: {fileID: 1090692949}
   body: {fileID: 0}
   squareHeadDisplay: {fileID: 1721773753}
+  childID: 4
   colors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0.7830189, g: 0.3341635, b: 0.32059452, a: 1}
@@ -899,6 +900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodyPart: {fileID: 0}
   icon: {fileID: 805951321}
+  childID: 5
   options:
   - {fileID: 111648954039052082, guid: 1ef1c6db22b7bca40bb1f7ed4393e461, type: 3}
   - {fileID: -5213736225766107966, guid: 1ef1c6db22b7bca40bb1f7ed4393e461, type: 3}
@@ -935,6 +937,7 @@ MonoBehaviour:
   panel: {fileID: 1090692949}
   body: {fileID: 0}
   squareHeadDisplay: {fileID: 805951321}
+  childID: 5
   colors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0.7830189, g: 0.3341635, b: 0.32059452, a: 1}
@@ -1139,6 +1142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodyPart: {fileID: 0}
   icon: {fileID: 1721773753}
+  childID: 4
   options:
   - {fileID: 4102851767660153476, guid: 53a3f03b3bbc74948b0eec2f4c93098f, type: 3}
   - {fileID: -5772454888048399463, guid: 53a3f03b3bbc74948b0eec2f4c93098f, type: 3}
@@ -2092,6 +2096,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodyPart: {fileID: 0}
   icon: {fileID: 1883699740}
+  childID: 2
   options:
   - {fileID: 1147381239155910021, guid: db29251016e279a449d548080beb13e4, type: 3}
   - {fileID: -3465951917655514925, guid: db29251016e279a449d548080beb13e4, type: 3}
@@ -3451,7 +3456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d951100013b9e4e88fe0fb554e0d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangeTo: resturant
+  ChangeTo: 0
 --- !u!4 &1127430467
 Transform:
   m_ObjectHideFlags: 0
@@ -3972,6 +3977,7 @@ MonoBehaviour:
   panel: {fileID: 1090692949}
   body: {fileID: 0}
   squareHeadDisplay: {fileID: 1583593966}
+  childID: 3
   colors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0.9823899, g: 1, b: 0.5509434, a: 1}
@@ -6216,6 +6222,7 @@ MonoBehaviour:
   panel: {fileID: 1090692949}
   body: {fileID: 0}
   squareHeadDisplay: {fileID: 1699785991}
+  childID: 1
   colors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0.9056604, g: 0.75391954, b: 0.652759, a: 1}
@@ -7126,6 +7133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodyPart: {fileID: 0}
   icon: {fileID: 1583593966}
+  childID: 3
   options:
   - {fileID: -5045535011223827050, guid: db29251016e279a449d548080beb13e4, type: 3}
   - {fileID: 174899437966103339, guid: a86de3c535b9ccc4d95e4f4b64b30b1e, type: 3}

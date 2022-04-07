@@ -5,9 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-	public string ChangeTo;
+	public int ChangeTo;
 	public void SceneTransition(){
 		SceneManager.LoadScene(ChangeTo);
+	}
+
+	public void MenuReturn(){
+		SceneManager.LoadScene(0);
+	}
+
+	public void CharacterCreator(){
+		SceneManager.LoadScene(1);
+	}
+
+	public void StartGame(){
+		SceneManager.LoadScene(2);
 	}
 	
 }

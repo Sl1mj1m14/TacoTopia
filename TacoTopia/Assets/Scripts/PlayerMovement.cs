@@ -23,12 +23,17 @@ public class PlayerMovement : MonoBehaviour
     //This method is called once upon start
     private void Awake() {
 
-        DontDestroyOnLoad(gameObject);
+        if (GameObject.FindObjectsOfType<PlayerMovement>().Length == 1)
+            DontDestroyOnLoad(gameObject);
+        else 
+            Destroy(this.gameObject);
         
         //Assigning the physics and animation of the player
         body = GetComponent<Rigidbody2D>();
         collision = GetComponent<BoxCollider2D>();
         animate = GetComponent<Animator>();
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
     }
 
@@ -52,10 +57,10 @@ public class PlayerMovement : MonoBehaviour
 
             //Flip directions based on input
             if (direction > 0.01f) {
-                if(!WallCollideAction(direction))
+                //if(!WallCollideAction((int)(direction)))
                     transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
             } else if (direction < -0.01f) {
-                if(!WallCollideAction(direction))
+                //if(!WallCollideAction((int)direction))
                     transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier, scaleMultiplier);
             }
         }
@@ -73,16 +78,39 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.BoxCast(collision.bounds.center, collision.bounds.size, 0f, Vector2.down, .1f, ground);
     }
 
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+        Debug.Log(mode);
+
+        if (scene.buildIndex == 0) gameObject.SetActive(false);
+
+        switch (scene.buildIndex)
+        {
+            case 1:
+                gameObject.transform.position = new Vector3(-47.43f,9.49f,-5.07f);
+                break;
+            
+            case 2:
+                gameObject.transform.position = new Vector3(-83,23,0);
+                break;
+
+            default:
+                gameObject.transform.position = new Vector3(0,0,0);
+                break;
+        }
+    }
+
     //  Method for handling collisions with wall entities
-    private bool WallCollideAction(int direct){
+   /* private bool WallCollideAction(int direct){
         if(death.IsDead()){
             return false;
         }else if(direct > 0.01f){
-            return Physics2D.BoxCast(collision.bounds.center, collision.bounds.size, 0f, Vector3.right, .0f, wall);
+            //return Physics2D.BoxCast(collision.bounds.center, collision.bounds.size, 0f, Vector3.right, .0f, wall);
         }else if(direct < -0.01f){
-            return Physics2D.BoxCast(collision.bounds.center, collision.bounds.size, 0f, Vector3.left, .0f, wall);
+            //return Physics2D.BoxCast(collision.bounds.center, collision.bounds.size, 0f, Vector3.left, .0f, wall);
         }else{
             return false;
         }
-    }
+    }*/
 }

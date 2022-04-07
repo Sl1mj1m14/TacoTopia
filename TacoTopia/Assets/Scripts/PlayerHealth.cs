@@ -39,7 +39,7 @@ public class PlayerHealth : MonoBehaviour {
 
         if( curHealth < 0 ){
             curHealth = 0;
-            death.Death(curHealth);
+            //death.Death(curHealth);
         }
         
 
