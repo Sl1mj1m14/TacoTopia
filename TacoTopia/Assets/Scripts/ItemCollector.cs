@@ -50,7 +50,7 @@ public class ItemCollector : MonoBehaviour
     }
 
     private void PickUp() {
-        if(death.IsDead() == false){
+        if(!death.IsDead()){
             if (inventory.AddItem(itemColliders.Peek().gameObject.tag))
             Destroy(itemColliders.Peek().gameObject);
         }else{
@@ -60,7 +60,7 @@ public class ItemCollector : MonoBehaviour
 
     private void Give()
     {
-        if(death.IsDead() == false){
+        if(!death.IsDead()){
             for (int i = 0; i < enemyColliders.Size(); i++) {
                 if (enemyColliders.Peek(i).GetComponent<Inventory>().AddItem(inventory.GetItem(0))) {
                     inventory.RemoveItem(0);
