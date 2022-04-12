@@ -25,7 +25,7 @@ public class GameControl : MonoBehaviour
         Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
 
-        if (scene.buildIndex != 0) player.SetActive(true);
+        //if (scene.buildIndex != 0) player.SetActive(true);
     }
 
 }
