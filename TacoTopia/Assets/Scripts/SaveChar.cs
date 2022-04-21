@@ -1,10 +1,11 @@
 //created by Devin
-//last updated 3/15/2022 by Devin
+//last updated 4/12/2022 by Devin
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 using System.IO;
 
 public class SaveChar : MonoBehaviour
@@ -54,9 +55,17 @@ public class SaveChar : MonoBehaviour
     //saves character data to json file
     public void save_char()
     {
+        WWWForm form = new WWWForm();
+
         string text = JsonUtility.ToJson(export);
-        File.WriteAllText(@"..\TempStorage\char.json", text);
-        Debug.Log("Character Saved");
+        form.AddField("table_name", "player_data");
+        form.AddField("char_data", text);
+        var upload = UnityWebRequest.Post("tacotopia.org/charUpload.php", form);
+        upload.SendWebRequest();
+        if (upload.result != UnityWebRequest.Result.Success)
+            Debug.Log(upload.error);
+        else
+            Debug.Log("Character Saved");
     }
 
 

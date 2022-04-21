@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 using System.IO;
 
 public class LoadChar : MonoBehaviour
@@ -45,18 +46,30 @@ public class LoadChar : MonoBehaviour
     //loads character from json file and applies it to current character
     public void load_char()
     {
-        string text = File.ReadAllText(@"\temp\char.json");
+        WWWForm form = new WWWForm();
+
+        form.AddField("table_name", "player_data");
+        form.AddField("field_name", "char_data");
+        var download = UnityWebRequest.Post("tacotopia.org/charDownload.php", form);
+        download.SendWebRequest();
+
+        string text = download.downloadHandler.text;
         import = JsonUtility.FromJson<SerializeChar>(text);
 
-        body.color = bodyColors[import.bodyIndex];
-        eyes.sprite = eyeSprites[import.faceIndex];
-        hair.sprite = hairSprites[import.hairIndex];
-        hair.color = hairColors[import.hairCIndex];
-        shirt.sprite = shirtSprites[import.shirtIndex];
-        shirt.color = shirtColors[import.shirtCIndex];
-        legs.sprite = legSprites[import.pantsIndex];
-        legs.color = legColors[import.pantsCIndex];
-        Debug.Log("File loaded");
+        if (download.result != UnityWebRequest.Result.Success)
+            Debug.Log(download.error);
+        else
+        {
+            body.color = bodyColors[import.bodyIndex];
+            eyes.sprite = eyeSprites[import.faceIndex];
+            hair.sprite = hairSprites[import.hairIndex];
+            hair.color = hairColors[import.hairCIndex];
+            shirt.sprite = shirtSprites[import.shirtIndex];
+            shirt.color = shirtColors[import.shirtCIndex];
+            legs.sprite = legSprites[import.pantsIndex];
+            legs.color = legColors[import.pantsCIndex];
+            Debug.Log("File loaded");
+        }
     }
 
 
