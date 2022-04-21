@@ -12,6 +12,7 @@ public class GameControl : MonoBehaviour
     {
         player = GameObject.FindWithTag(PLAYER_TAG);
         
+        //Making sure this object is not duplicated when returning to menu
         if (GameObject.FindObjectsOfType<GameControl>().Length == 1)
             DontDestroyOnLoad(gameObject);
         else 
@@ -20,12 +21,15 @@ public class GameControl : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    /*
+    * This method makes sure the player is inactive during the menu scene
+    */
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
 
-        if (scene.buildIndex != 0) player.SetActive(true);
+        //if (scene.buildIndex != 0) player.SetActive(true);
     }
 
 }

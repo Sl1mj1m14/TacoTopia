@@ -35,6 +35,11 @@ public class PlayerMovement : MonoBehaviour
 
         SceneManager.sceneLoaded += OnSceneLoaded;
 
+        if (SceneManager.GetActiveScene().buildIndex < 2)
+            Physics.gravity = new Vector3(0, 0, 0);
+        else
+            Physics.gravity = new Vector3(0, -9.81f, 0);
+
     }
 
     private void Start() {
@@ -78,21 +83,29 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.BoxCast(collision.bounds.center, collision.bounds.size, 0f, Vector2.down, .1f, ground);
     }
 
+    /*
+    * This method places the player in the correct location in the scene when it spawns in
+    */
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
 
-        if (scene.buildIndex == 0) gameObject.SetActive(false);
+        //if (scene.buildIndex == 0) gameObject.SetActive(false);
 
         switch (scene.buildIndex)
         {
+            case 0:
+                gameObject.transform.position = new Vector3(-100f,-100f,0f);
+                break;
+            
             case 1:
                 gameObject.transform.position = new Vector3(-47.43f,9.49f,-5.07f);
                 break;
             
             case 2:
-                gameObject.transform.position = new Vector3(-83,23,0);
+                //gameObject.transform.position = new Vector3(-83,23,0);//Real Level 1 code
+                gameObject.transform.position = new Vector3(-39f,9f,-5f);//Testing level code
                 break;
 
             default:
