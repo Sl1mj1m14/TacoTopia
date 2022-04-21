@@ -50,12 +50,12 @@ public class ItemCollector : MonoBehaviour
     }
 
     private void PickUp() {
-        if(!death.IsDead()){
+        //if(!death.IsDead()){
             if (inventory.AddItem(itemColliders.Peek().gameObject.tag))
             Destroy(itemColliders.Peek().gameObject);
-        }else{
-            Debug.Log("Your hands pass through the object. Having an intangible form is limiting...");
-        }
+        //}else{
+            //Debug.Log("Your hands pass through the object. Having an intangible form is limiting...");
+        //}
     }
 
     private void Give()

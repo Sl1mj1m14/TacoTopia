@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3407934444262148500}
   - component: {fileID: 3407934444262148501}
   m_Layer: 0
-  m_Name: Item
+  m_Name: taco
   m_TagString: Taco
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

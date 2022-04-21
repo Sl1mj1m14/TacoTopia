@@ -30,12 +30,12 @@ public class Inventory : MonoBehaviour
     *   This method returns the item name at the specified index
     */
     public string GetItem(int index) {
-        if(death.IsDead()){
-            Debug.Log("Inventory is nothing but ectoplasm. You are a ghost.");
-            return "Air";
-        }else{
+        //if(death.IsDead()){
+           // Debug.Log("Inventory is nothing but ectoplasm. You are a ghost.");
+            //return "Air";
+        //}else{
             return slots[index].GetItem();
-        }
+        //}
     }
     
     /*
@@ -44,10 +44,10 @@ public class Inventory : MonoBehaviour
     */
     public bool AddItem(string item) {
  
-        if(death.IsDead()) {
-            Debug.Log("Inventory is locked. Return to your body to regain access.");
-            return false;
-        }
+        //if(death.IsDead()) {
+            //Debug.Log("Inventory is locked. Return to your body to regain access.");
+            //return false;
+        //}
 
         for (int i=0; i<slots.Length; i++) {
             if (slots[i].Equals("Air")) {

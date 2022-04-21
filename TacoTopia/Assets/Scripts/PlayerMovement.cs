@@ -35,16 +35,17 @@ public class PlayerMovement : MonoBehaviour
 
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        /*if (SceneManager.GetActiveScene().buildIndex < 1)
+        if (SceneManager.GetActiveScene().buildIndex < 1)
             Physics.gravity = new Vector3(0, 0, 0);
         else
-            Physics.gravity = new Vector3(0, -9.81f, 0);*/
+            Physics.gravity = new Vector3(0, -9.81f, 0);
 
     }
 
     private void Start() {
         death = GetComponent<Death>();
         sceneNumber = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log(sceneNumber);
     }
 
     //This method is called every frame
@@ -52,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
         float direction = Input.GetAxis("Horizontal");
         
-        //if(sceneNumber >= 1) {
+        if(sceneNumber >= 1) {
         
             //Checking for left/right and a/d key input, and moving the respective direction
             body.velocity = new Vector2(direction * xSpeed, body.velocity.y);
@@ -68,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
                 //if(!WallCollideAction((int)direction))
                     transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier, scaleMultiplier);
             }
-        //}
+        }
     }
 
     //Changes Y values and specifies not on ground
