@@ -35,10 +35,10 @@ public class PlayerMovement : MonoBehaviour
 
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        if (SceneManager.GetActiveScene().buildIndex < 2)
+        /*if (SceneManager.GetActiveScene().buildIndex < 1)
             Physics.gravity = new Vector3(0, 0, 0);
         else
-            Physics.gravity = new Vector3(0, -9.81f, 0);
+            Physics.gravity = new Vector3(0, -9.81f, 0);*/
 
     }
 
@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
 
         float direction = Input.GetAxis("Horizontal");
         
-        if(sceneNumber >= 2) {
+        //if(sceneNumber >= 1) {
         
             //Checking for left/right and a/d key input, and moving the respective direction
             body.velocity = new Vector2(direction * xSpeed, body.velocity.y);
@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
                 //if(!WallCollideAction((int)direction))
                     transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier, scaleMultiplier);
             }
-        }
+        //}
     }
 
     //Changes Y values and specifies not on ground
@@ -104,8 +104,8 @@ public class PlayerMovement : MonoBehaviour
                 break;
             
             case 2:
-                //gameObject.transform.position = new Vector3(-83,23,0);//Real Level 1 code
-                gameObject.transform.position = new Vector3(-39f,9f,-5f);//Testing level code
+                gameObject.transform.position = new Vector3(-83f,25f,0);//Real Level 1 code
+                //gameObject.transform.position = new Vector3(-39f,9f,-5f);//Testing level code
                 break;
 
             default:
