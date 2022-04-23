@@ -35,17 +35,12 @@ public class PlayerMovement : MonoBehaviour
 
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        if (SceneManager.GetActiveScene().buildIndex < 1)
-            Physics.gravity = new Vector3(0, 0, 0);
-        else
-            Physics.gravity = new Vector3(0, -9.81f, 0);
-
     }
 
     private void Start() {
         death = GetComponent<Death>();
         sceneNumber = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log(sceneNumber);
+        //Debug.Log("The scenenumber is:"+sceneNumber);
     }
 
     //This method is called every frame
@@ -53,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
         float direction = Input.GetAxis("Horizontal");
         
-        if(sceneNumber >= 1) {
+        if(sceneNumber >= 2) {
         
             //Checking for left/right and a/d key input, and moving the respective direction
             body.velocity = new Vector2(direction * xSpeed, body.velocity.y);
@@ -92,9 +87,15 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
 
+        sceneNumber = scene.buildIndex;
+
+        body.velocity = new Vector2(0, 0);
+
+        Debug.Log("The scenenumber is:"+sceneNumber);
+
         //if (scene.buildIndex == 0) gameObject.SetActive(false);
 
-        switch (scene.buildIndex)
+        switch (sceneNumber)
         {
             case 0:
                 gameObject.transform.position = new Vector3(-100f,-100f,0f);
@@ -113,6 +114,11 @@ public class PlayerMovement : MonoBehaviour
                 gameObject.transform.position = new Vector3(0,0,0);
                 break;
         }
+
+        if (sceneNumber < 2)
+            Physics.gravity = new Vector3(0, 0, 0);
+        else
+            Physics.gravity = new Vector3(0, -9.81f, 0);
     }
 
     //  Method for handling collisions with wall entities
