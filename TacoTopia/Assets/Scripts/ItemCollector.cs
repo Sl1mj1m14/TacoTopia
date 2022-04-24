@@ -24,10 +24,13 @@ public class ItemCollector : MonoBehaviour
     private void Update() {
 
         if (!itemColliders.IsEmpty() && Input.GetKeyDown(KeyCode.E)) PickUp();
+        
         if (Input.GetKeyDown(KeyCode.Q)) {
             if (!enemyColliders.IsEmpty()) Give();
             else Drop();
         }
+
+        if (Input.GetKeyDown(KeyCode.X)) Attack();   
     
     }
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -102,6 +105,11 @@ public class ItemCollector : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void Attack() {
+        string weapon = inventory.GetItem(slot);
+        Debug.Log(weapon);
     }
 
     public void SetActiveSlot(int slotChange)

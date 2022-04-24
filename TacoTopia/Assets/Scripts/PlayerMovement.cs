@@ -42,7 +42,14 @@ public class PlayerMovement : MonoBehaviour
     //This method is called every frame
     private void Update() {
 
-        if (health <= 0) SceneManager.LoadScene(sceneNumber);
+        //If player is dead, reset health and drop all items
+        if (health <= 0) {
+
+            GetComponent<ItemCollector>().DropAll();
+            health = 100;
+            SetSpawn();
+            
+        }
 
         float direction = Input.GetAxis("Horizontal");
         
@@ -52,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
             body.velocity = new Vector2(direction * xSpeed, body.velocity.y);
 
             //Jumping when space is pressed
-            if (Input.GetButton("Jump") && IsGrounded()) Jump();     
+            if (Input.GetButton("Jump") && IsGrounded()) Jump(); 
 
             //Flip directions based on input
             if (direction > 0.01f) {
@@ -85,18 +92,16 @@ public class PlayerMovement : MonoBehaviour
         //Checks what level is loaded
         sceneNumber = scene.buildIndex;
 
+        if (health <= 25) health += 25;
+
+        SetSpawn();
+    }
+
+    public void SetSpawn() {
         //Resets player movement and health
         body.velocity = new Vector2(0, 0);
-
-        //If player is dead, reset health and drop all items
-        if (health <= 0) {
-
-            health = 100;
-            GetComponent<ItemCollector>().DropAll();
-        }
-        else if (health <= 25) health += 25;
-
-        //Checks for player spawn location based on level
+        
+        //Checks for player spawn location based on level        
         switch (sceneNumber)
         {
             case 0:
@@ -116,11 +121,6 @@ public class PlayerMovement : MonoBehaviour
                 gameObject.transform.position = new Vector3(0,0,0);
                 break;
         }
-
-        /*if (sceneNumber < 2)
-            Physics.gravity = new Vector3(0, 0, 0);
-        else
-            Physics.gravity = new Vector3(0, -9.81f, 0);*/
     }
 
     //  Method for handling collisions with wall entities
