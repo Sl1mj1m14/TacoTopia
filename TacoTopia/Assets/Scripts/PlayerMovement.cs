@@ -9,8 +9,6 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D collision;
     private Animator animate;
 
-    private Death death;
-
     private int sceneNumber;
 
     [SerializeField] private LayerMask ground;
@@ -18,11 +16,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float xSpeed = 10;
     [SerializeField] private float ySpeed = 10;
 
+    public float health = 100;
+
     [SerializeField] private float scaleMultiplier = 1;
 
     //This method is called once upon start
     private void Awake() {
 
+        //Ensuring only one player exists
         if (GameObject.FindObjectsOfType<PlayerMovement>().Length == 1)
             DontDestroyOnLoad(gameObject);
         else 
@@ -33,18 +34,15 @@ public class PlayerMovement : MonoBehaviour
         collision = GetComponent<BoxCollider2D>();
         animate = GetComponent<Animator>();
 
+        //Caling a method to determine player spawn position based on scene
         SceneManager.sceneLoaded += OnSceneLoaded;
 
     }
 
-    private void Start() {
-        death = GetComponent<Death>();
-        sceneNumber = SceneManager.GetActiveScene().buildIndex;
-        //Debug.Log("The scenenumber is:"+sceneNumber);
-    }
-
     //This method is called every frame
     private void Update() {
+
+        if (health <= 0) SceneManager.LoadScene(sceneNumber);
 
         float direction = Input.GetAxis("Horizontal");
         
@@ -58,10 +56,8 @@ public class PlayerMovement : MonoBehaviour
 
             //Flip directions based on input
             if (direction > 0.01f) {
-                //if(!WallCollideAction((int)(direction)))
                     transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
             } else if (direction < -0.01f) {
-                //if(!WallCollideAction((int)direction))
                     transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier, scaleMultiplier);
             }
         }
@@ -79,22 +75,28 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.BoxCast(collision.bounds.center, collision.bounds.size, 0f, Vector2.down, .1f, ground);
     }
 
-    /*
-    * This method places the player in the correct location in the scene when it spawns in
-    */
+    private void Damage(float damage) {
+        health -= damage;
+    }
+
+    //This method places the player in the correct location in the scene when it spawns in
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("OnSceneLoaded: " + scene.name);
-        Debug.Log(mode);
-
+        //Checks what level is loaded
         sceneNumber = scene.buildIndex;
 
+        //Resets player movement and health
         body.velocity = new Vector2(0, 0);
 
-        Debug.Log("The scenenumber is:"+sceneNumber);
+        //If player is dead, reset health and drop all items
+        if (health <= 0) {
 
-        //if (scene.buildIndex == 0) gameObject.SetActive(false);
+            health = 100;
+            GetComponent<ItemCollector>().DropAll();
+        }
+        else if (health <= 25) health += 25;
 
+        //Checks for player spawn location based on level
         switch (sceneNumber)
         {
             case 0:
@@ -115,10 +117,10 @@ public class PlayerMovement : MonoBehaviour
                 break;
         }
 
-        if (sceneNumber < 2)
+        /*if (sceneNumber < 2)
             Physics.gravity = new Vector3(0, 0, 0);
         else
-            Physics.gravity = new Vector3(0, -9.81f, 0);
+            Physics.gravity = new Vector3(0, -9.81f, 0);*/
     }
 
     //  Method for handling collisions with wall entities

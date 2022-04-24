@@ -26,6 +26,10 @@ public class SceneChanger : MonoBehaviour
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
 	}
 
+	public void Respawn(){
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+	}
+
 	private void OnTriggerEnter2D(Collider2D collision){
 		if (SceneManager.GetActiveScene().buildIndex > 1){
 			NextScene();

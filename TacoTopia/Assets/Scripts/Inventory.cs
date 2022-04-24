@@ -12,12 +12,8 @@ public class Inventory : MonoBehaviour
 
     private Item<string>[] slots;
 
-    private Death death;
-
     void Start()
-    {
-        death = GetComponent<Death>();
-        
+    {       
         slots = new Item<string>[INVENTORY_SIZE];
         
         //Initializing the inventory to be full of "air"
@@ -30,12 +26,7 @@ public class Inventory : MonoBehaviour
     *   This method returns the item name at the specified index
     */
     public string GetItem(int index) {
-        //if(death.IsDead()){
-           // Debug.Log("Inventory is nothing but ectoplasm. You are a ghost.");
-            //return "Air";
-        //}else{
-            return slots[index].GetItem();
-        //}
+        return slots[index].GetItem();
     }
     
     /*
@@ -43,18 +34,27 @@ public class Inventory : MonoBehaviour
     *   increases the count of an already existing item
     */
     public bool AddItem(string item) {
- 
-        //if(death.IsDead()) {
-            //Debug.Log("Inventory is locked. Return to your body to regain access.");
-            //return false;
-        //}
 
-        for (int i=0; i<slots.Length; i++) {
+        /*for (int i=0; i<slots.Length; i++) {
             if (slots[i].Equals("Air")) {
                 slots[i].Set(item, 1);
                 return true;
             } else if (slots[i].Equals(item) && slots[i].GetAmount() < STACK_SIZE) {
                 slots[i].IncreaseAmount();
+                return true;
+            }
+        }*/
+
+        for (int i=0; i<slots.Length; i++) {
+            if (slots[i].Equals(item) && slots[i].GetAmount() < STACK_SIZE) {
+                slots[i].IncreaseAmount();
+                return true;
+            }
+        }
+
+        for (int i=0; i<slots.Length; i++) {
+            if (slots[i].Equals("Air")) {
+                slots[i].Set(item, 1);
                 return true;
             }
         }
@@ -68,11 +68,6 @@ public class Inventory : MonoBehaviour
     *   removed than exist
     */
     public bool RemoveItems(int position, int amount) {
-        
-        if(death.IsDead()) {
-            Debug.Log("Inventory is locked. Return to your body to regain access.");
-            return false;
-        }
 
         if (position < 0 || position >= slots.Length) return false;
 
@@ -89,11 +84,6 @@ public class Inventory : MonoBehaviour
     *   changing the spot to air if more items are removed than exist
     */
     public bool RemoveItems(string name, int amount) {
-
-        if (death.IsDead()) {
-            Debug.Log("Inventory is locked. Return to your body to regain access.");
-            return false;
-        }
 
         for (int i=0; i<slots.Length; i++) {
             if (slots[i].Equals(name)) return RemoveItems(i, amount);
@@ -124,11 +114,6 @@ public class Inventory : MonoBehaviour
     */
     public bool SwitchItems(int num1, int num2) {
 
-        if(death.IsDead()) {
-            Debug.Log("Inventory is locked. Return to your body to regain access.");
-            return false;
-        }
-
         if (num1 < 0 || num1 >= slots.Length || num2 < 0 || num2 >= slots.Length || num1 == num2) 
             return false;
 
@@ -148,14 +133,16 @@ public class Inventory : MonoBehaviour
 
         int emptySlots = 0; 
 
-        if(death.IsDead()) return 0;
-
         for (int i=0; i<INVENTORY_SIZE; i++) {
             if (slots[i].Equals("Air")) emptySlots++;
         }
 
         return emptySlots;
 
+    }
+
+    public int GetInventory() {
+        return INVENTORY_SIZE;
     }
 
 }
