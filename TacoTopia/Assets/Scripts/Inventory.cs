@@ -7,7 +7,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     
-    [SerializeField] private int INVENTORY_SIZE = 9;
+    [SerializeField] private int INVENTORY_SIZE = 8;
     [SerializeField] private int STACK_SIZE = 64;
 
     private Item<string>[] slots;

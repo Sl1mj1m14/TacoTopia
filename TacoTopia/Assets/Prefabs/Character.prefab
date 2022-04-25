@@ -191,7 +191,7 @@ Transform:
   m_GameObject: {fileID: 2136530197895565322}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 687444335920287864}
   m_RootOrder: 6
@@ -344,8 +344,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSprites:
   - {fileID: 21300000, guid: 79bce0fdb0a48ac448f49989d3155249, type: 3}
-  - {fileID: 21300000, guid: 30cae116f6a26c44f8f6d55cdb17d135, type: 3}
-  scaleMultiplier: 0.25
+  - {fileID: 21300000, guid: 5ad7913c11bb7604ab19dd3b12cf9056, type: 3}
+  - {fileID: 21300000, guid: d76ca82947548c7419ee83f158ad2603, type: 3}
+  - {fileID: 21300000, guid: 3330d71d8aab3394fb6bc89e0f771575, type: 3}
+  - {fileID: 21300000, guid: f1ff00c26131a7c4a962f83f8d46af45, type: 3}
+  - {fileID: 21300000, guid: 1998a964026635c4a83e9089423b1ba1, type: 3}
+  scaleMultiplier: 1
 --- !u!1 &2136530198980801045
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,9 +610,6 @@ GameObject:
   - component: {fileID: 2136530198647036125}
   - component: {fileID: 2136530198647036121}
   - component: {fileID: 2136530198647036070}
-  - component: {fileID: 2136530198647036068}
-  - component: {fileID: 2136530198647036071}
-  - component: {fileID: 2136530198647036069}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -701,6 +702,7 @@ MonoBehaviour:
     m_Bits: 64
   xSpeed: 10
   ySpeed: 20
+  health: 100
   scaleMultiplier: 1
 --- !u!114 &2136530198647036121
 MonoBehaviour:
@@ -716,7 +718,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemTags:
   - Taco
+  - USB
+  - RedGun
+  - BlueGun
+  - Pan
   enemyTags: []
+  prefabs:
+  - {fileID: 3208458929163727246, guid: c1f9609bcc73ef942bb85a0a5ab47816, type: 3}
+  - {fileID: 2247178943976617919, guid: ea9e6f7ab5e6eda4881c7dbfbc13d5c7, type: 3}
+  - {fileID: 4180809004833646949, guid: a024b8755c8488044a956a1f1532b2a2, type: 3}
+  - {fileID: 4844308763607678516, guid: 306ae74102ed3b741a70b935902aacdd, type: 3}
+  - {fileID: 5285636309265247260, guid: 654e4f33d9310fd4185b1c1e66de5b5a, type: 3}
 --- !u!114 &2136530198647036070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,43 +743,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   INVENTORY_SIZE: 9
   STACK_SIZE: 64
---- !u!114 &2136530198647036068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2798373780484499250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa9117ea6cf6ed34693b455c43330a06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2136530198647036071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2798373780484499250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c387fd018b3a5074c965d3df03ad5e75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  curHealth: 100
-  healthBarLength: 0
---- !u!114 &2136530198647036069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2798373780484499250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dea7979730a2114a84cf5e8a35cc7f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBarImage: {fileID: 0}

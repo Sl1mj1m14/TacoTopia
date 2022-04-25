@@ -11,6 +11,9 @@ public class Pathfinding : MonoBehaviour
     private Rigidbody2D body;
     private BoxCollider2D physicsCollision;
 
+    private Inventory inventory;
+    private GameObject[] prefabs;
+
     [SerializeField] private LayerMask ground;
 
     [SerializeField] private float xSpeed = 3;
@@ -22,6 +25,8 @@ public class Pathfinding : MonoBehaviour
     private int target,dir;
     private bool atTarget = true;
     private bool isTargetPlayer = false;
+
+    private float health = 50;
 
     private System.Random rand = new System.Random();
 
@@ -35,22 +40,29 @@ public class Pathfinding : MonoBehaviour
         negY = GameObject.Find("Bottom Constraint").transform.position.y;
         body = GetComponent<Rigidbody2D>();
         physicsCollision = GetComponent<BoxCollider2D>();
+        inventory = GetComponent<Inventory>();
+
+        prefabs = GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<ItemCollector>().GetPrefabs();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0) {
 
-        //Debug.Log(target);
+            DropAll();
+            Destroy(this.gameObject);
+            
+        }
 
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(),GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<Collider2D>());
         
-        if (isTargetPlayer) TrackPlayer();
+        //if (isTargetPlayer) TrackPlayer();
         
-        if (atTarget) 
-            GetRandTarget();
-         else 
-            atTarget = Move(dir);
+        //if (atTarget) 
+            //GetRandTarget();
+         //else 
+            //atTarget = Move(dir);
         
     }
 
@@ -134,6 +146,30 @@ public class Pathfinding : MonoBehaviour
         } else {
                 dir = -1;
                 target -= 3;
+        }
+    }
+
+    //Subtracts the damage from the health
+    public void Damage(float damage) {
+        health -= damage;
+    }
+
+    public void DropAll()
+    {
+        for (int i = 0; i < inventory.GetInventory(); i++) {
+            string item = inventory.GetItem(i);
+
+            for (int k = 0; k < prefabs.Length; k++) {
+                
+                while (string.Equals(prefabs[k].name, item)) {
+
+                Instantiate(prefabs[i], 
+                    new Vector3(gameObject.transform.position.x + rand.Next(-2,2), gameObject.transform.position.y + rand.Next(-2,2),0), 
+                    Quaternion.identity);
+                    inventory.RemoveItem(i);
+                
+                }
+            }
         }
     }
 }

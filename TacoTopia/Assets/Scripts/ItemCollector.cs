@@ -17,6 +17,8 @@ public class ItemCollector : MonoBehaviour
 
     private int slot = 0;
 
+    private System.Random rand = new System.Random();
+
     private void Start() {
         inventory = GetComponent<Inventory>();
     }
@@ -83,7 +85,8 @@ public class ItemCollector : MonoBehaviour
 
         for (int i = 0; i < prefabs.Length; i++) {
             if (string.Equals(prefabs[i].name, item)) {
-                Instantiate(prefabs[i], new Vector3(gameObject.transform.position.x,gameObject.transform.position.y,0), 
+                Instantiate(prefabs[i], 
+                    new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0), 
                     Quaternion.identity);
                 inventory.RemoveItem(slot);
                 return;
@@ -100,9 +103,10 @@ public class ItemCollector : MonoBehaviour
                 
                 while (string.Equals(prefabs[k].name, item)) {
 
-                Instantiate(prefabs[k], new Vector3(gameObject.transform.position.x,gameObject.transform.position.y,0), 
+                Instantiate(prefabs[i], 
+                    new Vector3(gameObject.transform.position.x + rand.Next(-2,2), gameObject.transform.position.y + rand.Next(-2,2),0), 
                     Quaternion.identity);
-                    inventory.RemoveItem(slot);
+                    inventory.RemoveItem(i);
                 
                 }
             }
@@ -111,6 +115,26 @@ public class ItemCollector : MonoBehaviour
 
     private void Attack() {
         string weapon = inventory.GetItem(slot);
+        Pathfinding enemy = enemyColliders.Peek().GetComponent<Pathfinding>();
+
+        switch (weapon) {
+
+            case "RedGun":
+                Debug.Log("Fire Bullet");
+                break;
+
+            case "BlueGun":
+                Debug.Log("Fire Bullet");
+                break;
+
+            case "Pan":
+                enemy.Damage(10);
+                break;        
+
+            default:
+                enemy.Damage(5);
+                break;
+        }
         Debug.Log(weapon);
     }
 
@@ -136,6 +160,11 @@ public class ItemCollector : MonoBehaviour
     public int GetActiveSlot()
     {
         return slot;
+    }
+
+    public GameObject[] GetPrefabs()
+    {
+        return prefabs;
     }
     
 }

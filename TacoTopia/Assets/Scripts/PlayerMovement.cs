@@ -82,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.BoxCast(collision.bounds.center, collision.bounds.size, 0f, Vector2.down, .1f, ground);
     }
 
+    //Subtracts the damage from player health
     private void Damage(float damage) {
         health -= damage;
     }
