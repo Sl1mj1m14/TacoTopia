@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     private Rigidbody2D body;
-    private BoxCollider2D collision;
+    private CapsuleCollider2D collision;
     private Animator animate;
 
     private int sceneNumber;
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
         
         //Assigning the physics and animation of the player
         body = GetComponent<Rigidbody2D>();
-        collision = GetComponent<BoxCollider2D>();
+        collision = GetComponent<CapsuleCollider2D>();
         animate = GetComponent<Animator>();
 
         //Caling a method to determine player spawn position based on scene
