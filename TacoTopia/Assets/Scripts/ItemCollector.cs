@@ -31,6 +31,8 @@ public class ItemCollector : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.X)) Attack();   
+
+        slot = SlotInput();
     
     }
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -110,6 +112,20 @@ public class ItemCollector : MonoBehaviour
     private void Attack() {
         string weapon = inventory.GetItem(slot);
         Debug.Log(weapon);
+    }
+
+    public int SlotInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) return 0;
+        if (Input.GetKeyDown(KeyCode.Alpha2)) return 1;
+        if (Input.GetKeyDown(KeyCode.Alpha3)) return 2;
+        if (Input.GetKeyDown(KeyCode.Alpha4)) return 3;
+        if (Input.GetKeyDown(KeyCode.Alpha5)) return 4;
+        if (Input.GetKeyDown(KeyCode.Alpha6)) return 5;
+        if (Input.GetKeyDown(KeyCode.Alpha7)) return 6;
+        if (Input.GetKeyDown(KeyCode.Alpha8)) return 7;
+        if (Input.GetKeyDown(KeyCode.Alpha9)) return 8;
+        return slot;
     }
 
     public void SetActiveSlot(int slotChange)
