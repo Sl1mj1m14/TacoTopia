@@ -34,10 +34,10 @@ public class Pathfinding : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        posX = GameObject.Find("Right Constraint").transform.position.x;
-        negX = GameObject.Find("Left Constraint").transform.position.x;
-        posY = GameObject.Find("Top Constraint").transform.position.y;
-        negY = GameObject.Find("Bottom Constraint").transform.position.y;
+        posX = 0;//GameObject.Find("Right Constraint").transform.position.x;
+        negX = 0;//GameObject.Find("Left Constraint").transform.position.x;
+        posY = 0;//GameObject.Find("Top Constraint").transform.position.y;
+        negY = 0;//GameObject.Find("Bottom Constraint").transform.position.y;
         body = GetComponent<Rigidbody2D>();
         physicsCollision = GetComponent<BoxCollider2D>();
         inventory = GetComponent<Inventory>();
@@ -55,7 +55,7 @@ public class Pathfinding : MonoBehaviour
             
         }
 
-        Physics2D.IgnoreCollision(GetComponent<Collider2D>(),GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<CapsuleCollider2D>());
         
         //if (isTargetPlayer) TrackPlayer();
         

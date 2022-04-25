@@ -10,6 +10,7 @@ TagManager:
   - BlueGun
   - RedGun
   - Pan
+  - Enemy
   layers:
   - Default
   - TransparentFX

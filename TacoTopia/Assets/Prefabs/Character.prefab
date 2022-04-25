@@ -739,7 +739,8 @@ MonoBehaviour:
   - RedGun
   - BlueGun
   - Pan
-  enemyTags: []
+  enemyTags:
+  - Enemy
   prefabs:
   - {fileID: 3208458929163727246, guid: c1f9609bcc73ef942bb85a0a5ab47816, type: 3}
   - {fileID: 2247178943976617919, guid: ea9e6f7ab5e6eda4881c7dbfbc13d5c7, type: 3}

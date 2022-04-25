@@ -38,6 +38,7 @@ public class ItemCollector : MonoBehaviour
     
     }
     private void OnTriggerEnter2D(Collider2D collision) {
+        Debug.Log(collision.name);
 
         foreach (string tag in itemTags) 
             if (collision.gameObject.CompareTag(tag)) itemColliders.Add(collision);
