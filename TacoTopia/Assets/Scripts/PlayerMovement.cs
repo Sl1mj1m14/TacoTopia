@@ -79,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
     //When touching the ground, set isGrounded to true
     private bool IsGrounded() {
+
         return Physics2D.BoxCast(collision.bounds.center, collision.bounds.size, 0f, Vector2.down, .1f, ground);
     }
 
