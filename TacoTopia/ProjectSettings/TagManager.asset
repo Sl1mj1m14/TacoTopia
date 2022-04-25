@@ -7,6 +7,9 @@ TagManager:
   - Ground
   - Taco
   - USB
+  - BlueGun
+  - RedGun
+  - Pan
   layers:
   - Default
   - TransparentFX
