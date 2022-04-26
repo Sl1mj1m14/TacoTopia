@@ -35,15 +35,7 @@ public class Inventory : MonoBehaviour
     */
     public bool AddItem(string item) {
 
-        /*for (int i=0; i<slots.Length; i++) {
-            if (slots[i].Equals("Air")) {
-                slots[i].Set(item, 1);
-                return true;
-            } else if (slots[i].Equals(item) && slots[i].GetAmount() < STACK_SIZE) {
-                slots[i].IncreaseAmount();
-                return true;
-            }
-        }*/
+        Debug.Log(item);
 
         for (int i=0; i<slots.Length; i++) {
             if (slots[i].Equals(item) && slots[i].GetAmount() < STACK_SIZE) {

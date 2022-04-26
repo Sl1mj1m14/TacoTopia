@@ -1,5 +1,5 @@
 //Created by Keiler
-//Last edited on 4/5/22 by Andrew Roby
+//Last edited by Keiler
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,7 +38,6 @@ public class ItemCollector : MonoBehaviour
     
     }
     private void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log(collision.name);
 
         foreach (string tag in itemTags) 
             if (collision.gameObject.CompareTag(tag)) itemColliders.Add(collision);
@@ -98,16 +97,15 @@ public class ItemCollector : MonoBehaviour
     public void DropAll()
     {
         for (int i = 0; i < inventory.GetInventory(); i++) {
-            string item = inventory.GetItem(i);
 
             for (int k = 0; k < prefabs.Length; k++) {
                 
-                while (string.Equals(prefabs[k].name, item)) {
+                while (string.Equals(prefabs[k].name, inventory.GetItem(i))) {
 
-                Instantiate(prefabs[i], 
+                Instantiate(prefabs[k], 
                     new Vector3(gameObject.transform.position.x + rand.Next(-2,2), gameObject.transform.position.y + rand.Next(-2,2),0), 
                     Quaternion.identity);
-                    inventory.RemoveItem(i);
+                    Debug.Log(inventory.RemoveItem(i));
                 
                 }
             }
