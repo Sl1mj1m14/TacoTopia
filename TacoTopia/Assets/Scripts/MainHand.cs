@@ -19,8 +19,13 @@ public class MainHand : MonoBehaviour
     {
         //Assigning some stuff, yada yada
         inventory = gameObject.transform.parent.gameObject.GetComponent<Inventory>();
-        itemCollector = gameObject.transform.parent.gameObject.GetComponent<ItemCollector>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        
+        if (gameObject.transform.parent.gameObject.name != "Character") {
+            itemSprites = GameObject.Find("Character").GetComponent<MainHand>().GetSprites();
+        } else {
+            itemCollector = gameObject.transform.parent.gameObject.GetComponent<ItemCollector>();
+        }
             
     }
 
@@ -45,5 +50,10 @@ public class MainHand : MonoBehaviour
 
         return null;
 
+    }
+
+    public Sprite[] GetSprites() {
+
+        return itemSprites;
     }
 }
