@@ -66,13 +66,15 @@ public class PlayerMovement : MonoBehaviour
             //Flip directions based on input
             if (direction > 0.01f) {
 
-                if (IsGrounded()) transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
-                else transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier + 0.1f, scaleMultiplier);
+                //if (IsGrounded()) 
+                transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
+                //else transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier + 0.1f, scaleMultiplier);
 
             } else if (direction < -0.01f) {
 
-                if (IsGrounded()) transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier, scaleMultiplier);
-                else transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier + 0.1f, scaleMultiplier);
+                //if (IsGrounded()) 
+                transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier, scaleMultiplier);
+                //else transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier + 0.1f, scaleMultiplier);
 
             } else {
                 if (isSquashed) {
@@ -83,9 +85,9 @@ public class PlayerMovement : MonoBehaviour
             }
 
             if (IsGrounded()) 
-                transform.localScale = new Vector3 (transform.localScale.x, transform.localScale.y, scaleMultiplier);
+                transform.localScale = new Vector3 (transform.localScale.x, scaleMultiplier, scaleMultiplier);
             else 
-                transform.localScale = new Vector3 (transform.localScale.x, transform.localScale.y + 0.1f, scaleMultiplier);
+                transform.localScale = new Vector3 (transform.localScale.x, scaleMultiplier + 0.1f, scaleMultiplier);
         }
     }
 
