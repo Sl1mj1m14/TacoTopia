@@ -43,8 +43,6 @@ public class Pathfinding : MonoBehaviour
         inventory = GetComponent<Inventory>();
 
         prefabs = GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<ItemCollector>().GetPrefabs();
-        Debug.Log(prefabs.Length);
-        Debug.Log(inventory.GetInventory());
     }
 
     // Update is called once per frame

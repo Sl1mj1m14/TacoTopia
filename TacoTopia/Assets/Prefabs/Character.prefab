@@ -720,7 +720,7 @@ MonoBehaviour:
   xSpeed: 10
   ySpeed: 20
   health: 100
-  scaleMultiplier: 1
+  scaleMultiplier: 0.58
 --- !u!114 &2136530198647036121
 MonoBehaviour:
   m_ObjectHideFlags: 0

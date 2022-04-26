@@ -22,7 +22,7 @@ public class MainHand : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         
         if (gameObject.transform.parent.gameObject.name != "Character") {
-            itemSprites = GameObject.Find("Character").GetComponent<MainHand>().GetSprites();
+            itemSprites = GameObject.Find("Character").transform.GetChild(0).GetComponent<MainHand>().GetSprites();
         } else {
             itemCollector = gameObject.transform.parent.gameObject.GetComponent<ItemCollector>();
         }
@@ -33,7 +33,11 @@ public class MainHand : MonoBehaviour
     void Update()
     {
         //Setting the sprite to the item at inventory position 0
-        spriteRenderer.sprite = ChangeSprite(inventory.GetItem(itemCollector.GetActiveSlot()));
+        if (gameObject.transform.parent.gameObject.name == "Character") {
+            spriteRenderer.sprite = ChangeSprite(inventory.GetItem(itemCollector.GetActiveSlot()));
+        } else {
+            spriteRenderer.sprite = ChangeSprite(inventory.GetItem(0));
+        }
         transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
     }
 
