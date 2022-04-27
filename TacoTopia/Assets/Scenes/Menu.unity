@@ -380,7 +380,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 10
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -3474,6 +3474,14 @@ PrefabInstance:
     - target: {fileID: 687444335920287864, guid: 93d8f6a240c257446b7e44879b2ad553, type: 3}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 687444335920287864, guid: 93d8f6a240c257446b7e44879b2ad553, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 687444335920287864, guid: 93d8f6a240c257446b7e44879b2ad553, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.58
       objectReference: {fileID: 0}
     - target: {fileID: 687444335920287864, guid: 93d8f6a240c257446b7e44879b2ad553, type: 3}
       propertyPath: m_LocalPosition.x

@@ -43,8 +43,6 @@ public class Pathfinding : MonoBehaviour
         inventory = GetComponent<Inventory>();
 
         prefabs = GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<ItemCollector>().GetPrefabs();
-        Debug.Log(prefabs.Length);
-        Debug.Log(inventory.GetInventory());
     }
 
     // Update is called once per frame
@@ -59,7 +57,7 @@ public class Pathfinding : MonoBehaviour
 
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<CapsuleCollider2D>());
 
-        if (Input.GetKeyDown(KeyCode.L)) Debug.Log(inventory.GetItem(0));
+        if (Input.GetKeyDown(KeyCode.L)) inventory.AddItemCheck("Taco");
         
         //if (isTargetPlayer) TrackPlayer();
         
