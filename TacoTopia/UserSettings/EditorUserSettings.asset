@@ -6,6 +6,7 @@ EditorUserSettings:
   serializedVersion: 4
   m_ConfigSettings:
     RecentlyUsedScenePath-0:
+<<<<<<< Updated upstream
       value: 22424703114646680e0b0227036c5c1817051b3f3f3c293d633c133af6f9
       flags: 0
     RecentlyUsedScenePath-1:
@@ -40,6 +41,12 @@ EditorUserSettings:
       flags: 0
     UnityRemoteResolution:
       value: 2d5e460b0459
+=======
+      value: 22424703114646680e0b0227036c72151802563f22213229
+      flags: 0
+    RecentlyUsedScenePath-1:
+      value: 22424703114646680e0b0227036c6b150503587b623d28393930
+>>>>>>> Stashed changes
       flags: 0
     vcSharedLogLevel:
       value: 0d5e400f0650
