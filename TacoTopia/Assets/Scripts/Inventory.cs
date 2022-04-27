@@ -9,6 +9,7 @@ public class Inventory : MonoBehaviour
     
     [SerializeField] private int INVENTORY_SIZE = 8;
     [SerializeField] private int STACK_SIZE = 64;
+    [SerializeField] private string[] validItems; 
 
     private Item<string>[] slots;
 
@@ -38,14 +39,14 @@ public class Inventory : MonoBehaviour
         Debug.Log(item);
 
         for (int i=0; i<slots.Length; i++) {
-            if (slots[i].Equals(item) && slots[i].GetAmount() < STACK_SIZE) {
+            if (slots[i].Equals(item) && slots[i].GetAmount() < STACK_SIZE && ItemCheck(item)) {
                 slots[i].IncreaseAmount();
                 return true;
             }
         }
 
         for (int i=0; i<slots.Length; i++) {
-            if (slots[i].Equals("Air")) {
+            if (slots[i].Equals("Air") && ItemCheck(item)) {
                 slots[i].Set(item, 1);
                 return true;
             }
@@ -116,6 +117,16 @@ public class Inventory : MonoBehaviour
 
         return true;
 
+    }
+
+    public bool ItemCheck(string item) {
+        if (validItems.Length <= 0) return true;
+
+        foreach (string check in validItems) {
+            if (string.Equals(item,check)) return true;
+        }
+
+        return false;
     }
 
     /*
