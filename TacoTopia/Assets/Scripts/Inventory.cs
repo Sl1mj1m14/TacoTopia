@@ -9,6 +9,7 @@ public class Inventory : MonoBehaviour
     
     [SerializeField] private int INVENTORY_SIZE = 8;
     [SerializeField] private int STACK_SIZE = 64;
+    [SerializeField] private int VALID_ITEMS = 10;
     [SerializeField] private string[] validItems; 
 
     private Item<string>[] slots;
@@ -16,6 +17,7 @@ public class Inventory : MonoBehaviour
     void Start()
     {       
         slots = new Item<string>[INVENTORY_SIZE];
+        validItems = new string[VALID_ITEMS];
         
         //Initializing the inventory to be full of "air"
         for (int i=0; i<INVENTORY_SIZE; i++) 
@@ -120,13 +122,20 @@ public class Inventory : MonoBehaviour
     }
 
     public bool ItemCheck(string item) {
-        if (validItems.Length <= 0) return true;
+        if (validItems[0] == null) return true;
 
         foreach (string check in validItems) {
             if (string.Equals(item,check)) return true;
         }
 
         return false;
+    }
+
+    public void AddItemCheck(string item) {
+
+        for (int i = 0; i < validItems.Length; i++) {
+            if (validItems[i] == null) validItems[i] = item;
+        }
     }
 
     /*

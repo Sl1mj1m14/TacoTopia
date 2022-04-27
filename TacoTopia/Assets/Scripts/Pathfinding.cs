@@ -57,7 +57,7 @@ public class Pathfinding : MonoBehaviour
 
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<CapsuleCollider2D>());
 
-        if (Input.GetKeyDown(KeyCode.L)) Debug.Log(inventory.GetItem(0));
+        if (Input.GetKeyDown(KeyCode.L)) inventory.AddItemCheck("Taco");
         
         //if (isTargetPlayer) TrackPlayer();
         

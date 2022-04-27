@@ -28,8 +28,7 @@ public class ItemCollector : MonoBehaviour
         if (!itemColliders.IsEmpty() && Input.GetKeyDown(KeyCode.E)) PickUp();
         
         if (Input.GetKeyDown(KeyCode.Q)) {
-            if (!enemyColliders.IsEmpty()) Give();
-            else Drop();
+            if (!Give()) Drop();
         }
 
         if (Input.GetKeyDown(KeyCode.X)) Attack();   
@@ -67,14 +66,16 @@ public class ItemCollector : MonoBehaviour
         Destroy(itemColliders.Peek().gameObject);
     }
 
-    public void Give()
+    public bool Give()
     {
         for (int i = 0; i < enemyColliders.Size(); i++) {
             if (enemyColliders.Peek(i).GetComponent<Inventory>().AddItem(inventory.GetItem(slot))) {
                 inventory.RemoveItem(slot);
-                return;
+                return true;
             }
         }
+
+        return false;
     }
 
     public void Drop()
