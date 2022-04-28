@@ -53,7 +53,7 @@ public class OutfitChanger : MonoBehaviour
 	public void PreviousOption()
 	{
 		currentOption--;
-		if(currentOption<=0)
+		if(currentOption<0)
 		{
 			currentOption = options.Count -1;
 			Debug.Log(options.Count);
