@@ -14,14 +14,20 @@ public class OutfitChanger : MonoBehaviour
 	[Header("Sprites To Cycle Through")]
 	public List<Sprite> options = new List<Sprite>();
 
+	private Animator playerAnimator, optionAnimator;
+
 	void Start()
 	{
 		bodyPart = GameObject.FindWithTag("Player").transform.GetChild(childID).GetComponent<SpriteRenderer>();
+		playerAnimator = GameObject.FindWithTag("Player").transform.GetChild(childID).GetComponent<Animator>();
+		optionAnimator = GetComponent<Animator>();
 	}
 	
 	void Update(){
 		icon.sprite = bodyPart.sprite;
 		bodyPart.sprite = options[currentOption];
+
+		playerAnimator.SetInteger("Option", currentOption);
 	}
 	
 	public int currentOption = 0;
