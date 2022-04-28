@@ -56,6 +56,7 @@ public class OutfitChanger : MonoBehaviour
 		if(currentOption<=0)
 		{
 			currentOption = options.Count -1;
+			Debug.Log(options.Count);
 		}
 		bodyPart.sprite = options[currentOption];
 	}
