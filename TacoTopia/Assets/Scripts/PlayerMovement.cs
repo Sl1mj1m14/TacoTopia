@@ -16,9 +16,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float xSpeed = 10;
     [SerializeField] private float ySpeed = 10;
 
+    private bool isSquashed;
+
     public float health = 100;
 
-    [SerializeField] private float scaleMultiplier = 1;
+    [SerializeField] private float scaleMultiplier = .6f;
 
     //This method is called once upon start
     private void Awake() {
@@ -63,10 +65,29 @@ public class PlayerMovement : MonoBehaviour
 
             //Flip directions based on input
             if (direction > 0.01f) {
-                    transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
+
+                //if (IsGrounded()) 
+                transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
+                //else transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier + 0.1f, scaleMultiplier);
+
             } else if (direction < -0.01f) {
-                    transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier, scaleMultiplier);
+
+                //if (IsGrounded()) 
+                transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier, scaleMultiplier);
+                //else transform.localScale = new Vector3 (scaleMultiplier * -1, scaleMultiplier + 0.1f, scaleMultiplier);
+
+            } else {
+                if (isSquashed) {
+                    
+                } else {
+
+                }
             }
+
+            if (IsGrounded()) 
+                transform.localScale = new Vector3 (transform.localScale.x, scaleMultiplier, scaleMultiplier);
+            else 
+                transform.localScale = new Vector3 (transform.localScale.x, scaleMultiplier + 0.1f, scaleMultiplier);
         }
     }
 
@@ -80,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
     //When touching the ground, set isGrounded to true
     private bool IsGrounded() {
 
-        return Physics2D.BoxCast(collision.bounds.center, collision.bounds.size, 0f, Vector2.down, .1f, ground);
+        return Physics2D.CapsuleCast(collision.bounds.center, collision.bounds.size, CapsuleDirection2D.Vertical, 0f, Vector2.down, .1f, ground);
     }
 
     //Subtracts the damage from player health
@@ -103,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
         //Resets player movement and health
         body.velocity = new Vector2(0, 0);
         
-        //Checks for player spawn location based on level        
+        //Checks for player spawn location based on level    
         switch (sceneNumber)
         {
             case 0:

@@ -56,6 +56,8 @@ public class Pathfinding : MonoBehaviour
         }
 
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<CapsuleCollider2D>());
+
+        if (Input.GetKeyDown(KeyCode.L)) inventory.AddItemCheck("Taco");
         
         //if (isTargetPlayer) TrackPlayer();
         
@@ -157,13 +159,14 @@ public class Pathfinding : MonoBehaviour
     public void DropAll()
     {
         for (int i = 0; i < inventory.GetInventory(); i++) {
-            string item = inventory.GetItem(i);
 
             for (int k = 0; k < prefabs.Length; k++) {
-                
-                while (string.Equals(prefabs[k].name, item)) {
 
-                Instantiate(prefabs[i], 
+                Debug.Log(prefabs[k].name);
+                
+                while (string.Equals(prefabs[k].name, inventory.GetItem(i))) {
+
+                Instantiate(prefabs[k], 
                     new Vector3(gameObject.transform.position.x + rand.Next(-2,2), gameObject.transform.position.y + rand.Next(-2,2),0), 
                     Quaternion.identity);
                     inventory.RemoveItem(i);
