@@ -1,5 +1,5 @@
 //created by Devin
-//last updated 3/15/2022 by Devin
+//last updated 4/28/2022 by Devin
 
 using System.Collections;
 using System.Collections.Generic;
@@ -15,10 +15,13 @@ public class Load : MonoBehaviour
     private void load()
     {
         WWWForm form = new WWWForm();
+        LoginSystem sys = new LoginSystem();
+        string username = sys.userName;
 
+        form.AddField("username", username);
         form.AddField("table_name", "player_data");
         form.AddField("field_name", "save_data");
-        var download = UnityWebRequest.Post("tacotopia.org/saveDownload.php", form);
+        var download = UnityWebRequest.Post("tacotopia.org/Download.php", form);
         download.SendWebRequest();
 
         if (download.result != UnityWebRequest.Result.Success)
