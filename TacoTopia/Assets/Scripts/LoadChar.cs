@@ -1,5 +1,5 @@
 //created by Devin
-//last updated 3/10/2022 by Devin
+//last updated 4/28/2022 by Devin
 
 using System.Collections;
 using System.Collections.Generic;
@@ -47,10 +47,13 @@ public class LoadChar : MonoBehaviour
     public void load_char()
     {
         WWWForm form = new WWWForm();
+        LoginSystem sys = new LoginSystem();
+        string username = sys.userName;
 
+        form.AddField("username", username);
         form.AddField("table_name", "player_data");
         form.AddField("field_name", "char_data");
-        var download = UnityWebRequest.Post("tacotopia.org/charDownload.php", form);
+        var download = UnityWebRequest.Post("tacotopia.org/Download.php", form);
         download.SendWebRequest();
 
         string text = download.downloadHandler.text;
