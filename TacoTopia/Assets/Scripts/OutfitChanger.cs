@@ -19,7 +19,11 @@ public class OutfitChanger : MonoBehaviour
 	void Start()
 	{
 		bodyPart = GameObject.FindWithTag("Player").transform.GetChild(childID).GetComponent<SpriteRenderer>();
-		playerAnimator = GameObject.FindWithTag("Player").transform.GetChild(childID).GetComponent<Animator>();
+
+		if (GameObject.FindWithTag("Player").transform.GetChild(childID).name != "hair" && 
+		GameObject.FindWithTag("Player").transform.GetChild(childID).name != "eyes") {
+			playerAnimator = GameObject.FindWithTag("Player").transform.GetChild(childID).GetComponent<Animator>();
+		}
 		optionAnimator = GetComponent<Animator>();
 	}
 	
@@ -27,7 +31,10 @@ public class OutfitChanger : MonoBehaviour
 		icon.sprite = bodyPart.sprite;
 		bodyPart.sprite = options[currentOption];
 
-		playerAnimator.SetInteger("Option", currentOption);
+		if (GameObject.FindWithTag("Player").transform.GetChild(childID).name != "hair" && 
+		GameObject.FindWithTag("Player").transform.GetChild(childID).name != "eyes") {
+			playerAnimator.SetInteger("Option", currentOption);
+		}
 	}
 	
 	public int currentOption = 0;
@@ -46,9 +53,10 @@ public class OutfitChanger : MonoBehaviour
 	public void PreviousOption()
 	{
 		currentOption--;
-		if(currentOption<=0)
+		if(currentOption<0)
 		{
 			currentOption = options.Count -1;
+			Debug.Log(options.Count);
 		}
 		bodyPart.sprite = options[currentOption];
 	}

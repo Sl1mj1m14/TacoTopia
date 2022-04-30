@@ -427,6 +427,7 @@ GameObject:
   - component: {fileID: 2136530198980801042}
   - component: {fileID: 2136530198980801043}
   - component: {fileID: 1090511511059140025}
+  - component: {fileID: 7762154121921224081}
   m_Layer: 0
   m_Name: shirt
   m_TagString: Untagged
@@ -518,6 +519,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7762154121921224081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136530198980801045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6e0a3e97ce26794e9b3491a5f25a196, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2136530199328021779
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,6 +841,7 @@ MonoBehaviour:
   - Pan
   enemyTags:
   - Enemy
+  - Patron
   prefabs:
   - {fileID: 3208458929163727246, guid: c1f9609bcc73ef942bb85a0a5ab47816, type: 3}
   - {fileID: 2247178943976617919, guid: ea9e6f7ab5e6eda4881c7dbfbc13d5c7, type: 3}

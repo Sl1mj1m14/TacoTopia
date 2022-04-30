@@ -20,7 +20,7 @@ public class PlayerDetection : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         objectCollisions = Physics2D.OverlapCircleAll(transform.position, viewRadius);
         foreach (Collider2D playerCheck in objectCollisions) {
@@ -30,7 +30,7 @@ public class PlayerDetection : MonoBehaviour
                 return;
             }
         }
-    }
+    }*/
 
     public bool IsColliding(Collider2D check)
     {

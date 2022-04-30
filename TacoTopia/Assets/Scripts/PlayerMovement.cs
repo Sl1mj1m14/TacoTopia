@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
             if (IsGrounded()) 
                 transform.localScale = new Vector3 (transform.localScale.x, scaleMultiplier, scaleMultiplier);
             else 
-                transform.localScale = new Vector3 (transform.localScale.x, scaleMultiplier + 0.1f, scaleMultiplier);
+                transform.localScale = new Vector3 (transform.localScale.x, scaleMultiplier + 0.05f, scaleMultiplier);
         }
     }
 
@@ -129,19 +129,23 @@ public class PlayerMovement : MonoBehaviour
         {
             case 0:
                 gameObject.transform.position = new Vector3(-100f,-100f,0f);
+                transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
                 break;
             
             case 1:
                 gameObject.transform.position = new Vector3(-47.43f,9.49f,-5.07f);
+                transform.localScale = new Vector3 (1, 1, 1);
                 break;
             
             case 2:
                 gameObject.transform.position = new Vector3(-83f,25f,0);//Real Level 1 code
+                transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
                 //gameObject.transform.position = new Vector3(-39f,9f,-5f);//Testing level code
                 break;
 
             default:
                 gameObject.transform.position = new Vector3(0,0,0);
+                transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
                 break;
         }
     }
