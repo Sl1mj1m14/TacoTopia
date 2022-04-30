@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
             if (IsGrounded()) 
                 transform.localScale = new Vector3 (transform.localScale.x, scaleMultiplier, scaleMultiplier);
             else 
-                transform.localScale = new Vector3 (transform.localScale.x, scaleMultiplier + 0.1f, scaleMultiplier);
+                transform.localScale = new Vector3 (transform.localScale.x, scaleMultiplier + 0.05f, scaleMultiplier);
         }
     }
 
