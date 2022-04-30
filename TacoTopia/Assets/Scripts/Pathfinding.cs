@@ -14,17 +14,12 @@ public class Pathfinding : MonoBehaviour
     private Inventory inventory;
     private GameObject[] prefabs;
 
-    [SerializeField] private LayerMask ground;
+    //[SerializeField] private LayerMask ground;
 
     [SerializeField] private float xSpeed = 3;
-    [SerializeField] private float ySpeed = 3;
 
-    private float collisionChecker = .5f;
-
-    private float posX,negX,posY,negY;
-    private int target,dir;
-    private bool atTarget = true;
-    private bool isTargetPlayer = false;
+    [SerializeField] public int posX,negX,dir;
+    private int xTarget;
 
     private float health = 50;
 
@@ -34,15 +29,17 @@ public class Pathfinding : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        posX = 0;//GameObject.Find("Right Constraint").transform.position.x;
-        negX = 0;//GameObject.Find("Left Constraint").transform.position.x;
-        posY = 0;//GameObject.Find("Top Constraint").transform.position.y;
-        negY = 0;//GameObject.Find("Bottom Constraint").transform.position.y;
+
         body = GetComponent<Rigidbody2D>();
         physicsCollision = GetComponent<BoxCollider2D>();
         inventory = GetComponent<Inventory>();
 
         prefabs = GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<ItemCollector>().GetPrefabs();
+
+        xTarget = RandX();
+        if (xTarget < gameObject.transform.position.x) dir = -1; 
+        else dir = 1;
+        Debug.Log(xTarget);
     }
 
     // Update is called once per frame
@@ -56,99 +53,15 @@ public class Pathfinding : MonoBehaviour
         }
 
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<CapsuleCollider2D>());
+        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),GameObject.Find("Level1Tables").GetComponent<Collider2D>());
 
-        if (Input.GetKeyDown(KeyCode.L)) inventory.AddItemCheck("Taco");
-        
-        //if (isTargetPlayer) TrackPlayer();
-        
-        //if (atTarget) 
-            //GetRandTarget();
-         //else 
-            //atTarget = Move(dir);
-        
-    }
-
-    /*
-    * This method determines a random pathfinding target
-    */
-    public void GetRandTarget()
-    {
-        target = rand.Next((int)negX,(int)posX);
-        //Debug.Log(target);
-        atTarget = false;
-        if (transform.position.x < target) 
-            dir = 1;
-        else
-            dir = -1;
-    }
-    
-    /*
-    * This method allows the enemy to move towards the target
-    */
-    public bool Move(int dir)
-    {
-        if (IsObstacle(dir) && IsGrounded()) body.velocity = new Vector2(body.velocity.x, ySpeed);
-        body.velocity = new Vector2(dir * xSpeed, body.velocity.y);
-
-        if ((dir > 0 && transform.position.x > target) || (dir < 0 && transform.position.x < target)) {
-            if (isTargetPlayer) {
-                //Damage()
-                //Idle()
-                return false;
-            }
-            return true;
-        } else {
-            return false;
+        if (Target()) {
+            xTarget = RandX();
+            if (xTarget < gameObject.transform.position.x) dir = -1; 
+            else dir = 1;
+            Debug.Log(xTarget);
         }
-    }
-
-    /*
-    * This method checks if there is an object in front of the enemy, so it knows when to jump
-    */
-    public bool IsObstacle(int dir)
-    {
-        if (dir > 0) {
-            return Physics2D.BoxCast(physicsCollision.bounds.center, physicsCollision.bounds.size, 
-            0f, Vector2.right, collisionChecker, ground);
-        } else {
-            return Physics2D.BoxCast(physicsCollision.bounds.center, physicsCollision.bounds.size, 
-            0f, Vector2.left, collisionChecker, ground);
-        }
-       
-    }
-
-    /*
-    * This method checks if the enemy is on the ground
-    */
-    private bool IsGrounded() {
-        return Physics2D.BoxCast(physicsCollision.bounds.center, physicsCollision.bounds.size, 0f, Vector2.down, .1f, ground);
-    }
-
-    public void SetTarget(float pos)
-    {
-        target = (int)pos;
-        atTarget = false;
-    }
-
-    public void TargetPlayer()
-    {
-        if (isTargetPlayer) return;
-        TrackPlayer();
-        atTarget = false;
-        //if(!Death.get);     //if pc is dead, targeting doesn't work
-        isTargetPlayer = true;
-    }
-
-    private void TrackPlayer()
-    {
-        target = (int)GameObject.Find(PLAYER_REFERENCE).transform.position.x;
-        if (transform.position.x < target) {
-                dir = 1;
-                target += 3;
-        } else {
-                dir = -1;
-                target -= 3;
-        }
+        
     }
 
     //Subtracts the damage from the health
@@ -156,6 +69,7 @@ public class Pathfinding : MonoBehaviour
         health -= damage;
     }
 
+    //Turns the entire inventory into items
     public void DropAll()
     {
         for (int i = 0; i < inventory.GetInventory(); i++) {
@@ -174,5 +88,24 @@ public class Pathfinding : MonoBehaviour
                 }
             }
         }
+    }
+
+    public bool Target()
+    {
+        //Debug.Log("Enter");
+        if (xTarget < gameObject.transform.position.x && dir < 0) {
+            body.velocity = new Vector2(xSpeed * -1, body.velocity.y);
+            return false;
+        } else if (xTarget > gameObject.transform.position.x && dir > 0) {
+            body.velocity = new Vector2(xSpeed, body.velocity.y);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public int RandX()
+    {
+        return rand.Next(negX,posX);       
     }
 }
