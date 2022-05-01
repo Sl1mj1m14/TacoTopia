@@ -26,7 +26,6 @@ public class Heart : MonoBehaviour
     void Update()
     {
         healthPercent = playerMovement.GetHealth()/playerMovement.GetMaxHealth();
-        Debug.Log(healthPercent);
 
         if (healthPercent > (5f/6f)) {
 
