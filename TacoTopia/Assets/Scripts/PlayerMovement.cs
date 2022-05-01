@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float xSpeed = 10;
     [SerializeField] private float ySpeed = 10;
 
+    public int dangerY;
+
     private bool isSquashed;
 
     public float maxHealth = 100;
@@ -44,6 +46,11 @@ public class PlayerMovement : MonoBehaviour
 
     //This method is called every frame
     private void Update() {
+
+        if (gameObject.transform.position.y < dangerY) {
+            body.velocity = new Vector2(body.velocity.x, 0);
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, 1f, 0);
+        }
 
         //If player is dead, reset health and drop all items
         if (health <= 0) {
