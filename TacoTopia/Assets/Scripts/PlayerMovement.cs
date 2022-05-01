@@ -18,7 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isSquashed;
 
-    public float health = 100;
+    public float maxHealth = 100;
+    private float health = 100;
 
     [SerializeField] private float scaleMultiplier = .6f;
 
@@ -48,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         if (health <= 0) {
 
             GetComponent<ItemCollector>().DropAll();
-            health = 100;
+            health = maxHealth;
             SetSpawn();
             
         }
@@ -109,13 +110,23 @@ public class PlayerMovement : MonoBehaviour
         health -= damage;
     }
 
+    public float GetHealth()
+    {
+        return health;
+    }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
     //This method places the player in the correct location in the scene when it spawns in
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         //Checks what level is loaded
         sceneNumber = scene.buildIndex;
 
-        if (health <= 25) health += 25;
+        //if (health <= 25) health += 25;
 
         SetSpawn();
     }

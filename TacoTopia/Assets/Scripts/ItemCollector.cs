@@ -110,7 +110,7 @@ public class ItemCollector : MonoBehaviour
                 while (string.Equals(prefabs[k].name, inventory.GetItem(i))) {
 
                 Instantiate(prefabs[k], 
-                    new Vector3(gameObject.transform.position.x + rand.Next(-2,2), gameObject.transform.position.y + rand.Next(-2,2),0), 
+                    new Vector3(gameObject.transform.position.x + rand.Next(-2,2), gameObject.transform.position.y + rand.Next(-1,2),0), 
                     Quaternion.identity);
                     Debug.Log(inventory.RemoveItem(i));
                 

@@ -53,11 +53,9 @@ public class Pathfinding : MonoBehaviour
         xTarget = RandX();
         if (xTarget < gameObject.transform.position.x) dir = -1; 
         else dir = 1;
-        Debug.Log(xTarget);
 
         idleTimer = 0;
         foodItem = foodItems[rand.Next(0,foodItems.Length-1)];
-        //Debug.Log(foodItem);
     }
 
     // Update is called once per frame
@@ -120,8 +118,6 @@ public class Pathfinding : MonoBehaviour
 
                 if (xTarget < gameObject.transform.position.x) dir = -1; 
                 else dir = 1;
-
-                Debug.Log(xTarget);
             }
         }  
     }
@@ -144,8 +140,6 @@ public class Pathfinding : MonoBehaviour
         for (int i = 0; i < inventory.GetInventory(); i++) {
 
             for (int k = 0; k < prefabs.Length; k++) {
-
-                Debug.Log(prefabs[k].name);
                 
                 while (string.Equals(prefabs[k].name, inventory.GetItem(i))) {
 
@@ -180,7 +174,6 @@ public class Pathfinding : MonoBehaviour
     public void TargetPlayer()
     {
         if (attackCooldown > 0) attackCooldown -= Time.deltaTime;
-        Debug.Log(attackCooldown);
 
         if (canAttack && attackCooldown <= 0) {
             GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<PlayerMovement>().Damage(10);
