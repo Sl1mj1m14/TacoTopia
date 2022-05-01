@@ -45,7 +45,7 @@ public class MainHand : MonoBehaviour
     *   This method searches the sprites array for the corresponding 
     *   sprite to the item name
     */
-    private Sprite ChangeSprite(string name) {
+    public Sprite ChangeSprite(string name) {
 
         foreach (Sprite sprite in itemSprites) {
             if ((sprite != null) && string.Equals(sprite.name, name))

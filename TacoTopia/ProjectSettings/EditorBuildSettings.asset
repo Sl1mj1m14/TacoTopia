@@ -12,11 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/charcustom.unity
     guid: 37e90918ffb1ea245b14a531c207adbb
   - enabled: 1
+    path: Assets/Scenes/Test.unity
+    guid: 6c92e3dc9ac5d804689afcf5d76426ab
+  - enabled: 1
     path: Assets/Scenes/Test 1.unity
     guid: 290ff0a3e67a3c8408232215c8191146
   - enabled: 0
-    path: Assets/Scenes/Level 2.unity
-    guid: c9a6d9930f0dc884187d6ac4e9ee41f1
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Level 0.unity
     guid: 2cda990e2423bbf4892e6590ba056729
