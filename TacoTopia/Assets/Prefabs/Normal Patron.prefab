@@ -168,8 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e98e02378722754c9a3f16d565f5350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  INVENTORY_SIZE: 9
-  STACK_SIZE: 64
+  INVENTORY_SIZE: 2
+  STACK_SIZE: 1
   VALID_ITEMS: 10
   validItems: []
 --- !u!114 &7867798022137272570
@@ -188,6 +188,9 @@ MonoBehaviour:
   xSpeed: 3
   posX: 37
   negX: -22
+  aggressiveTimer: 2
+  foodItems:
+  - Taco
 --- !u!1 &8486744796671440373
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,6 +648,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3330d71d8aab3394fb6bc89e0f771575, type: 3}
   - {fileID: 21300000, guid: f1ff00c26131a7c4a962f83f8d46af45, type: 3}
   - {fileID: 21300000, guid: 1998a964026635c4a83e9089423b1ba1, type: 3}
+  - {fileID: 21300000, guid: b5e12f301bd006a4686a00565060c480, type: 3}
   scaleMultiplier: 1
 --- !u!1 &8486744798504744303
 GameObject:

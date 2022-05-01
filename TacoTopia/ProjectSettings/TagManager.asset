@@ -12,6 +12,7 @@ TagManager:
   - Pan
   - Enemy
   - Patron
+  - Fork
   layers:
   - Default
   - TransparentFX

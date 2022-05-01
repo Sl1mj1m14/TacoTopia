@@ -1,5 +1,4 @@
 //Created by Keiler on 3/8/22
-//Last Edited by Andrew R on 3/15/22
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,7 +24,18 @@ public class Pathfinding : MonoBehaviour
     private bool isIdle = false;
     private float idleAmount,idleTimer;
 
+    private bool isInvincible = true;
+
+    private bool isAggressive = false;
+    public int aggressiveTimer = 2;//10;
+
+    private bool canAttack = false;
+    private float attackCooldown = 0;
+
     private float health = 50;
+
+    public string[] foodItems;
+    private string foodItem;
 
     private System.Random rand = new System.Random();
 
@@ -46,13 +56,21 @@ public class Pathfinding : MonoBehaviour
         Debug.Log(xTarget);
 
         idleTimer = 0;
+        foodItem = foodItems[rand.Next(0,foodItems.Length-1)];
+        //Debug.Log(foodItem);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (inventory.AddItem("Fork")) {
+            inventory.SwitchItems(0,1);
+            inventory.AddItemCheck(foodItem);
+        }
+        
         if (health <= 0) {
 
+            body.velocity = new Vector2(body.velocity.x, body.velocity.y + 10);
             DropAll();
             Destroy(this.gameObject);
             
@@ -61,13 +79,31 @@ public class Pathfinding : MonoBehaviour
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<CapsuleCollider2D>());
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),GameObject.Find("Level1Tables").GetComponent<Collider2D>());
 
-        if (isIdle) {
+        if (isAggressive) {
+
+            TargetPlayer();
+
+        } else if (isIdle) {
 
             idleTimer += Time.deltaTime;
 
             if (idleTimer >= idleAmount) {
                 isIdle = false;
                 idleTimer = 0;
+
+                if (rand.Next(1,aggressiveTimer) == 1) {
+
+                    isAggressive = true;
+                    isInvincible = false;
+                    xSpeed += 2;
+
+                    inventory.RemoveItemCheck(foodItem);
+                    inventory.AddItemCheck("Void");
+                    inventory.SwitchItems(0,1);
+
+                } else {
+                    aggressiveTimer--;
+                }
             }
 
         } else {
@@ -92,6 +128,13 @@ public class Pathfinding : MonoBehaviour
 
     //Subtracts the damage from the health
     public void Damage(float damage) {
+        if (isInvincible) return;
+
+        if (GameObject.FindWithTag(PLAYER_REFERENCE).transform.position.x < gameObject.transform.position.x)
+            body.velocity = new Vector2(body.velocity.x, body.velocity.y + 10);
+        else 
+            body.velocity = new Vector2(body.velocity.x, body.velocity.y + 10);
+
         health -= damage;
     }
 
@@ -134,8 +177,47 @@ public class Pathfinding : MonoBehaviour
         }
     }
 
+    public void TargetPlayer()
+    {
+        if (attackCooldown > 0) attackCooldown -= Time.deltaTime;
+        Debug.Log(attackCooldown);
+
+        if (canAttack && attackCooldown <= 0) {
+            GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<PlayerMovement>().Damage(10);
+            attackCooldown = 5f;
+
+        } else if (!canAttack) {
+
+            if (GameObject.FindWithTag(PLAYER_REFERENCE).transform.position.x < gameObject.transform.position.x) {
+
+                body.velocity = new Vector2(xSpeed * -1, body.velocity.y);
+                transform.localScale = new Vector3(scaleMultiplier * -1, scaleMultiplier, scaleMultiplier);
+
+            } else if (GameObject.FindWithTag(PLAYER_REFERENCE).transform.position.x > gameObject.transform.position.x){
+
+                body.velocity = new Vector2(xSpeed, body.velocity.y);
+                transform.localScale = new Vector3(scaleMultiplier, scaleMultiplier, scaleMultiplier);
+
+            } else {
+                body.velocity = new Vector2(0, body.velocity.y);
+            }
+        } else {
+            body.velocity = new Vector2(0, body.velocity.y);
+        }
+    }
+
     public int RandX()
     {
         return rand.Next(negX,posX);       
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Character") canAttack = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Character") canAttack = false;
     }
 }

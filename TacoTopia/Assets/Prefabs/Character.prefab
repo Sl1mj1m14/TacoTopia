@@ -415,6 +415,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3330d71d8aab3394fb6bc89e0f771575, type: 3}
   - {fileID: 21300000, guid: f1ff00c26131a7c4a962f83f8d46af45, type: 3}
   - {fileID: 21300000, guid: 1998a964026635c4a83e9089423b1ba1, type: 3}
+  - {fileID: 21300000, guid: b5e12f301bd006a4686a00565060c480, type: 3}
   scaleMultiplier: 1
 --- !u!1 &2136530198980801045
 GameObject:
@@ -839,6 +840,7 @@ MonoBehaviour:
   - RedGun
   - BlueGun
   - Pan
+  - Fork
   enemyTags:
   - Enemy
   - Patron
@@ -848,6 +850,7 @@ MonoBehaviour:
   - {fileID: 4180809004833646949, guid: a024b8755c8488044a956a1f1532b2a2, type: 3}
   - {fileID: 4844308763607678516, guid: 306ae74102ed3b741a70b935902aacdd, type: 3}
   - {fileID: 5285636309265247260, guid: 654e4f33d9310fd4185b1c1e66de5b5a, type: 3}
+  - {fileID: 3098875120327434311, guid: 59781e14fb2d9a649af12e7a35bd643a, type: 3}
 --- !u!114 &2136530198647036070
 MonoBehaviour:
   m_ObjectHideFlags: 0

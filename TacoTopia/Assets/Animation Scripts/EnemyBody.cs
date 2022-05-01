@@ -26,6 +26,10 @@ public class EnemyBody : MonoBehaviour
             animator = GetComponent<Animator>();
             animator.SetInteger("Option", option);
         }
+
+        if (gameObject.name != "eyes" && gameObject.name != "body") {
+            spriteRenderer.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        }
         
     }
 

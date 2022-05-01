@@ -105,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //Subtracts the damage from player health
-    private void Damage(float damage) {
+    public void Damage(float damage) {
         health -= damage;
     }
 
