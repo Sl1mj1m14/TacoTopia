@@ -415,6 +415,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3330d71d8aab3394fb6bc89e0f771575, type: 3}
   - {fileID: 21300000, guid: f1ff00c26131a7c4a962f83f8d46af45, type: 3}
   - {fileID: 21300000, guid: 1998a964026635c4a83e9089423b1ba1, type: 3}
+  - {fileID: 21300000, guid: b5e12f301bd006a4686a00565060c480, type: 3}
+  - {fileID: 21300000, guid: 42c8574d272a0e6428ce88bece31bbde, type: 3}
+  - {fileID: 21300000, guid: ea097519aca55414587a49dc6e7810bd, type: 3}
+  - {fileID: 21300000, guid: 56cca1dbfa9ebd443b567ff7a99d34df, type: 3}
+  - {fileID: 21300000, guid: 1cd75bd9733de6346837c9d05374bf7f, type: 3}
   scaleMultiplier: 1
 --- !u!1 &2136530198980801045
 GameObject:
@@ -833,12 +838,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716420ef1a79f16498cadb62696a2dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemTags:
-  - Taco
-  - USB
-  - RedGun
-  - BlueGun
-  - Pan
   enemyTags:
   - Enemy
   - Patron
@@ -848,6 +847,17 @@ MonoBehaviour:
   - {fileID: 4180809004833646949, guid: a024b8755c8488044a956a1f1532b2a2, type: 3}
   - {fileID: 4844308763607678516, guid: 306ae74102ed3b741a70b935902aacdd, type: 3}
   - {fileID: 5285636309265247260, guid: 654e4f33d9310fd4185b1c1e66de5b5a, type: 3}
+  - {fileID: 3098875120327434311, guid: 59781e14fb2d9a649af12e7a35bd643a, type: 3}
+  - {fileID: 2756539903020633974, guid: 453e8de6d20193d40b274b13501635fd, type: 3}
+  - {fileID: 1343365828527722903, guid: d53f05235da863148862d3ada0ecdeee, type: 3}
+  - {fileID: 1238242283417172291, guid: 0cacd4d9f2d807d44adcfdd6b11c6421, type: 3}
+  - {fileID: 1353283298384418521, guid: b5c4cde0159a3e84185ed520a9a6bf9b, type: 3}
+  - {fileID: 2083088649943048552, guid: 2a51314eec53fa547a519998aacc83d8, type: 3}
+  - {fileID: 7543152409203092203, guid: 4075568edc83ebb418534ec6b0244132, type: 3}
+  - {fileID: 4155228360264209633, guid: 19f3a9b60fc96294ba7194aa012caa8e, type: 3}
+  - {fileID: 7254123511982759025, guid: cfba57b8765b5a54fa55c551dab6c039, type: 3}
+  - {fileID: 4348781691197939593, guid: 2751e1260d4c3454ca4915a3fa97b537, type: 3}
+  - {fileID: 7968030766627426743, guid: f20079c55dac7514d830c467a8fec1fb, type: 3}
 --- !u!114 &2136530198647036070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -860,8 +870,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e98e02378722754c9a3f16d565f5350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  INVENTORY_SIZE: 9
-  STACK_SIZE: 64
+  INVENTORY_SIZE: 3
+  STACK_SIZE: 1
   VALID_ITEMS: 10
   validItems: []
 --- !u!212 &6562389460174883933

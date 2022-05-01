@@ -11,6 +11,18 @@ TagManager:
   - RedGun
   - Pan
   - Enemy
+  - Patron
+  - Fork
+  - Beef
+  - Black Beans
+  - Cheese
+  - Chicken
+  - Chips
+  - Hard Tortilla
+  - Lettuce
+  - Salsa
+  - Soft Tortilla
+  - Tomato
   layers:
   - Default
   - TransparentFX
