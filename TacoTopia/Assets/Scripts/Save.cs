@@ -1,5 +1,5 @@
 //created by Devin
-//last updated on 4/28/2022 by Devin
+//last updated on 4/30/2022 by Devin
 
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +14,11 @@ public class Save : MonoBehaviour
 
     private void save()
     {
+        StartCoroutine(Upload());
+    }
+
+    IEnumerator Upload()
+    {
         WWWForm form = new WWWForm();
         LoginSystem sys = new LoginSystem();
         string username = sys.userName;
@@ -26,11 +31,22 @@ public class Save : MonoBehaviour
         form.AddField("table_name", "player_data");
         form.AddField("field_name", "save_data");
         form.AddField("save_data", saveLevel);
-        var upload = UnityWebRequest.Post("tacotopia.org/saveUpload.php", form);
-        upload.SendWebRequest();
-        if (upload.result != UnityWebRequest.Result.Success)
-            Debug.Log(upload.error);
-        else
-            EasterEgg.SaveEgg();
+
+        using (UnityWebRequest upload = UnityWebRequest.Post("https://tacotopia.org/upload.php", form))
+        {
+            yield return upload.SendWebRequest();
+
+            if (upload.result != UnityWebRequest.Result.Success)
+                Debug.Log(upload.error);
+            else
+            {
+                string responseText = upload.downloadHandler.text;
+
+                if (responseText.StartsWith("Success"))
+                    EasterEgg.SaveEgg();
+                else
+                    Debug.Log(responseText);
+            }
+        }
     }
 }

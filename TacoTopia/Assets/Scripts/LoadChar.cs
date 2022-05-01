@@ -1,5 +1,5 @@
 //created by Devin
-//last updated 4/28/2022 by Devin
+//last updated 4/30/2022 by Devin
 
 using System.Collections;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ public class LoadChar : MonoBehaviour
     SpriteRenderer shirt;
     SpriteRenderer legs;
 
-    //lists of sprites fro each character object
+    //lists of sprites for each character object
     public List<Sprite> eyeSprites = new List<Sprite>();
     public List<Sprite> hairSprites = new List<Sprite>();
     public List<Sprite> shirtSprites = new List<Sprite>();
@@ -46,6 +46,11 @@ public class LoadChar : MonoBehaviour
     //loads character from json file and applies it to current character
     public void load_char()
     {
+        StartCoroutine(Download());
+    }
+
+    IEnumerator Download()
+    {
         WWWForm form = new WWWForm();
         LoginSystem sys = new LoginSystem();
         string username = sys.userName;
@@ -53,25 +58,39 @@ public class LoadChar : MonoBehaviour
         form.AddField("username", username);
         form.AddField("table_name", "player_data");
         form.AddField("field_name", "char_data");
-        var download = UnityWebRequest.Post("tacotopia.org/Download.php", form);
-        download.SendWebRequest();
 
-        string text = download.downloadHandler.text;
-        import = JsonUtility.FromJson<SerializeChar>(text);
-
-        if (download.result != UnityWebRequest.Result.Success)
-            Debug.Log(download.error);
-        else
+        using (UnityWebRequest download = UnityWebRequest.Post("https://tacotopia.org/download.php", form))
         {
-            body.color = bodyColors[import.bodyIndex];
-            eyes.sprite = eyeSprites[import.faceIndex];
-            hair.sprite = hairSprites[import.hairIndex];
-            hair.color = hairColors[import.hairCIndex];
-            shirt.sprite = shirtSprites[import.shirtIndex];
-            shirt.color = shirtColors[import.shirtCIndex];
-            legs.sprite = legSprites[import.pantsIndex];
-            legs.color = legColors[import.pantsCIndex];
-            Debug.Log("File loaded");
+            yield return download.SendWebRequest();
+
+            if (download.result != UnityWebRequest.Result.Success)
+                Debug.Log(download.error);
+            else
+            {
+                string responseText = download.downloadHandler.text;
+
+                if (responseText.StartsWith("Success"))
+                {
+                    string[] dataChunks = responseText.Split('|');
+
+                    string text = dataChunks[1];
+                    import = JsonUtility.FromJson<SerializeChar>(text);
+
+                    body.color = bodyColors[import.bodyIndex];
+                    eyes.sprite = eyeSprites[import.faceIndex];
+                    hair.sprite = hairSprites[import.hairIndex];
+                    hair.color = hairColors[import.hairCIndex];
+                    shirt.sprite = shirtSprites[import.shirtIndex];
+                    shirt.color = shirtColors[import.shirtCIndex];
+                    legs.sprite = legSprites[import.pantsIndex];
+                    legs.color = legColors[import.pantsCIndex];
+                    Debug.Log("File loaded");
+                }
+                else
+                {
+                    Debug.Log(responseText);
+                }
+            }
         }
     }
 

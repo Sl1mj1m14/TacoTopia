@@ -1,5 +1,5 @@
 //created by Devin
-//last updated 4/28/2022 by Devin
+//last updated 4/30/2022 by Devin
 
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +12,12 @@ public class Load : MonoBehaviour
 {
     string currentLevel;
 
-    private void load()
+    public void load()
+    {
+        StartCoroutine(Download());
+    }
+
+    IEnumerator Download()
     {
         WWWForm form = new WWWForm();
         LoginSystem sys = new LoginSystem();
@@ -21,17 +26,30 @@ public class Load : MonoBehaviour
         form.AddField("username", username);
         form.AddField("table_name", "player_data");
         form.AddField("field_name", "save_data");
-        var download = UnityWebRequest.Post("tacotopia.org/Download.php", form);
-        download.SendWebRequest();
 
-        if (download.result != UnityWebRequest.Result.Success)
-            Debug.Log(download.error);
-        else
+        using (UnityWebRequest download = UnityWebRequest.Post("https://tacotopia.org/download.php", form))
         {
-            string loadLevel = download.downloadHandler.text;
-            currentLevel = JsonUtility.FromJson<string>(loadLevel);
+            yield return download.SendWebRequest();
 
-            SceneManager.LoadScene(currentLevel);
+            if (download.result != UnityWebRequest.Result.Success)
+                Debug.Log(download.error);
+            else
+            {
+                string responseText = download.downloadHandler.text;
+                if (responseText.StartsWith("Success"))
+                {
+                    string[] dataChunks = responseText.Split('|');
+                    string loadLevel = dataChunks[1];
+
+                    currentLevel = JsonUtility.FromJson<string>(loadLevel);
+
+                    SceneManager.LoadScene(currentLevel);
+                }
+                else
+                {
+                    Debug.Log(responseText);
+                }
+            }
         }
     }
 }

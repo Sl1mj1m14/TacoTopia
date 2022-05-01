@@ -1,5 +1,5 @@
 //created by Devin
-//last updated 4/28/2022 by Devin
+//last updated 4/30/2022 by Devin
 
 using System.Collections;
 using System.Collections.Generic;
@@ -55,6 +55,11 @@ public class SaveChar : MonoBehaviour
     //saves character data to json file
     public void save_char()
     {
+        StartCoroutine(Upload());
+    }
+
+    IEnumerator Upload()
+    {
         WWWForm form = new WWWForm();
         LoginSystem sys = new LoginSystem();
         string username = sys.userName;
@@ -64,12 +69,23 @@ public class SaveChar : MonoBehaviour
         form.AddField("table_name", "player_data");
         form.AddField("field_name", "char_data");
         form.AddField("char_data", text);
-        var upload = UnityWebRequest.Post("tacotopia.org/charUpload.php", form);
-        upload.SendWebRequest();
-        if (upload.result != UnityWebRequest.Result.Success)
-            Debug.Log(upload.error);
-        else
-            Debug.Log("Character Saved");
+
+        using (UnityWebRequest upload = UnityWebRequest.Post("https://tacotopia.org/upload.php", form))
+        {
+            yield return upload.SendWebRequest();
+
+            if (upload.result != UnityWebRequest.Result.Success)
+                Debug.Log(upload.error);
+            else
+            {
+                string responseText = upload.downloadHandler.text;
+
+                if (responseText.StartsWith("Success"))
+                    Debug.Log("Character Saved");
+                else
+                    Debug.Log(responseText);
+            }  
+        }
     }
 
 

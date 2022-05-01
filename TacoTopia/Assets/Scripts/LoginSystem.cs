@@ -1,10 +1,11 @@
 //created by Devin
-//last updated 4/26/2022 by Devin
+//last updated 4/30/2022 by Devin
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class LoginSystem : MonoBehaviour
 {
@@ -22,13 +23,13 @@ public class LoginSystem : MonoBehaviour
     bool registrationCompleted = false;
     bool isLoggedIn = false;
 
-    
-    
+    public Button PlayButton;
+    public Button CharacterButton;
 
     //Logged-in user data
     public string userName = "";
 
-    string rootURL = "tacotopia.org";
+    string rootURL = "https://tacotopia.org/";
 
     void OnGUI()
     {
@@ -46,14 +47,16 @@ public class LoginSystem : MonoBehaviour
             }
         }
 
-        GUI.Label(new Rect(5, 5, 1000, 500), "Status: " + (isLoggedIn ? "Logged-in Username :" + userName : "Logged-out"));
+        GUI.Label(new Rect(55, 5, 1000, 500), "Status: " + (isLoggedIn ? "Logged-in Username: " + userName : "Logged-out"));
         if (isLoggedIn)
         {
-            if (GUI.Button(new Rect(5, 30, 100, 25), "Log Out"))
+            if (GUI.Button(new Rect(55, 30, 100, 25), "Log Out"))
             {
                 isLoggedIn = false;
                 userName = "";
                 currentWindow = CurrentWindow.Login;
+                PlayButton.interactable = false;
+                CharacterButton.interactable = false;
             }
         }
     }
@@ -76,20 +79,17 @@ public class LoginSystem : MonoBehaviour
             GUILayout.Label("Registration Completed");
         }
 
-        var hash = new Hash128();
-
         GUI.color = Color.white;
         GUILayout.Label("Username:");
-        loginUsername = GUILayout.TextField(loginUsername);
+        loginUsername = GUILayout.TextField(loginUsername, 20);
         GUILayout.Label("Password:");
-        hash.Append(GUILayout.PasswordField(loginPassword, '*'));
-        loginPassword = hash.ToString();
+        loginPassword = GUILayout.PasswordField(loginPassword, '*', 40);
 
         GUILayout.Space(5);
 
         if (GUILayout.Button("Submit", GUILayout.Width(125)))
         {
-            StartCoroutine(RegisterEnumerator());
+            StartCoroutine(LoginEnumerator());
         }
 
         GUILayout.FlexibleSpace();
@@ -115,20 +115,22 @@ public class LoginSystem : MonoBehaviour
             GUILayout.Label(errorMessage);
         }
 
-        var hash = new Hash128();
-        var hashp2 = new Hash128();
-
         GUI.color = Color.white;
         GUILayout.Label("Username:");
         registerUsername = GUILayout.TextField(registerUsername, 20);
         GUILayout.Label("Password:");
-        hash.Append(GUILayout.PasswordField(registerPassword1, '*', 19));
-        registerPassword1 = hash.ToString();
+        registerPassword1 = GUILayout.PasswordField(registerPassword1, '*', 40);
         GUILayout.Label("Confirm Password:");
-        hashp2.Append(GUILayout.PasswordField(registerPassword2, '*', 19));
-        registerPassword2 = hashp2.ToString();
+        registerPassword2 = GUILayout.PasswordField(registerPassword2, '*', 40);
 
         GUILayout.Space(5);
+
+        if (GUILayout.Button("Submit", GUILayout.Width(85)))
+        {
+            StartCoroutine(RegisterEnumerator());
+        }
+
+        GUILayout.FlexibleSpace();
 
         GUILayout.Label("Already have an account?");
         if (GUILayout.Button("Login", GUILayout.Width(125)))
@@ -144,10 +146,15 @@ public class LoginSystem : MonoBehaviour
         registrationCompleted = false;
         errorMessage = "";
 
+        var hash = new Hash128();
+        hash.Append(registerPassword1);
+        var hash2 = new Hash128();
+        hash2.Append(registerPassword2);
+
         WWWForm form = new WWWForm();
         form.AddField("username", registerUsername);
-        form.AddField("password1", registerPassword1);
-        form.AddField("password2", registerPassword2);
+        form.AddField("password1", hash.ToString());
+        form.AddField("password2", hash2.ToString());
 
         using (UnityWebRequest www = UnityWebRequest.Post(rootURL + "register.php", form))
         {
@@ -163,6 +170,7 @@ public class LoginSystem : MonoBehaviour
 
                 if (responseText.StartsWith("Success"))
                 {
+                    ResetValues();
                     registrationCompleted = true;
                     currentWindow = CurrentWindow.Login;
                 }
@@ -182,9 +190,12 @@ public class LoginSystem : MonoBehaviour
         registrationCompleted = false;
         errorMessage = "";
 
+        var hash = new Hash128();
+        hash.Append(loginPassword);
+
         WWWForm form = new WWWForm();
         form.AddField("username", loginUsername);
-        form.AddField("password", loginPassword);
+        form.AddField("password", hash.ToString());
 
         using (UnityWebRequest www = UnityWebRequest.Post(rootURL + "login.php", form))
         {
@@ -200,8 +211,11 @@ public class LoginSystem : MonoBehaviour
 
                 if(responseText.StartsWith("Success"))
                 {
-                    userName = responseText;
+                    string[] dataChunks = responseText.Split('|');
+                    userName = dataChunks[1];
                     isLoggedIn = true;
+                    PlayButton.interactable = true;
+                    CharacterButton.interactable = true;
 
                     ResetValues();
                 }
