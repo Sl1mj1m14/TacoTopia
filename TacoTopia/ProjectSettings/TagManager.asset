@@ -11,6 +11,7 @@ TagManager:
   - RedGun
   - Pan
   - Enemy
+  - Patron
   layers:
   - Default
   - TransparentFX

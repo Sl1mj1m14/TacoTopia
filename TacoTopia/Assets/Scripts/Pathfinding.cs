@@ -16,10 +16,14 @@ public class Pathfinding : MonoBehaviour
 
     //[SerializeField] private LayerMask ground;
 
+    [SerializeField] private float scaleMultiplier = 0.5f;
     [SerializeField] private float xSpeed = 3;
 
-    [SerializeField] public int posX,negX,dir;
-    private int xTarget;
+    [SerializeField] public int posX,negX;
+    private int xTarget,dir;
+
+    private bool isIdle = false;
+    private float idleAmount,idleTimer;
 
     private float health = 50;
 
@@ -40,6 +44,8 @@ public class Pathfinding : MonoBehaviour
         if (xTarget < gameObject.transform.position.x) dir = -1; 
         else dir = 1;
         Debug.Log(xTarget);
+
+        idleTimer = 0;
     }
 
     // Update is called once per frame
@@ -55,13 +61,33 @@ public class Pathfinding : MonoBehaviour
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<CapsuleCollider2D>());
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),GameObject.Find("Level1Tables").GetComponent<Collider2D>());
 
-        if (Target()) {
-            xTarget = RandX();
-            if (xTarget < gameObject.transform.position.x) dir = -1; 
-            else dir = 1;
-            Debug.Log(xTarget);
-        }
-        
+        if (isIdle) {
+
+            idleTimer += Time.deltaTime;
+
+            if (idleTimer >= idleAmount) {
+                isIdle = false;
+                idleTimer = 0;
+            }
+
+        } else {
+
+            if (Target()) {
+
+                xTarget = RandX();
+
+                if (rand.Next(1,10) > 3) {
+                    idleAmount = (float)rand.Next(1,8);
+                    isIdle = true;
+                    body.velocity = new Vector2(0, body.velocity.y);
+                }
+
+                if (xTarget < gameObject.transform.position.x) dir = -1; 
+                else dir = 1;
+
+                Debug.Log(xTarget);
+            }
+        }  
     }
 
     //Subtracts the damage from the health
@@ -92,13 +118,17 @@ public class Pathfinding : MonoBehaviour
 
     public bool Target()
     {
-        //Debug.Log("Enter");
+
         if (xTarget < gameObject.transform.position.x && dir < 0) {
             body.velocity = new Vector2(xSpeed * -1, body.velocity.y);
+            transform.localScale = new Vector3(scaleMultiplier * -1, scaleMultiplier, scaleMultiplier);
             return false;
+
         } else if (xTarget > gameObject.transform.position.x && dir > 0) {
             body.velocity = new Vector2(xSpeed, body.velocity.y);
+            transform.localScale = new Vector3(scaleMultiplier, scaleMultiplier, scaleMultiplier);
             return false;
+
         } else {
             return true;
         }

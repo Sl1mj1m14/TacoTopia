@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 4051208094189366021}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -33.337845, y: 0.72271425, z: -5.0697613}
-  m_LocalScale: {x: 0.58, y: 0.58, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 8486744798335038348}
   - {fileID: 8486744796671440372}
@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb2bb184c38fbc4448d3785caca6661c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleMultiplier: 0.5
   xSpeed: 3
   posX: 37
   negX: -22
@@ -198,7 +199,7 @@ GameObject:
   - component: {fileID: 8486744796671440372}
   - component: {fileID: 8486744796671440379}
   - component: {fileID: 602270182026721377}
-  - component: {fileID: 4637043878944520592}
+  - component: {fileID: 4614547605064516666}
   m_Layer: 0
   m_Name: body
   m_TagString: Untagged
@@ -259,7 +260,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 6
   m_Sprite: {fileID: -2369867600477939372, guid: 9c9ead347f3f40e4283f9aeb1cc6f9ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -290,7 +291,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4637043878944520592
+--- !u!114 &4614547605064516666
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -299,9 +300,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8486744796671440373}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6e0a3e97ce26794e9b3491a5f25a196, type: 3}
+  m_Script: {fileID: 11500000, guid: c72bf12f0786639459ac17dad5698937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: -2369867600477939372, guid: 9c9ead347f3f40e4283f9aeb1cc6f9ab, type: 3}
 --- !u!1 &8486744796677243709
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +316,7 @@ GameObject:
   - component: {fileID: 8486744796677243708}
   - component: {fileID: 8486744796677243651}
   - component: {fileID: 3897699512198410275}
-  - component: {fileID: 1259570077189146765}
+  - component: {fileID: 7825496539428234535}
   m_Layer: 0
   m_Name: legs
   m_TagString: Untagged
@@ -374,7 +377,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 11
+  m_SortingOrder: 7
   m_Sprite: {fileID: -3188648870281413916, guid: 9c9ead347f3f40e4283f9aeb1cc6f9ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -405,7 +408,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1259570077189146765
+--- !u!114 &7825496539428234535
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -414,9 +417,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8486744796677243709}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6e0a3e97ce26794e9b3491a5f25a196, type: 3}
+  m_Script: {fileID: 11500000, guid: c72bf12f0786639459ac17dad5698937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 111648954039052082, guid: 1ef1c6db22b7bca40bb1f7ed4393e461, type: 3}
+  - {fileID: -5213736225766107966, guid: 1ef1c6db22b7bca40bb1f7ed4393e461, type: 3}
 --- !u!1 &8486744798189364688
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,7 +434,7 @@ GameObject:
   - component: {fileID: 8486744798189364695}
   - component: {fileID: 8486744798189364694}
   - component: {fileID: 7440727209779272316}
-  - component: {fileID: 277030221653166676}
+  - component: {fileID: 4672597747119524762}
   m_Layer: 0
   m_Name: shirt
   m_TagString: Untagged
@@ -489,7 +495,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 12
+  m_SortingOrder: 7
   m_Sprite: {fileID: 1631435219242977999, guid: 9c9ead347f3f40e4283f9aeb1cc6f9ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -520,7 +526,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &277030221653166676
+--- !u!114 &4672597747119524762
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -529,9 +535,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8486744798189364688}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6e0a3e97ce26794e9b3491a5f25a196, type: 3}
+  m_Script: {fileID: 11500000, guid: c72bf12f0786639459ac17dad5698937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 4102851767660153476, guid: 53a3f03b3bbc74948b0eec2f4c93098f, type: 3}
+  - {fileID: -8839907739959531493, guid: 53a3f03b3bbc74948b0eec2f4c93098f, type: 3}
+  - {fileID: -5772454888048399463, guid: 53a3f03b3bbc74948b0eec2f4c93098f, type: 3}
+  - {fileID: -5007037107781140813, guid: 53a3f03b3bbc74948b0eec2f4c93098f, type: 3}
 --- !u!1 &8486744798335038349
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,7 +614,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 15
+  m_SortingOrder: 8
   m_Sprite: {fileID: 7482667652216324306, guid: 30cae116f6a26c44f8f6d55cdb17d135, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -645,6 +656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8486744798504744302}
   - component: {fileID: 8486744798504744301}
+  - component: {fileID: 826741623091739068}
   m_Layer: 0
   m_Name: hair
   m_TagString: Untagged
@@ -705,7 +717,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 13
+  m_SortingOrder: 7
   m_Sprite: {fileID: 9042079437479353776, guid: db29251016e279a449d548080beb13e4, type: 3}
   m_Color: {r: 0.5935173, g: 0, b: 1, a: 1}
   m_FlipX: 0
@@ -717,6 +729,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &826741623091739068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8486744798504744303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c72bf12f0786639459ac17dad5698937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 174899437966103339, guid: a86de3c535b9ccc4d95e4f4b64b30b1e, type: 3}
+  - {fileID: -5045535011223827050, guid: db29251016e279a449d548080beb13e4, type: 3}
+  - {fileID: 9042079437479353776, guid: db29251016e279a449d548080beb13e4, type: 3}
+  - {fileID: -6914103119493876570, guid: db29251016e279a449d548080beb13e4, type: 3}
+  - {fileID: -115288615446566239, guid: db29251016e279a449d548080beb13e4, type: 3}
+  - {fileID: -6218579890368111124, guid: db29251016e279a449d548080beb13e4, type: 3}
 --- !u!1 &8486744798526098134
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,6 +758,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8486744798526098133}
   - component: {fileID: 8486744798526098132}
+  - component: {fileID: 5191835931467719556}
   m_Layer: 0
   m_Name: eyes
   m_TagString: Untagged
@@ -787,7 +819,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 11
+  m_SortingOrder: 7
   m_Sprite: {fileID: 975496377610015301, guid: 9c9ead347f3f40e4283f9aeb1cc6f9ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -799,3 +831,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5191835931467719556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8486744798526098134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c72bf12f0786639459ac17dad5698937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 975496377610015301, guid: 9c9ead347f3f40e4283f9aeb1cc6f9ab, type: 3}
+  - {fileID: 1147381239155910021, guid: db29251016e279a449d548080beb13e4, type: 3}
+  - {fileID: -3465951917655514925, guid: db29251016e279a449d548080beb13e4, type: 3}
+  - {fileID: 7731911182894376818, guid: db29251016e279a449d548080beb13e4, type: 3}
+  - {fileID: -6835207986360431776, guid: db29251016e279a449d548080beb13e4, type: 3}
