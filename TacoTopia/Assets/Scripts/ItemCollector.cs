@@ -7,7 +7,7 @@ using UnityEngine;
 public class ItemCollector : MonoBehaviour
 {
   
-    [SerializeField] private string[] itemTags;
+    private string[] itemTags;
     [SerializeField] private string[] enemyTags;
 
     public GameObject[] prefabs;
@@ -21,6 +21,12 @@ public class ItemCollector : MonoBehaviour
 
     private void Start() {
         inventory = GetComponent<Inventory>();
+
+        itemTags = new string[prefabs.Length];
+
+        for (int i = 0; i < prefabs.Length; i++) {
+            itemTags[i] = prefabs[i].name;
+        }
     }
 
     private void Update() {
