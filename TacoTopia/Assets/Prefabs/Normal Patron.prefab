@@ -190,7 +190,7 @@ MonoBehaviour:
   posX: 37
   negX: -22
   isAggressive: 0
-  aggressiveTimer: 2
+  aggressiveTimer: 30
   foodItems:
   - Taco
   foodItem: 

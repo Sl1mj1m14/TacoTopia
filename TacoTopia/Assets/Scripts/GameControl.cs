@@ -5,12 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour
 {
-    public GameObject player;
-    public string PLAYER_TAG = "Player";
+
+    private int sceneNumber;
+    private int levelBegin = 0;
+
+    public GameObject[] level1Prefabs;
+    public GameObject[] level1Patrons;
+    private Vector3[] level1Spawns;
+    private float[] level1PatronSpawns = new float[]{-2.5f, 15f, 33f};
+
+    public float itemSpawnTimerMax = 20.0f;
+    public float itemSpawnTimer = 0f;
+
+    private System.Random rand = new System.Random();
     
     void Awake()
     {
-        player = GameObject.FindWithTag(PLAYER_TAG);
         
         //Making sure this object is not duplicated when returning to menu
         if (GameObject.FindObjectsOfType<GameControl>().Length == 1)
@@ -21,15 +31,68 @@ public class GameControl : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    /*
-    * This method makes sure the player is inactive during the menu scene
-    */
+    void Start()
+    {
+        switch (sceneNumber)
+        {
+            case 2:
+
+                level1Spawns = new Vector3[level1Prefabs.Length];
+                
+                for (int i = 0; i < level1Prefabs.Length; i++) {
+                    level1Spawns[i] = GameObject.FindWithTag(level1Prefabs[i].name).transform.position;
+                }
+
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    void Update() 
+    {
+        switch (sceneNumber)
+        {
+            case 2:
+                
+                if (levelBegin == 1) itemSpawnTimer += Time.deltaTime;
+
+                if (itemSpawnTimer >= itemSpawnTimerMax) {
+
+                    int foodIndex = rand.Next(0,20);
+
+                    if (foodIndex >= 10) foodIndex = rand.Next(6,9);
+                    else if (foodIndex >= 4) foodIndex = rand.Next(2,5);
+                    else foodIndex = rand.Next(0,1);
+
+                    Instantiate (level1Prefabs[foodIndex],level1Spawns[foodIndex],Quaternion.identity);
+                    Debug.Log(level1Prefabs[foodIndex].name);
+
+                    itemSpawnTimer = 0;
+                }
+                
+                break;
+
+            default:
+                break;
+        }
+    }
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
+        sceneNumber = scene.buildIndex;
+    }
 
-        //if (scene.buildIndex != 0) player.SetActive(true);
+    public void SetLevelBegin(int num)
+    {
+        levelBegin = num;
+
+        if (num == 1) {
+            Instantiate (level1Patrons[0], new Vector3(-22f, level1PatronSpawns[0], 0), Quaternion.identity);
+        }
     }
 
 }

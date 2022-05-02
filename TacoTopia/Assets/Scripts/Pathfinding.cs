@@ -27,7 +27,7 @@ public class Pathfinding : MonoBehaviour
     private bool isInvincible = true;
 
     public bool isAggressive = false;
-    public int aggressiveTimer = 10;
+    public int aggressiveTimer = 30;
 
     private bool canAttack = false;
     private float attackCooldown = 0;

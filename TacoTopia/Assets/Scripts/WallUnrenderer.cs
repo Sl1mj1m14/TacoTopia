@@ -14,11 +14,14 @@ public class WallUnrenderer : MonoBehaviour
 
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.name == "Character") render.enabled = false;
+        if (collision.gameObject.name == "Character") {
+            render.enabled = false;
+            GameObject.Find("Game Control").GetComponent<GameControl>().SetLevelBegin(1);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.gameObject.name == "Character") render.enabled = true;
-        if (collision.tag == "Patron") Destroy(collision.gameObject);
+        //if (collision.tag == "Patron") Destroy(collision.gameObject);
     }
 }
