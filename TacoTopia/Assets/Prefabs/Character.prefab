@@ -420,6 +420,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ea097519aca55414587a49dc6e7810bd, type: 3}
   - {fileID: 21300000, guid: 56cca1dbfa9ebd443b567ff7a99d34df, type: 3}
   - {fileID: 21300000, guid: 1cd75bd9733de6346837c9d05374bf7f, type: 3}
+  - {fileID: 21300000, guid: a2e6deceb00427a4abf8a64a1096174d, type: 3}
+  - {fileID: 21300000, guid: 25253a4a28abe4f4483f9a5a0fb813ca, type: 3}
+  - {fileID: 21300000, guid: 9d32b7faf4c080d4c9b6c5afdbcbc079, type: 3}
+  - {fileID: 21300000, guid: a63e207e88a98344ba3274205c997c65, type: 3}
+  - {fileID: 21300000, guid: 3c774167be0c33a408cbb933377ab4b9, type: 3}
   scaleMultiplier: 1
 --- !u!1 &2136530198980801045
 GameObject:
@@ -842,6 +847,7 @@ MonoBehaviour:
   enemyTags:
   - Enemy
   - Patron
+  - Oven
   prefabs:
   - {fileID: 3208458929163727246, guid: c1f9609bcc73ef942bb85a0a5ab47816, type: 3}
   - {fileID: 2247178943976617919, guid: ea9e6f7ab5e6eda4881c7dbfbc13d5c7, type: 3}

@@ -171,6 +171,5 @@ public class ItemCollector : MonoBehaviour
     public GameObject[] GetPrefabs()
     {
         return prefabs;
-    }
-    
+    }  
 }

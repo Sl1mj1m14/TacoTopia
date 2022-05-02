@@ -132,15 +132,23 @@ public class Inventory : MonoBehaviour
     public void AddItemCheck(string item) {
 
         for (int i = 0; i < validItems.Length; i++) {
-            if (validItems[i] == null || validItems[i] == "Air") validItems[i] = item;
+            if (validItems[i] == null || validItems[i] == "Air") {
+                validItems[i] = item; 
+                return;
+            }
         }
     }
 
-    public void RemoveItemCheck(string item) {
+    public bool RemoveItemCheck(string item) {
 
         for (int i = 0; i < validItems.Length; i++) {
-            if (validItems[i] == item) validItems[i] = "Air";
+            if (validItems[i] == item) {
+                validItems[i] = "Air";
+                return true;
+            }
         }
+
+        return false;
     }
 
     /*
@@ -160,6 +168,11 @@ public class Inventory : MonoBehaviour
 
     public int GetInventory() {
         return INVENTORY_SIZE;
+    }
+
+    public string GetItemCheck(int index)
+    {
+        return validItems[index];
     }
 
 }
