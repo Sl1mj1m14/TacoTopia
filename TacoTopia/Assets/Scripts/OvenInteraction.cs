@@ -32,7 +32,18 @@ public class OvenInteraction : MonoBehaviour
     {
         if (!isStarted) ResetInventory();
 
-        for (int i = 0; i < 3; i++) inventory.RemoveItemCheck(inventory.GetItem(i));
+        //if (inventory.GetEmptySlots() < inventory.GetValidItemsAmount()) {
+            //for (int i = 0; i < 3; i++) {
+                //if (inventory.RemoveItemCheck(inventory.GetItem(i))) return;
+            //}
+        //}
+
+        for (int i = 0; i < 3; i++) {
+
+            if (inventory.GetEmptySlots() < inventory.GetValidItemsAmount())
+                inventory.RemoveItemCheck(inventory.GetItem(i));
+        }
+
 
         if (inventory.GetEmptySlots() <= 0) {
             Instantiate (taco, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 3, 0), Quaternion.identity);

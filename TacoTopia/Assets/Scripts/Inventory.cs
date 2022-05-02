@@ -175,4 +175,15 @@ public class Inventory : MonoBehaviour
         return validItems[index];
     }
 
+    public int GetValidItemsAmount()
+    {
+        int num = 0;
+        
+        foreach (string item in validItems) {
+            if (item != "Air" && item != null) num++;
+        }
+
+        return num;
+    }
+
 }
