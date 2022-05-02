@@ -26,8 +26,8 @@ public class Pathfinding : MonoBehaviour
 
     private bool isInvincible = true;
 
-    private bool isAggressive = false;
-    public int aggressiveTimer = 2;//10;
+    public bool isAggressive = false;
+    public int aggressiveTimer = 10;
 
     private bool canAttack = false;
     private float attackCooldown = 0;
@@ -35,7 +35,7 @@ public class Pathfinding : MonoBehaviour
     private float health = 50;
 
     public string[] foodItems;
-    private string foodItem;
+    public string foodItem;
 
     private System.Random rand = new System.Random();
 
@@ -76,6 +76,18 @@ public class Pathfinding : MonoBehaviour
 
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<CapsuleCollider2D>());
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),GameObject.Find("Level1Tables").GetComponent<Collider2D>());
+
+        if (inventory.GetItem(0) == foodItem) {
+            isAggressive = false;
+            isIdle = false;
+            idleTimer = 0;
+
+            xTarget = negX - 10;
+            dir = -1;
+
+            if (Target()) Destroy(this.gameObject);
+            //else return;
+        }
 
         if (isAggressive) {
 
