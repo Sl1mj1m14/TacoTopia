@@ -77,6 +77,16 @@ public class Pathfinding : MonoBehaviour
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<CapsuleCollider2D>());
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),GameObject.Find("Level1Tables").GetComponent<Collider2D>());
 
+        GameObject[] ignoreCollisions = GameObject.FindGameObjectsWithTag("Patron");
+
+        for (int i = 0; i < ignoreCollisions.Length; i++) {
+
+            //if (ignoreCollisions[i].name != gameObject.name) {
+
+                Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),ignoreCollisions[i].GetComponent<BoxCollider2D>());
+            //}
+        }
+
         if (inventory.GetItem(0) == foodItem) {
             isAggressive = false;
             isIdle = false;

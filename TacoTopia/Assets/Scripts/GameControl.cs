@@ -17,6 +17,9 @@ public class GameControl : MonoBehaviour
     public float itemSpawnTimerMax = 20.0f;
     public float itemSpawnTimer = 0f;
 
+    public float entitySpawnTimerMax = 60.0f;
+    public float entitySpawnTimer = 0f;
+
     private System.Random rand = new System.Random();
     
     void Awake()
@@ -33,6 +36,53 @@ public class GameControl : MonoBehaviour
 
     void Start()
     {
+        
+    }
+
+    void Update() 
+    {
+        switch (sceneNumber)
+        {
+            case 2:
+                
+                if (levelBegin == 1) {
+                    itemSpawnTimer += Time.deltaTime;
+                    entitySpawnTimer += Time.deltaTime;
+                }
+
+                if (itemSpawnTimer >= itemSpawnTimerMax) {
+
+                    int foodIndex = rand.Next(0,20);
+
+                    if (foodIndex >= 10) foodIndex = rand.Next(6,9);
+                    else if (foodIndex >= 4) foodIndex = rand.Next(2,5);
+                    else foodIndex = rand.Next(0,1);
+
+                    Instantiate (level1Prefabs[foodIndex],level1Spawns[foodIndex],Quaternion.identity);
+                    Debug.Log(level1Prefabs[foodIndex].name);
+
+                    itemSpawnTimer = 0;
+                }
+
+                if (entitySpawnTimer >= entitySpawnTimerMax) {
+                    Instantiate (level1Patrons[0], new Vector3(-22f, level1PatronSpawns[rand.Next(0,2)], 0), Quaternion.identity);
+
+                    entitySpawnTimer = 0;
+                }
+                
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+        Debug.Log(mode);
+        sceneNumber = scene.buildIndex;
+
         switch (sceneNumber)
         {
             case 2:
@@ -50,49 +100,13 @@ public class GameControl : MonoBehaviour
         }
     }
 
-    void Update() 
-    {
-        switch (sceneNumber)
-        {
-            case 2:
-                
-                if (levelBegin == 1) itemSpawnTimer += Time.deltaTime;
-
-                if (itemSpawnTimer >= itemSpawnTimerMax) {
-
-                    int foodIndex = rand.Next(0,20);
-
-                    if (foodIndex >= 10) foodIndex = rand.Next(6,9);
-                    else if (foodIndex >= 4) foodIndex = rand.Next(2,5);
-                    else foodIndex = rand.Next(0,1);
-
-                    Instantiate (level1Prefabs[foodIndex],level1Spawns[foodIndex],Quaternion.identity);
-                    Debug.Log(level1Prefabs[foodIndex].name);
-
-                    itemSpawnTimer = 0;
-                }
-                
-                break;
-
-            default:
-                break;
-        }
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log("OnSceneLoaded: " + scene.name);
-        Debug.Log(mode);
-        sceneNumber = scene.buildIndex;
-    }
-
     public void SetLevelBegin(int num)
     {
-        levelBegin = num;
-
-        if (num == 1) {
+        
+        if (levelBegin != 1 && num == 1) {
             Instantiate (level1Patrons[0], new Vector3(-22f, level1PatronSpawns[0], 0), Quaternion.identity);
         }
-    }
 
+        levelBegin = num;
+    }
 }

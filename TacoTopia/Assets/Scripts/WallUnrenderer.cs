@@ -16,7 +16,7 @@ public class WallUnrenderer : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.name == "Character") {
             render.enabled = false;
-            GameObject.Find("Game Control").GetComponent<GameControl>().SetLevelBegin(1);
+            GameObject.Find("GameControl").GetComponent<GameControl>().SetLevelBegin(1);
         }
     }
 

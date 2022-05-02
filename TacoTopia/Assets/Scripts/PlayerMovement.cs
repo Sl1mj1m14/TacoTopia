@@ -64,6 +64,8 @@ public class PlayerMovement : MonoBehaviour
         float direction = Input.GetAxis("Horizontal");
         
         if(sceneNumber >= 2) {
+
+            Physics2D.IgnoreCollision(GetComponent<CapsuleCollider2D>(),GameObject.Find("Level1EnemyFloors").GetComponent<Collider2D>());
         
             //Checking for left/right and a/d key input, and moving the respective direction
             body.velocity = new Vector2(direction * xSpeed, body.velocity.y);
