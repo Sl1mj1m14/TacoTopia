@@ -13,7 +13,9 @@ public class ItemCollector : MonoBehaviour
     public GameObject[] prefabs;
     private TraversableQueue<Collider2D> itemColliders = new TraversableQueue<Collider2D>();
     private TraversableQueue<Collider2D> enemyColliders = new TraversableQueue<Collider2D>();
+
     private Inventory inventory;
+    private PlayerMovement playerMovement;
 
     private int slot = 0;
 
@@ -21,6 +23,7 @@ public class ItemCollector : MonoBehaviour
 
     private void Start() {
         inventory = GetComponent<Inventory>();
+        playerMovement = GetComponent<PlayerMovement>();
 
         itemTags = new string[prefabs.Length];
 
@@ -37,7 +40,9 @@ public class ItemCollector : MonoBehaviour
             if (!Give()) Drop();
         }
 
-        if (Input.GetKeyDown(KeyCode.X)) Attack();   
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) Attack();
+
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) Heal();      
 
         slot = SlotInput();
     
@@ -135,7 +140,11 @@ public class ItemCollector : MonoBehaviour
 
             case "Pan":
                 enemy.Damage(10);
-                break;        
+                break;
+
+            case "Fork":
+                enemy.Damage(10);
+                break;         
 
             default:
                 enemy.Damage(5);
@@ -144,17 +153,33 @@ public class ItemCollector : MonoBehaviour
         Debug.Log(weapon);
     }
 
+    private void Heal()
+    {
+        string food = inventory.GetItem(slot);
+
+        switch (food)
+        {
+            case "Taco":
+                playerMovement.Heal(10f);
+                inventory.RemoveItem(slot);
+                break;
+
+            default:
+                break;
+        }
+    }
+
     public int SlotInput()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) return 0;
         if (Input.GetKeyDown(KeyCode.Alpha2)) return 1;
         if (Input.GetKeyDown(KeyCode.Alpha3)) return 2;
-        if (Input.GetKeyDown(KeyCode.Alpha4)) return 3;
-        if (Input.GetKeyDown(KeyCode.Alpha5)) return 4;
-        if (Input.GetKeyDown(KeyCode.Alpha6)) return 5;
-        if (Input.GetKeyDown(KeyCode.Alpha7)) return 6;
-        if (Input.GetKeyDown(KeyCode.Alpha8)) return 7;
-        if (Input.GetKeyDown(KeyCode.Alpha9)) return 8;
+        //if (Input.GetKeyDown(KeyCode.Alpha4)) return 3;
+        //if (Input.GetKeyDown(KeyCode.Alpha5)) return 4;
+        //if (Input.GetKeyDown(KeyCode.Alpha6)) return 5;
+        //if (Input.GetKeyDown(KeyCode.Alpha7)) return 6;
+        //if (Input.GetKeyDown(KeyCode.Alpha8)) return 7;
+        //if (Input.GetKeyDown(KeyCode.Alpha9)) return 8;
         return slot;
     }
 

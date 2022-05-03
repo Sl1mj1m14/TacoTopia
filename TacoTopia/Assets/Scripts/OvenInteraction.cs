@@ -38,11 +38,11 @@ public class OvenInteraction : MonoBehaviour
             //}
         //}
 
-        for (int i = 0; i < 3; i++) {
+        //for (int i = 0; i < 3; i++) {
 
             if (inventory.GetEmptySlots() < inventory.GetValidItemsAmount())
-                inventory.RemoveItemCheck(inventory.GetItem(i));
-        }
+                inventory.RemoveItemCheck(inventory.GetItem(Mathf.Abs(inventory.GetEmptySlots()-2)));
+        //}
 
 
         if (inventory.GetEmptySlots() <= 0) {

@@ -17,7 +17,7 @@ public class GameControl : MonoBehaviour
     public float itemSpawnTimerMax = 20.0f;
     public float itemSpawnTimer = 0f;
 
-    public float entitySpawnTimerMax = 60.0f;
+    public float entitySpawnTimerMax = 180.0f;
     public float entitySpawnTimer = 0f;
 
     private System.Random rand = new System.Random();
@@ -44,6 +44,8 @@ public class GameControl : MonoBehaviour
         switch (sceneNumber)
         {
             case 2:
+                
+                GameObject.Find("Inventory").GetComponent<SpriteRenderer>().enabled = true;
                 
                 if (levelBegin == 1) {
                     itemSpawnTimer += Time.deltaTime;
@@ -73,6 +75,8 @@ public class GameControl : MonoBehaviour
                 break;
 
             default:
+
+                GameObject.Find("Inventory").GetComponent<SpriteRenderer>().enabled = false;
                 break;
         }
     }

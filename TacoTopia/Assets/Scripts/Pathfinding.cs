@@ -25,6 +25,7 @@ public class Pathfinding : MonoBehaviour
     private float idleAmount,idleTimer;
 
     private bool isInvincible = true;
+    public bool isSatisfied = false;
 
     public bool isAggressive = false;
     public int aggressiveTimer = 30;
@@ -87,7 +88,8 @@ public class Pathfinding : MonoBehaviour
             //}
         }
 
-        if (inventory.GetItem(0) == foodItem) {
+        if (inventory.GetItem(0) == foodItem || isSatisfied == true) {
+            isSatisfied = true;
             isAggressive = false;
             isIdle = false;
             idleTimer = 0;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Heart : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class Heart : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         heartIndex = gameObject.name[5] - '0'; 
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     // Update is called once per frame
@@ -62,5 +65,11 @@ public class Heart : MonoBehaviour
             spriteRenderer.sprite = heartStages[0];
 
         }
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex < 2) spriteRenderer.enabled = false;
+        else spriteRenderer.enabled = true;
     }
 }

@@ -119,6 +119,12 @@ public class PlayerMovement : MonoBehaviour
         health -= damage;
     }
 
+    public void Heal(float heal)
+    {
+        health += heal;
+        if (health > maxHealth) health = maxHealth;
+    }
+
     public float GetHealth()
     {
         return health;
