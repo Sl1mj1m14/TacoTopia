@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class ItemCollector : MonoBehaviour
 {
@@ -17,13 +18,19 @@ public class ItemCollector : MonoBehaviour
     private Inventory inventory;
     private PlayerMovement playerMovement;
 
+    private AudioSource audioSource;
+    public AudioClip clip;
+
     private int slot = 0;
+
+    private float attackCooldown = 0;
 
     private System.Random rand = new System.Random();
 
     private void Start() {
         inventory = GetComponent<Inventory>();
         playerMovement = GetComponent<PlayerMovement>();
+        audioSource = GetComponent<AudioSource>();
 
         itemTags = new string[prefabs.Length];
 
@@ -34,6 +41,8 @@ public class ItemCollector : MonoBehaviour
 
     private void Update() {
 
+        if (attackCooldown > 0) attackCooldown -= Time.deltaTime;
+        
         if (!itemColliders.IsEmpty() && Input.GetKeyDown(KeyCode.E)) PickUp();
         
         if (Input.GetKeyDown(KeyCode.Q)) {
@@ -125,6 +134,9 @@ public class ItemCollector : MonoBehaviour
     }
 
     private void Attack() {
+
+        if (attackCooldown > 0) return;
+
         string weapon = inventory.GetItem(slot);
         Pathfinding enemy = enemyColliders.Peek().GetComponent<Pathfinding>();
 
@@ -150,7 +162,8 @@ public class ItemCollector : MonoBehaviour
                 enemy.Damage(5);
                 break;
         }
-        Debug.Log(weapon);
+
+        attackCooldown = 2.0f;
     }
 
     private void Heal()
@@ -162,6 +175,8 @@ public class ItemCollector : MonoBehaviour
             case "Taco":
                 playerMovement.Heal(10f);
                 inventory.RemoveItem(slot);
+                audioSource.clip = clip;
+                audioSource.Play();
                 break;
 
             default:

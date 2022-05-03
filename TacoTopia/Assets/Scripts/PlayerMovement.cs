@@ -1,6 +1,7 @@
 //Created by Keiler
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     private CapsuleCollider2D collision;
     private Animator animate;
+
+    private AudioSource audioSource;
+    public AudioClip clip;
 
     private int sceneNumber;
 
@@ -38,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         collision = GetComponent<CapsuleCollider2D>();
         animate = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         //Caling a method to determine player spawn position based on scene
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -116,7 +121,12 @@ public class PlayerMovement : MonoBehaviour
 
     //Subtracts the damage from player health
     public void Damage(float damage) {
+
+        body.velocity = new Vector2(body.velocity.x, body.velocity.y + 10);
         health -= damage;
+
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 
     public void Heal(float heal)

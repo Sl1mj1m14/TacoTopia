@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class OvenInteraction : MonoBehaviour
 {
 
     
     public GameObject[] itemNames;
+    public AudioClip clip;
+
     private Inventory inventory;
+    private AudioSource audioSource;
 
     public GameObject taco;
 
@@ -20,6 +24,7 @@ public class OvenInteraction : MonoBehaviour
     void Start()
     {
         inventory = GetComponent<Inventory>();
+        audioSource = GetComponent<AudioSource>();
 
         itemNames = GameObject.Find("GameControl").GetComponent<GameControl>().level1Prefabs;
 
@@ -40,8 +45,11 @@ public class OvenInteraction : MonoBehaviour
 
         //for (int i = 0; i < 3; i++) {
 
-            if (inventory.GetEmptySlots() < inventory.GetValidItemsAmount())
-                inventory.RemoveItemCheck(inventory.GetItem(Mathf.Abs(inventory.GetEmptySlots()-2)));
+        if (inventory.GetEmptySlots() < inventory.GetValidItemsAmount()) {
+            inventory.RemoveItemCheck(inventory.GetItem(Mathf.Abs(inventory.GetEmptySlots()-2)));
+            audioSource.clip = clip;
+            audioSource.Play();
+        }
         //}
 
 

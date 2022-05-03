@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Pathfinding : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class Pathfinding : MonoBehaviour
     private static readonly string PLAYER_REFERENCE = "Player";
     private Rigidbody2D body;
     private BoxCollider2D physicsCollision;
+
+    private AudioSource audioSource;
+    public AudioClip clip;
 
     private Inventory inventory;
     private GameObject[] prefabs;
@@ -48,6 +52,7 @@ public class Pathfinding : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         physicsCollision = GetComponent<BoxCollider2D>();
         inventory = GetComponent<Inventory>();
+        audioSource = GetComponent<AudioSource>();
 
         prefabs = GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<ItemCollector>().GetPrefabs();
 
@@ -62,6 +67,7 @@ public class Pathfinding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (inventory.AddItem("Fork")) {
             inventory.SwitchItems(0,1);
             inventory.AddItemCheck(foodItem);
@@ -156,6 +162,9 @@ public class Pathfinding : MonoBehaviour
             body.velocity = new Vector2(body.velocity.x, body.velocity.y + 10);
 
         health -= damage;
+
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 
     //Turns the entire inventory into items
