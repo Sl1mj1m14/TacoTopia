@@ -1,11 +1,12 @@
 //created by Devin
-//last updated 4/30/2022 by Devin
+//last updated 5/3/2022 by Devin
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LoginSystem : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class LoginSystem : MonoBehaviour
 
     bool isWorking = false;
     bool registrationCompleted = false;
-    bool isLoggedIn = false;
+    public bool isLoggedIn = false;
 
     public Button PlayButton;
     public Button CharacterButton;
@@ -30,6 +31,34 @@ public class LoginSystem : MonoBehaviour
     public string userName = "";
 
     string rootURL = "https://tacotopia.org/";
+
+    void Awake()
+    {
+        //Making sure this object is not duplicated when returning to menu
+        if (GameObject.FindObjectsOfType<GameControl>().Length == 1)
+            DontDestroyOnLoad(gameObject);
+        else 
+            Destroy(this.gameObject);
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+
+        if(scene.name == "Menu")
+        {
+            if(isLoggedIn == true)
+            {
+                PlayButton = GameObject.Find("PlayButton").GetComponent<Button>();
+                CharacterButton = GameObject.Find("CharacterButton").GetComponent<Button>();
+
+                PlayButton.interactable = true;
+                CharacterButton.interactable = true;
+            }
+        }
+    }
+
 
     void OnGUI()
     {
@@ -47,14 +76,20 @@ public class LoginSystem : MonoBehaviour
             }
         }
 
-        GUI.Label(new Rect(55, 5, 1000, 500), "Status: " + (isLoggedIn ? "Logged-in Username: " + userName : "Logged-out"));
+        GUI.Label(new Rect(555, 5, 1000, 500), "Status: " + (isLoggedIn ? "Logged-in Username: " + userName : "Logged-out"));
         if (isLoggedIn)
         {
-            if (GUI.Button(new Rect(55, 30, 100, 25), "Log Out"))
+            if (GUI.Button(new Rect(600, 30, 100, 25), "Log Out"))
             {
                 isLoggedIn = false;
                 userName = "";
                 currentWindow = CurrentWindow.Login;
+
+                SceneManager.LoadScene(0);
+
+                PlayButton = GameObject.Find("PlayButton").GetComponent<Button>();
+                CharacterButton = GameObject.Find("CharacterButton").GetComponent<Button>();
+
                 PlayButton.interactable = false;
                 CharacterButton.interactable = false;
             }
@@ -214,6 +249,10 @@ public class LoginSystem : MonoBehaviour
                     string[] dataChunks = responseText.Split('|');
                     userName = dataChunks[1];
                     isLoggedIn = true;
+
+                    PlayButton = GameObject.Find("PlayButton").GetComponent<Button>();
+                    CharacterButton = GameObject.Find("CharacterButton").GetComponent<Button>();
+
                     PlayButton.interactable = true;
                     CharacterButton.interactable = true;
 
