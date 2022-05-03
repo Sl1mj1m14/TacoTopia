@@ -163,7 +163,7 @@ public class ItemCollector : MonoBehaviour
                 break;
         }
 
-        attackCooldown = 2.0f;
+        attackCooldown = 0.5f;
     }
 
     private void Heal()
