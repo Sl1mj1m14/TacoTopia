@@ -193,7 +193,7 @@ MonoBehaviour:
   negX: -22
   isSatisfied: 0
   isAggressive: 0
-  aggressiveTimer: 30
+  aggressiveTimer: 100
   canAttack: 0
   foodItems:
   - Taco

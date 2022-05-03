@@ -32,7 +32,7 @@ public class Pathfinding : MonoBehaviour
     public bool isSatisfied = false;
 
     public bool isAggressive = false;
-    public int aggressiveTimer = 30;
+    public int aggressiveTimer = 100;
 
     public bool canAttack = false;
     private float attackCooldown = 0;

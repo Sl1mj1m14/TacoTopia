@@ -41,6 +41,8 @@ public class GameControl : MonoBehaviour
 
     void Update() 
     {
+        Debug.Log(Random.Range(0,level1Prefabs.Length-1));
+        
         switch (sceneNumber)
         {
             case 2:
@@ -54,11 +56,11 @@ public class GameControl : MonoBehaviour
 
                 if (itemSpawnTimer >= itemSpawnTimerMax) {
 
-                    int foodIndex = rand.Next(0,20);
+                    int foodIndex = Random.Range(0,level1Prefabs.Length-1);
 
-                    if (foodIndex >= 10) foodIndex = rand.Next(6,9);
-                    else if (foodIndex >= 4) foodIndex = rand.Next(2,5);
-                    else foodIndex = rand.Next(0,1);
+                    //if (foodIndex >= 10) foodIndex = Random.Range(6,9);
+                    //else if (foodIndex >= 4) foodIndex = Random.Range(2,5);
+                    //else foodIndex = Random.Range(0,1);
 
                     Instantiate (level1Prefabs[foodIndex],level1Spawns[foodIndex],Quaternion.identity);
                     Debug.Log(level1Prefabs[foodIndex].name);
