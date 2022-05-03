@@ -30,7 +30,7 @@ public class Pathfinding : MonoBehaviour
     public bool isAggressive = false;
     public int aggressiveTimer = 30;
 
-    private bool canAttack = false;
+    public bool canAttack = false;
     private float attackCooldown = 0;
 
     private float health = 50;
@@ -226,15 +226,5 @@ public class Pathfinding : MonoBehaviour
     public int RandX()
     {
         return rand.Next(negX,posX);       
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "Character") canAttack = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "Character") canAttack = false;
     }
 }

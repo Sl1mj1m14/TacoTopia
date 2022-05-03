@@ -189,8 +189,10 @@ MonoBehaviour:
   xSpeed: 3
   posX: 37
   negX: -22
+  isSatisfied: 0
   isAggressive: 0
   aggressiveTimer: 30
+  canAttack: 0
   foodItems:
   - Taco
   foodItem: 
@@ -397,6 +399,8 @@ GameObject:
   - component: {fileID: 8486744796671440379}
   - component: {fileID: 602270182026721377}
   - component: {fileID: 4614547605064516666}
+  - component: {fileID: 2236337614804848526}
+  - component: {fileID: 8036927088369920188}
   m_Layer: 0
   m_Name: body
   m_TagString: Untagged
@@ -502,6 +506,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprites:
   - {fileID: -2369867600477939372, guid: 9c9ead347f3f40e4283f9aeb1cc6f9ab, type: 3}
+--- !u!58 &2236337614804848526
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8486744796671440373}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.45
+--- !u!114 &8036927088369920188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8486744796671440373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b064455a3f0db24d84a53bdceabc7c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8486744796677243709
 GameObject:
   m_ObjectHideFlags: 0
