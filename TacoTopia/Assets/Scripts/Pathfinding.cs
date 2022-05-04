@@ -21,7 +21,7 @@ public class Pathfinding : MonoBehaviour
     [SerializeField] private float xSpeed = 3;
 
     [SerializeField] public int posX,negX;
-    private int xTarget,dir;
+    [SerializeField] private int xTarget,dir;
 
     private bool isIdle = false;
     private float idleAmount,idleTimer;
@@ -57,7 +57,8 @@ public class Pathfinding : MonoBehaviour
         prefabs = GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<ItemCollector>().GetPrefabs();
 
         //Setting initial pathfinding target and setting idle timer to 0
-        xTarget = RandX();
+        if (gameObject.name != "Final Patron(Clone)") xTarget = RandX();
+        else xTarget = posX;
         if (xTarget < gameObject.transform.position.x) dir = -1; 
         else dir = 1;
         idleTimer = 0;
@@ -69,6 +70,11 @@ public class Pathfinding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        //if (gameObject.name == "Final Patron(Clone)" && gameObject.transform.position.x < posX) {
+            //body.velocity = new Vector2(xSpeed, body.velocity.y);
+            //transform.localScale = new Vector3(scaleMultiplier, scaleMultiplier, scaleMultiplier);
+        //}       
         
         //Adding a fork as a weapon to the enemy and creating a valid item check
         //based on the food item
@@ -99,6 +105,11 @@ public class Pathfinding : MonoBehaviour
 
         //Checking if the enemy is satisfied, if so travel out of restaurant and despawn
         if (inventory.GetItem(0) == foodItem || isSatisfied == true) {
+
+            if (gameObject.name == "Final Patron(Clone)") {
+                Instantiate(prefabs[1], gameObject.transform.position, Quaternion.identity);
+                GameObject.Find("GameControl").GetComponent<GameControl>().SetLevelBegin(2);
+            }
             isSatisfied = true;
             isAggressive = false;
             isIdle = false;
@@ -107,7 +118,10 @@ public class Pathfinding : MonoBehaviour
             xTarget = negX - 10;
             dir = -1;
 
-            if (Target()) Destroy(this.gameObject);
+            if (Target()) {
+                GameObject.Find("GameControl").GetComponent<GameControl>().level1Satisfaction++;
+                Destroy(this.gameObject);
+            }
             //else return;
         }
 
@@ -143,11 +157,11 @@ public class Pathfinding : MonoBehaviour
                 }
             }
 
-        } else {
+        } else if (!isSatisfied) {
 
             //Checking if a valid target has been reached, if so either idle
             //or travel to new target
-            if (Target()) {
+            if (Target() && gameObject.name != "Final Patron(Clone)") {
 
                 xTarget = RandX();
 

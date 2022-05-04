@@ -14,6 +14,10 @@ public class GameControl : MonoBehaviour
     private Vector3[] level1Spawns;
     private float[] level1PatronSpawns = new float[]{-2.5f, 15f, 33f};
 
+
+    public int level1Satisfaction = 0;
+    private bool isSatisfactionSpawned = false;
+
     public float itemSpawnTimerMax = 20.0f;
     public float itemSpawnTimer = 0f;
 
@@ -49,12 +53,24 @@ public class GameControl : MonoBehaviour
                 
                 //Enables the rendering of player inventory
                 GameObject.Find("Inventory").GetComponent<SpriteRenderer>().enabled = true;
+
+                if (level1Satisfaction >= 1 && !isSatisfactionSpawned) {
+                    Instantiate (level1Patrons[1], new Vector3(-22f, level1PatronSpawns[0], 0), Quaternion.identity);
+                    isSatisfactionSpawned = true;
+                }
                 
                 //Starts increasing the spawning timers for enemies and items
                 //Starts after player enters building
                 if (levelBegin == 1) {
                     itemSpawnTimer += Time.deltaTime;
                     entitySpawnTimer += Time.deltaTime;
+                } else if (levelBegin == 2) {
+
+                    GameObject[] satisfaction = GameObject.FindGameObjectsWithTag("Patron");
+
+                    foreach (GameObject patron in satisfaction) patron.GetComponent<Pathfinding>().isSatisfied = true;
+
+                    break;
                 }
 
                 //Spawns an item at a restock location

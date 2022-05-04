@@ -56,5 +56,9 @@ MonoBehaviour:
   - {fileID: 4348781691197939593, guid: 2751e1260d4c3454ca4915a3fa97b537, type: 3}
   level1Patrons:
   - {fileID: 4051208094189366021, guid: 21b8de93e43f94a4fa7ac6f5f2240770, type: 3}
+  - {fileID: 8607902404738063551, guid: 09f6b908fae30c742b4809f36bf7ced6, type: 3}
+  level1Satisfaction: 0
   itemSpawnTimerMax: 20
   itemSpawnTimer: 0
+  entitySpawnTimerMax: 180
+  entitySpawnTimer: 0

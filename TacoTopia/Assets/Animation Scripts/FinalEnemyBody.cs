@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBody : MonoBehaviour
+public class FinalEnemyBody : MonoBehaviour
 {
 
     private Animator animator;
@@ -28,9 +28,9 @@ public class EnemyBody : MonoBehaviour
             animator.SetInteger("Option", option);
         }
 
-        if (gameObject.name != "eyes" && gameObject.name != "body" && gameObject.transform.parent.name != "Final Patron(Clone)") {
-            spriteRenderer.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
-        }
+        //if (gameObject.name != "eyes" && gameObject.name != "body") {
+            //spriteRenderer.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        //}
         
     }
 

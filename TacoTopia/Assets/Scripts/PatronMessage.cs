@@ -29,7 +29,7 @@ public class PatronMessage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pathfinding.isAggressive) spriteRenderer.enabled = false;
+        if (pathfinding.isAggressive || pathfinding.isSatisfied) spriteRenderer.enabled = false;
         else spriteRenderer.enabled = true;
         
         if (gameObject.name == "MessageItem") {
