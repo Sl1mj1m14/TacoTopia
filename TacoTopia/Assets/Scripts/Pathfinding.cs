@@ -90,6 +90,7 @@ public class Pathfinding : MonoBehaviour
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),
             GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<CapsuleCollider2D>());
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),GameObject.Find("Level1Tables").GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),GameObject.Find("Level1KitchenObjects").GetComponent<Collider2D>());
 
         GameObject[] ignoreCollisions = GameObject.FindGameObjectsWithTag("Patron");
 

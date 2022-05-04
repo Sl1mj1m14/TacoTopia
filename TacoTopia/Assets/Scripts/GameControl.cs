@@ -39,7 +39,7 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update() 
     {
-        Debug.Log(level1Prefabs[Random.Range(0,level1Prefabs.Length)].name);
+        //Debug.Log(level1Prefabs[Random.Range(0,level1Prefabs.Length)].name);
         
         
         //Runs entity and item spawning for level 1
