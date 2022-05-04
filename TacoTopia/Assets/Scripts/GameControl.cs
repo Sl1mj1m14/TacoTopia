@@ -39,6 +39,8 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update() 
     {
+        Debug.Log(level1Prefabs[Random.Range(0,level1Prefabs.Length)].name);
+        
         
         //Runs entity and item spawning for level 1
         switch (sceneNumber)
@@ -59,7 +61,7 @@ public class GameControl : MonoBehaviour
                 if (itemSpawnTimer >= itemSpawnTimerMax) {
 
                     //Picking a random food item to refill
-                    int foodIndex = Random.Range(0,level1Prefabs.Length-1);
+                    int foodIndex = Random.Range(0,level1Prefabs.Length);
 
                     //if (foodIndex >= 10) foodIndex = Random.Range(6,9);
                     //else if (foodIndex >= 4) foodIndex = Random.Range(2,5);
@@ -67,7 +69,6 @@ public class GameControl : MonoBehaviour
 
                     //Creating the food item
                     Instantiate (level1Prefabs[foodIndex],level1Spawns[foodIndex],Quaternion.identity);
-                    Debug.Log(level1Prefabs[foodIndex].name);
 
                     //Resetting the food item timer
                     itemSpawnTimer = 0;

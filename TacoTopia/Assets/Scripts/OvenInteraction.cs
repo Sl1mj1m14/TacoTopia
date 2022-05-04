@@ -61,7 +61,7 @@ public class OvenInteraction : MonoBehaviour
         
         for (int i = 0; i < 3; i++) {
             inventory.RemoveItem(i);
-            inventory.AddItemCheck(itemNames[Random.Range(0,itemNames.Length-1)].name);
+            inventory.AddItemCheck(itemNames[Random.Range(0,itemNames.Length)].name);
         }
     }
 
