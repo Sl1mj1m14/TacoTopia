@@ -35,24 +35,15 @@ public class OvenInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (!isStarted) ResetInventory();
-
-        //if (inventory.GetEmptySlots() < inventory.GetValidItemsAmount()) {
-            //for (int i = 0; i < 3; i++) {
-                //if (inventory.RemoveItemCheck(inventory.GetItem(i))) return;
-            //}
-        //}
-
-        //for (int i = 0; i < 3; i++) {
 
         if (inventory.GetEmptySlots() < inventory.GetValidItemsAmount()) {
             inventory.RemoveItemCheck(inventory.GetItem(Mathf.Abs(inventory.GetEmptySlots()-2)));
             audioSource.clip = clip;
             audioSource.Play();
         }
-        //}
-
-
+        
         if (inventory.GetEmptySlots() <= 0) {
             Instantiate (taco, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 3, 0), Quaternion.identity);
             ResetInventory();
@@ -60,7 +51,7 @@ public class OvenInteraction : MonoBehaviour
 
         isStarted = true;
 
-        Debug.Log("1: "+inventory.GetItemCheck(0)+" 2: "+inventory.GetItemCheck(1)+" 3: "+inventory.GetItemCheck(2));
+        //Debug.Log("1: "+inventory.GetItemCheck(0)+" 2: "+inventory.GetItemCheck(1)+" 3: "+inventory.GetItemCheck(2));
         //Debug.Log(itemNames[Random.Range(0,itemNames.Length-1)].name);
     }
 
