@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class MainHand : MonoBehaviour
 {
-    
-    //public string ENTITY_REFERENCE = "Player";
 
     [SerializeField] private Sprite[] itemSprites;
     [SerializeField] private float scaleMultiplier;
@@ -21,6 +19,7 @@ public class MainHand : MonoBehaviour
         inventory = gameObject.transform.parent.gameObject.GetComponent<Inventory>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         
+        //Copying the main hand from the character if not a character object
         if (gameObject.transform.parent.gameObject.name != "Character") {
             itemSprites = GameObject.Find("Character").transform.GetChild(0).GetComponent<MainHand>().GetSprites();
         } else {
@@ -56,6 +55,8 @@ public class MainHand : MonoBehaviour
 
     }
 
+    //Returns a list of all item sprites
+    //Used by main hand objects of enemies
     public Sprite[] GetSprites() {
 
         return itemSprites;

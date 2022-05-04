@@ -1,5 +1,5 @@
 //Created by Keiler
-//Last edited on 4/5/22 by Andrew Roby
+//Last edited by Keiler
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -119,6 +119,9 @@ public class Inventory : MonoBehaviour
 
     }
 
+    /*
+    * This method checks a potential item to add against a list of valid items
+    */
     public bool ItemCheck(string item) {
         if (validItems[0] == null) return true;
 
@@ -129,6 +132,9 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
+    /*
+    * This method adds a check for a valid item
+    */
     public void AddItemCheck(string item) {
 
         for (int i = 0; i < validItems.Length; i++) {
@@ -139,6 +145,9 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    /*
+    * This method removes a check for a valid item
+    */
     public bool RemoveItemCheck(string item) {
 
         for (int i = 0; i < validItems.Length; i++) {
@@ -166,15 +175,18 @@ public class Inventory : MonoBehaviour
 
     }
 
+    //Returns the inventory size
     public int GetInventory() {
         return INVENTORY_SIZE;
     }
 
+    //Returns an item check specified by the index
     public string GetItemCheck(int index)
     {
         return validItems[index];
     }
 
+    //Returns the amount of valid items
     public int GetValidItemsAmount()
     {
         int num = 0;

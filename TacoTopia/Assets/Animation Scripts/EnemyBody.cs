@@ -16,6 +16,7 @@ public class EnemyBody : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Assigning game components
         body = gameObject.transform.parent.GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 

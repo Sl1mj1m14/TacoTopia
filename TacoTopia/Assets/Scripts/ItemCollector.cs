@@ -27,11 +27,16 @@ public class ItemCollector : MonoBehaviour
 
     private System.Random rand = new System.Random();
 
+    // Start is called before the first frame update
     private void Start() {
+
+        //Assigning game components
         inventory = GetComponent<Inventory>();
         playerMovement = GetComponent<PlayerMovement>();
         audioSource = GetComponent<AudioSource>();
 
+        //Creating a list of valid item tags that the player can
+        //interact with
         itemTags = new string[prefabs.Length];
 
         for (int i = 0; i < prefabs.Length; i++) {
@@ -39,12 +44,16 @@ public class ItemCollector : MonoBehaviour
         }
     }
 
+    // Update is called once per frame
+    //Runs button input checks to determine player action
     private void Update() {
 
         if (attackCooldown > 0) attackCooldown -= Time.deltaTime;
         
         if (!itemColliders.IsEmpty() && Input.GetKeyDown(KeyCode.E)) PickUp();
         
+        //First tries giving an item to a valid enemy
+        //If it fails, it creates an item entity
         if (Input.GetKeyDown(KeyCode.Q)) {
             if (!Give()) Drop();
         }
@@ -56,7 +65,10 @@ public class ItemCollector : MonoBehaviour
         slot = SlotInput();
     
     }
-    private void OnTriggerEnter2D(Collider2D collision) {
+    
+    //Adds any item and enemies to respective lists upon collision
+    private void OnTriggerEnter2D(Collider2D collision) 
+    {
 
         foreach (string tag in itemTags) 
             if (collision.gameObject.CompareTag(tag)) itemColliders.Add(collision);
@@ -64,7 +76,10 @@ public class ItemCollector : MonoBehaviour
             if (collision.gameObject.CompareTag(tag)) enemyColliders.Add(collision);
     }
 
-    private void OnTriggerExit2D(Collider2D collision) {
+    
+    //Removes any item and enemies to respective lists upon collision
+    private void OnTriggerExit2D(Collider2D collision) 
+    {
 
         for (int i=0; i < itemColliders.Size(); i++) {
             if (itemColliders.Peek(i).gameObject ==  collision.gameObject) {
@@ -80,12 +95,15 @@ public class ItemCollector : MonoBehaviour
         }
     }
 
+    //Adds the item last collided with into the inventory
     public void PickUp() {
 
         if (inventory.AddItem(itemColliders.Peek().gameObject.tag))
         Destroy(itemColliders.Peek().gameObject);
     }
 
+    //If possible, transfers the selected item from this game object's
+    //inventory into the inventory of the last valid collider
     public bool Give()
     {
         for (int i = 0; i < enemyColliders.Size(); i++) {
@@ -98,6 +116,7 @@ public class ItemCollector : MonoBehaviour
         return false;
     }
 
+    //Creates an item entity of the selected item
     public void Drop()
     {
         string item = inventory.GetItem(slot);
@@ -115,6 +134,7 @@ public class ItemCollector : MonoBehaviour
         }
     }
 
+    //Converts entire inventory into item entities, used on death
     public void DropAll()
     {
         for (int i = 0; i < inventory.GetInventory(); i++) {
@@ -133,6 +153,8 @@ public class ItemCollector : MonoBehaviour
         }
     }
 
+    //Deals damage to the last valid enemy collider
+    //Amount of damage is based on currently held item
     private void Attack() {
 
         if (attackCooldown > 0) return;
@@ -166,6 +188,8 @@ public class ItemCollector : MonoBehaviour
         attackCooldown = 0.5f;
     }
 
+    //Consumes the active item if applicable and restores the
+    //respective amount of health
     private void Heal()
     {
         string food = inventory.GetItem(slot);
@@ -184,6 +208,7 @@ public class ItemCollector : MonoBehaviour
         }
     }
 
+    //Returns the key input to determine the active slot
     public int SlotInput()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) return 0;
@@ -198,16 +223,22 @@ public class ItemCollector : MonoBehaviour
         return slot;
     }
 
+    //Sets active slot
     public void SetActiveSlot(int slotChange)
     {
         slot = slotChange;
     }
 
+    
+    //Returns active slot for public methods
+    //Used for main hand rendering and gui
     public int GetActiveSlot()
     {
         return slot;
     }
 
+    //Returns a list of valid item prefabs
+    //Mirrored by enemy
     public GameObject[] GetPrefabs()
     {
         return prefabs;

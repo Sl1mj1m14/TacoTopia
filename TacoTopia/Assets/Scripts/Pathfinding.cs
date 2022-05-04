@@ -17,8 +17,6 @@ public class Pathfinding : MonoBehaviour
     private Inventory inventory;
     private GameObject[] prefabs;
 
-    //[SerializeField] private LayerMask ground;
-
     [SerializeField] private float scaleMultiplier = 0.5f;
     [SerializeField] private float xSpeed = 3;
 
@@ -49,18 +47,22 @@ public class Pathfinding : MonoBehaviour
     void Start()
     {
 
+        //Assigning game components
         body = GetComponent<Rigidbody2D>();
         physicsCollision = GetComponent<BoxCollider2D>();
         inventory = GetComponent<Inventory>();
         audioSource = GetComponent<AudioSource>();
 
+        //Getting list of prefabs for item drops
         prefabs = GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<ItemCollector>().GetPrefabs();
 
+        //Setting initial pathfinding target and setting idle timer to 0
         xTarget = RandX();
         if (xTarget < gameObject.transform.position.x) dir = -1; 
         else dir = 1;
-
         idleTimer = 0;
+
+        //Assigning a valid food item
         foodItem = foodItems[rand.Next(0,foodItems.Length-1)];
     }
 
@@ -68,11 +70,14 @@ public class Pathfinding : MonoBehaviour
     void Update()
     {
         
+        //Adding a fork as a weapon to the enemy and creating a valid item check
+        //based on the food item
         if (inventory.AddItem("Fork")) {
             inventory.SwitchItems(0,1);
             inventory.AddItemCheck(foodItem);
         }
         
+        //Killing the player and dropping items if health is below 0
         if (health <= 0) {
 
             body.velocity = new Vector2(body.velocity.x, body.velocity.y + 10);
@@ -81,19 +86,17 @@ public class Pathfinding : MonoBehaviour
             
         }
 
-        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<CapsuleCollider2D>());
+        //Ignoring collisions of tables, the player, and other enemies
+        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),
+            GameObject.FindWithTag(PLAYER_REFERENCE).GetComponent<CapsuleCollider2D>());
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),GameObject.Find("Level1Tables").GetComponent<Collider2D>());
 
         GameObject[] ignoreCollisions = GameObject.FindGameObjectsWithTag("Patron");
 
-        for (int i = 0; i < ignoreCollisions.Length; i++) {
-
-            //if (ignoreCollisions[i].name != gameObject.name) {
-
+        for (int i = 0; i < ignoreCollisions.Length; i++)
                 Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(),ignoreCollisions[i].GetComponent<BoxCollider2D>());
-            //}
-        }
 
+        //Checking if the enemy is satisfied, if so travel out of restaurant and despawn
         if (inventory.GetItem(0) == foodItem || isSatisfied == true) {
             isSatisfied = true;
             isAggressive = false;
@@ -107,10 +110,12 @@ public class Pathfinding : MonoBehaviour
             //else return;
         }
 
+        //Checking if enemy is aggressive, if so target player
         if (isAggressive) {
 
             TargetPlayer();
 
+        //Checking if enemy is idle
         } else if (isIdle) {
 
             idleTimer += Time.deltaTime;
@@ -119,12 +124,15 @@ public class Pathfinding : MonoBehaviour
                 isIdle = false;
                 idleTimer = 0;
 
+                //Randomly deciding if enemy should be aggressive, if not
+                //decreasing the random checks for aggressiveness
                 if (rand.Next(1,aggressiveTimer) == 1) {
 
                     isAggressive = true;
                     isInvincible = false;
                     xSpeed += 2;
 
+                    //Removing ability to pick up items if aggressive
                     inventory.RemoveItemCheck(foodItem);
                     inventory.AddItemCheck("Void");
                     inventory.SwitchItems(0,1);
@@ -136,6 +144,8 @@ public class Pathfinding : MonoBehaviour
 
         } else {
 
+            //Checking if a valid target has been reached, if so either idle
+            //or travel to new target
             if (Target()) {
 
                 xTarget = RandX();
@@ -152,14 +162,11 @@ public class Pathfinding : MonoBehaviour
         }  
     }
 
-    //Subtracts the damage from the health
+    //Subtracts the damage from the health, adds knockback, and plays hurt sound effect
     public void Damage(float damage) {
         if (isInvincible) return;
 
-        if (GameObject.FindWithTag(PLAYER_REFERENCE).transform.position.x < gameObject.transform.position.x)
-            body.velocity = new Vector2(body.velocity.x, body.velocity.y + 10);
-        else 
-            body.velocity = new Vector2(body.velocity.x, body.velocity.y + 10);
+        body.velocity = new Vector2(body.velocity.x, body.velocity.y + 10);
 
         health -= damage;
 
@@ -186,6 +193,7 @@ public class Pathfinding : MonoBehaviour
         }
     }
 
+    //Travels to the set X value, returns true if target is reached or passed
     public bool Target()
     {
 
@@ -204,6 +212,7 @@ public class Pathfinding : MonoBehaviour
         }
     }
 
+    //Tracks the player's X value, stopping movement if within attacking range
     public void TargetPlayer()
     {
         if (attackCooldown > 0) attackCooldown -= Time.deltaTime;
@@ -232,6 +241,7 @@ public class Pathfinding : MonoBehaviour
         }
     }
 
+    //Returns a valid random X value
     public int RandX()
     {
         return rand.Next(negX,posX);       
