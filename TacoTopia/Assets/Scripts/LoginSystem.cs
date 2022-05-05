@@ -26,6 +26,7 @@ public class LoginSystem : MonoBehaviour
 
     public Button PlayButton;
     public Button CharacterButton;
+	public Button HardButton;
 
     //Logged-in user data
     public string userName = "";
@@ -52,9 +53,11 @@ public class LoginSystem : MonoBehaviour
             {
                 PlayButton = GameObject.Find("PlayButton").GetComponent<Button>();
                 CharacterButton = GameObject.Find("CharacterButton").GetComponent<Button>();
-
+				HardButton = GameObject.Find("HardButton").GetComponent<Button>();
+				
                 PlayButton.interactable = true;
                 CharacterButton.interactable = true;
+				HardButton.interactable = true;
             }
         }
     }
@@ -252,9 +255,11 @@ public class LoginSystem : MonoBehaviour
 
                     PlayButton = GameObject.Find("PlayButton").GetComponent<Button>();
                     CharacterButton = GameObject.Find("CharacterButton").GetComponent<Button>();
+					HardButton = GameObject.Find("HardButton").GetComponent<Button>();
 
                     PlayButton.interactable = true;
                     CharacterButton.interactable = true;
+					HardButton.interactable = true;
 
                     ResetValues();
                 }

@@ -21,6 +21,10 @@ public class SceneChanger : MonoBehaviour
 	public void StartGame(){
 		SceneManager.LoadScene(2);
 	}
+	
+	public void StartHardGame(){
+		SceneManager.LoadScene(5);
+	}
 
 	public void NextScene(){
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
