@@ -54,7 +54,7 @@ public class GameControl : MonoBehaviour
                 //Enables the rendering of player inventory
                 GameObject.Find("Inventory").GetComponent<SpriteRenderer>().enabled = true;
 
-                if (level1Satisfaction >= 1 && !isSatisfactionSpawned) {
+                if (level1Satisfaction >= 10 && !isSatisfactionSpawned) {
                     Instantiate (level1Patrons[1], new Vector3(-22f, level1PatronSpawns[0], 0), Quaternion.identity);
                     isSatisfactionSpawned = true;
                 }

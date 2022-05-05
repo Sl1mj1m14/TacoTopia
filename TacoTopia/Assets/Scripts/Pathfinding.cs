@@ -71,10 +71,8 @@ public class Pathfinding : MonoBehaviour
     void Update()
     {
         
-        //if (gameObject.name == "Final Patron(Clone)" && gameObject.transform.position.x < posX) {
-            //body.velocity = new Vector2(xSpeed, body.velocity.y);
-            //transform.localScale = new Vector3(scaleMultiplier, scaleMultiplier, scaleMultiplier);
-        //}       
+        if (gameObject.name == "Final Patron(Clone)" && Target()) 
+            body.velocity = new Vector2(0, body.velocity.y);
         
         //Adding a fork as a weapon to the enemy and creating a valid item check
         //based on the food item
@@ -109,6 +107,7 @@ public class Pathfinding : MonoBehaviour
             if (gameObject.name == "Final Patron(Clone)") {
                 Instantiate(prefabs[1], gameObject.transform.position, Quaternion.identity);
                 GameObject.Find("GameControl").GetComponent<GameControl>().SetLevelBegin(2);
+                Destroy(this.gameObject);
             }
             isSatisfied = true;
             isAggressive = false;
