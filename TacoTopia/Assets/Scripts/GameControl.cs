@@ -115,6 +115,56 @@ public class GameControl : MonoBehaviour
 
                 break;
 
+            case 5:
+                
+            //Enables the rendering of player inventory
+            GameObject.Find("Inventory").GetComponent<SpriteRenderer>().enabled = true;
+
+            if (level1Satisfaction >= 10 && !isSatisfactionSpawned) {
+                Instantiate (level1Patrons[1], new Vector3(-22f, level1PatronSpawns[0], 0), Quaternion.identity);
+                isSatisfactionSpawned = true;
+            }
+                
+            //Starts increasing the spawning timers for enemies and items
+            //Starts after player enters building
+            if (levelBegin == 1) {
+                itemSpawnTimer += Time.deltaTime;
+                entitySpawnTimer += Time.deltaTime;
+            } else if (levelBegin == 2) {
+
+                GameObject[] satisfaction = GameObject.FindGameObjectsWithTag("Patron");
+
+                foreach (GameObject patron in satisfaction) patron.GetComponent<Pathfinding>().isSatisfied = true;
+
+                break;
+            }
+
+            //Spawns an item at a restock location
+            if (itemSpawnTimer >= itemSpawnTimerMax) {
+
+                //Picking a random food item to refill
+                int foodIndex = Random.Range(0,level1Prefabs.Length);
+
+                //if (foodIndex >= 10) foodIndex = Random.Range(6,9);
+                //else if (foodIndex >= 4) foodIndex = Random.Range(2,5);
+                //else foodIndex = Random.Range(0,1);
+
+                //Creating the food item
+                Instantiate (level1Prefabs[foodIndex],level1Spawns[foodIndex],Quaternion.identity);
+
+                //Resetting the food item timer
+                itemSpawnTimer = 0;
+            }
+
+            //Spawning an enemy when the enemy timer reaches a certain point
+            if (entitySpawnTimer >= entitySpawnTimerMax) {
+                Instantiate (level1Patrons[0], new Vector3(-22f, level1PatronSpawns[rand.Next(0,2)], 0), Quaternion.identity);
+
+                entitySpawnTimer = 0;
+            }
+                
+            break;
+
             default:
 
                 //Disabling inventory rendering if the level is not level 1
