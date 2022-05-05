@@ -192,6 +192,16 @@ public class GameControl : MonoBehaviour
 
                 break;
 
+            case 5:
+
+                level1Spawns = new Vector3[level1Prefabs.Length];
+                
+                for (int i = 0; i < level1Prefabs.Length; i++) {
+                    level1Spawns[i] = GameObject.FindWithTag(level1Prefabs[i].name).transform.position;
+                }
+
+                break;
+
             default:
                 break;
         }
