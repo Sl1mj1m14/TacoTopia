@@ -10,6 +10,7 @@ public class GameControl : MonoBehaviour
     private int levelBegin = 0;
 
     public GameObject level0;
+	public GameObject Dog;
     float backgroundTimer = 0f;
 
     public GameObject[] level1Prefabs;
@@ -109,8 +110,13 @@ public class GameControl : MonoBehaviour
                 backgroundTimer += Time.deltaTime;
 
                 if (backgroundTimer >= 0.5f) {
-                   Instantiate (level0, new Vector3(Random.Range(-9,9), 10, 0), Quaternion.identity); 
-                   backgroundTimer = 0;
+					int funny = Random.Range(0,21);
+					if (funny <= 19) {
+						Instantiate (level0, new Vector3(Random.Range(-9,9), 10, 0), Quaternion.identity); 
+					} else {
+						Instantiate (Dog, new Vector3(Random.Range(-9,9), 10, 0), Quaternion.identity); 
+					}
+				   backgroundTimer = 0;
                 }
 
                 break;
