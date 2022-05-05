@@ -1,5 +1,5 @@
 //created by Devin
-//last updated 4/30/2022 by Devin
+//last updated 5/4/2022 by Devin
 
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class LoadChar : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class LoadChar : MonoBehaviour
     public List<Color> hairColors = new List<Color>();
     public List<Color> shirtColors = new List<Color>();
     public List<Color> legColors = new List<Color>();
+
+
 
     //reference to custom class for importing save file
     SerializeChar import = new SerializeChar();
@@ -52,11 +55,10 @@ public class LoadChar : MonoBehaviour
     IEnumerator Download()
     {
         WWWForm form = new WWWForm();
-        LoginSystem sys = new LoginSystem();
+        LoginSystem sys = GameObject.Find("LoginSystem").GetComponent<LoginSystem>();
         string username = sys.userName;
 
         form.AddField("username", username);
-        form.AddField("table_name", "player_data");
         form.AddField("field_name", "char_data");
 
         using (UnityWebRequest download = UnityWebRequest.Post("https://tacotopia.org/download.php", form))
@@ -71,6 +73,17 @@ public class LoadChar : MonoBehaviour
 
                 if (responseText.StartsWith("Success"))
                 {
+                    if(SceneManager.GetActiveScene().buildIndex == 1)
+                    {
+                        GameObject.Find("Char Creation Mang").GetComponent<ChangingColors>().whatColor = import.bodyIndex;
+                        GameObject.Find("Shirt Creation Mang").GetComponent<ChangingColors>().whatColor = import.shirtCIndex;
+                        GameObject.Find("haircolorer").GetComponent<ChangingColors>().whatColor = import.hairCIndex;
+                        GameObject.Find("pantcolorer").GetComponent<ChangingColors>().whatColor = import.pantsCIndex;
+                        GameObject.Find("hairSelector").GetComponent<OutfitChanger>().currentOption = import.hairIndex;
+                        GameObject.Find("shirtSelector").GetComponent<OutfitChanger>().currentOption = import.shirtIndex;
+                        GameObject.Find("faceSelector").GetComponent<OutfitChanger>().currentOption = import.faceIndex;
+                        GameObject.Find("pantSelector").GetComponent<OutfitChanger>().currentOption = import.pantsIndex;
+                    }
                     string[] dataChunks = responseText.Split('|');
 
                     string text = dataChunks[1];

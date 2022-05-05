@@ -1,5 +1,5 @@
 //created by Devin
-//last updated 5/3/2022 by Devin
+//last updated 5/4/2022 by Devin
 
 using System.Collections;
 using System.Collections.Generic;
@@ -76,10 +76,10 @@ public class LoginSystem : MonoBehaviour
             }
         }
 
-        GUI.Label(new Rect(555, 5, 1000, 500), "Status: " + (isLoggedIn ? "Logged-in Username: " + userName : "Logged-out"));
+        GUI.Label(new Rect(160, 5, 1000, 500), (isLoggedIn ? "Username: " + userName : "Logged-out"));
         if (isLoggedIn)
         {
-            if (GUI.Button(new Rect(600, 30, 100, 25), "Log Out"))
+            if (GUI.Button(new Rect(50, 1, 100, 25), "Log Out"))
             {
                 isLoggedIn = false;
                 userName = "";
@@ -257,6 +257,8 @@ public class LoginSystem : MonoBehaviour
                     CharacterButton.interactable = true;
 
                     ResetValues();
+                    LoadChar load = GameObject.Find("LoginSystem").GetComponent<LoadChar>();
+                    load.load_char();
                 }
                 else
                 {

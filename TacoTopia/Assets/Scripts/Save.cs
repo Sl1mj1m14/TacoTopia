@@ -1,5 +1,5 @@
 //created by Devin
-//last updated on 4/30/2022 by Devin
+//last updated on 5/4/2022 by Devin
 
 using System.Collections;
 using System.Collections.Generic;
@@ -10,9 +10,10 @@ using System.IO;
 public class Save : MonoBehaviour
 {
     SceneChanger SC;
-    string currentLevel;
 
-    private void save()
+    SerializeSav export = new SerializeSav();
+
+    public void save()
     {
         StartCoroutine(Upload());
     }
@@ -20,15 +21,14 @@ public class Save : MonoBehaviour
     IEnumerator Upload()
     {
         WWWForm form = new WWWForm();
-        LoginSystem sys = new LoginSystem();
+        LoginSystem sys = GameObject.Find("LoginSystem").GetComponent<LoginSystem>();
         string username = sys.userName;
 
         SC = GameObject.Find("SceneChanger").GetComponent<SceneChanger>();
-        currentLevel = SC.ChangeTo.ToString();
+        export.currentLevel = SC.ChangeTo;
 
-        string saveLevel = JsonUtility.ToJson(currentLevel);
+        string saveLevel = JsonUtility.ToJson(export);
         form.AddField("username", username);
-        form.AddField("table_name", "player_data");
         form.AddField("field_name", "save_data");
         form.AddField("save_data", saveLevel);
 
@@ -48,5 +48,11 @@ public class Save : MonoBehaviour
                     Debug.Log(responseText);
             }
         }
+    }
+
+    private class SerializeSav
+    {
+        [SerializeField]
+        public int currentLevel;
     }
 }

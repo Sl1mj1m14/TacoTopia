@@ -1,3 +1,5 @@
+//last updated 5/4/2022 by Devin
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
+	public int ActiveScene;
+	void Awake(){
+		ActiveScene = SceneManager.GetActiveScene().buildIndex;
+	}
+
 	public int ChangeTo;
 	public void SceneTransition(){
 		SceneManager.LoadScene(ChangeTo);
@@ -16,14 +23,19 @@ public class SceneChanger : MonoBehaviour
 
 	public void CharacterCreator(){
 		SceneManager.LoadScene(1);
+
+		LoadChar load = GameObject.Find("LoginSystem").GetComponent<LoadChar>();
+		load.load_char();
 	}
 
 	public void StartGame(){
-		SceneManager.LoadScene(2);
+		ChangeTo = 2;
+		SceneManager.LoadScene(ChangeTo);
 	}
 
 	public void NextScene(){
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+		ChangeTo = SceneManager.GetActiveScene().buildIndex + 1;
+		SceneManager.LoadScene(ChangeTo);
 	}
 
 	public void Respawn(){

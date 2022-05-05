@@ -1,5 +1,5 @@
 //created by Devin
-//last updated 4/30/2022 by Devin
+//last updated 5/4/2022 by Devin
 
 using System.Collections;
 using System.Collections.Generic;
@@ -61,16 +61,15 @@ public class SaveChar : MonoBehaviour
     IEnumerator Upload()
     {
         WWWForm form = new WWWForm();
-        LoginSystem sys = new LoginSystem();
+        LoginSystem sys = GameObject.Find("LoginSystem").GetComponent<LoginSystem>();
         string username = sys.userName;
 
         string text = JsonUtility.ToJson(export);
         form.AddField("username", username);
-        form.AddField("table_name", "player_data");
         form.AddField("field_name", "char_data");
         form.AddField("char_data", text);
 
-        using (UnityWebRequest upload = UnityWebRequest.Post("https://tacotopia.org/upload.php", form))
+        using (UnityWebRequest upload = UnityWebRequest.Post("https://tacotopia.org/uploadtest.php", form))
         {
             yield return upload.SendWebRequest();
 

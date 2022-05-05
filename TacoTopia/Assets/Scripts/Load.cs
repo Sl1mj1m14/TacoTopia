@@ -1,5 +1,5 @@
 //created by Devin
-//last updated 4/30/2022 by Devin
+//last updated 5/4/2022 by Devin
 
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using UnityEngine.Networking;
 
 public class Load : MonoBehaviour
 {
-    string currentLevel;
+    SerializeSav import = new SerializeSav();
 
     public void load()
     {
@@ -20,11 +20,10 @@ public class Load : MonoBehaviour
     IEnumerator Download()
     {
         WWWForm form = new WWWForm();
-        LoginSystem sys = new LoginSystem();
+        LoginSystem sys = GameObject.Find("LoginSystem").GetComponent<LoginSystem>();
         string username = sys.userName;
 
         form.AddField("username", username);
-        form.AddField("table_name", "player_data");
         form.AddField("field_name", "save_data");
 
         using (UnityWebRequest download = UnityWebRequest.Post("https://tacotopia.org/download.php", form))
@@ -41,9 +40,9 @@ public class Load : MonoBehaviour
                     string[] dataChunks = responseText.Split('|');
                     string loadLevel = dataChunks[1];
 
-                    currentLevel = JsonUtility.FromJson<string>(loadLevel);
+                    import = JsonUtility.FromJson<SerializeSav>(loadLevel);
 
-                    SceneManager.LoadScene(currentLevel);
+                    SceneManager.LoadScene(import.currentLevel);
                 }
                 else
                 {
@@ -51,5 +50,11 @@ public class Load : MonoBehaviour
                 }
             }
         }
+    }
+
+    private class SerializeSav
+    {
+        [SerializeField]
+        public int currentLevel;
     }
 }
