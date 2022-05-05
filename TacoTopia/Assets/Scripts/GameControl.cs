@@ -9,6 +9,9 @@ public class GameControl : MonoBehaviour
     private int sceneNumber;
     private int levelBegin = 0;
 
+    public GameObject level0;
+    float backgroundTimer = 0f;
+
     public GameObject[] level1Prefabs;
     public GameObject[] level1Patrons;
     private Vector3[] level1Spawns;
@@ -97,6 +100,19 @@ public class GameControl : MonoBehaviour
                     entitySpawnTimer = 0;
                 }
                 
+                break;
+
+            case 0:
+
+                //Debug.Log(backgroundTimer);
+
+                backgroundTimer += Time.deltaTime;
+
+                if (backgroundTimer >= 0.5f) {
+                   Instantiate (level0, new Vector3(Random.Range(-9,9), 10, 0), Quaternion.identity); 
+                   backgroundTimer = 0;
+                }
+
                 break;
 
             default:
