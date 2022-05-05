@@ -32,6 +32,10 @@ public class SceneChanger : MonoBehaviour
 		ChangeTo = 2;
 		SceneManager.LoadScene(ChangeTo);
 	}
+	
+	public void StartHardGame(){
+		SceneManager.LoadScene(5);
+	}
 
 	public void NextScene(){
 		ChangeTo = SceneManager.GetActiveScene().buildIndex + 1;

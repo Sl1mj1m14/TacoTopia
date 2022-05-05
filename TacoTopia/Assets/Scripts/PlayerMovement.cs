@@ -178,6 +178,12 @@ public class PlayerMovement : MonoBehaviour
                 transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
                 //gameObject.transform.position = new Vector3(-39f,9f,-5f);//Testing level code
                 break;
+				
+			case 5:
+                gameObject.transform.position = new Vector3(-47f,1f,0);//Real Level 1 code
+                transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, scaleMultiplier);
+                //gameObject.transform.position = new Vector3(-39f,9f,-5f);//Testing level code
+                break;
 
             default:
                 gameObject.transform.position = new Vector3(0,0,0);

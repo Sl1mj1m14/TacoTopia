@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65212952991f61548b8b32df1a7e8e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level0: {fileID: 8089549518755795612, guid: 91dbd32892938074d9313d2bb159a589, type: 3}
   level1Prefabs:
   - {fileID: 4155228360264209633, guid: 19f3a9b60fc96294ba7194aa012caa8e, type: 3}
   - {fileID: 7968030766627426743, guid: f20079c55dac7514d830c467a8fec1fb, type: 3}
@@ -56,5 +57,9 @@ MonoBehaviour:
   - {fileID: 4348781691197939593, guid: 2751e1260d4c3454ca4915a3fa97b537, type: 3}
   level1Patrons:
   - {fileID: 4051208094189366021, guid: 21b8de93e43f94a4fa7ac6f5f2240770, type: 3}
-  itemSpawnTimerMax: 20
+  - {fileID: 8607902404738063551, guid: 09f6b908fae30c742b4809f36bf7ced6, type: 3}
+  level1Satisfaction: 0
+  itemSpawnTimerMax: 10
   itemSpawnTimer: 0
+  entitySpawnTimerMax: 60
+  entitySpawnTimer: 0
