@@ -255,7 +255,7 @@ public class LoginSystem : MonoBehaviour
 
                     PlayButton = GameObject.Find("PlayButton").GetComponent<Button>();
                     CharacterButton = GameObject.Find("CharacterButton").GetComponent<Button>();
-					HardButton = GameObject.Find("HardButton").GetComponent<Button>();
+					//HardButton = GameObject.Find("HardButton").GetComponent<Button>();
 
                     PlayButton.interactable = true;
                     CharacterButton.interactable = true;
