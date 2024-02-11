@@ -109,6 +109,7 @@ public class Pathfinding : MonoBehaviour
                 GameObject.Find("GameControl").GetComponent<GameControl>().SetLevelBegin(2);
                 Destroy(this.gameObject);
             }
+            
             isSatisfied = true;
             isAggressive = false;
             isIdle = false;
